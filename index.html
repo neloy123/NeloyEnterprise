@@ -303,6 +303,9 @@
 
   ::selection{ background: var(--green); color:#fff; }
 </style>
+<script src="data/aluminium.js"></script>
+<script src="data/materials.js"></script>
+<script src="data/accessories.js"></script>
 </head>
 <body>
 
@@ -503,11 +506,11 @@
           <div class="cfg-row">
             <label for="cfgFinish">Glass / Board Type</label>
             <select id="cfgFinish">
+              <option>3.5mm Glass</option>
+              <option>5mm Glass</option>
+              <option>Reflective Blue 5.5mm</option>
               <option>Clear</option>
               <option>Frosted</option>
-              <option>Tinted</option>
-              <option>Plain Board</option>
-              <option>Textured Board</option>
             </select>
           </div>
         </div>
@@ -816,9 +819,58 @@
   }
 
   /* ---------------- Configurator ---------------- */
-  var RATES = { "Aluminium":450, "Glass":350, "Mirror":400, "Melamine Board":300, "Hardboard":220, "Chipboard":200 };
-  var MULT = { "Sliding Window":1.0, "Sliding Door":1.15, "Fixed Glass":0.9, "Partition":1.05 };
-  var FIXED_COST = 1500;
+  // Real Neloy Enterprise launch pricing for the sliding window.
+  // Standard aluminium list prices, 2% wastage, ৳20/sqft labour, 0% profit.
+  function calculateSlidingWindowPrice(w, h, glassId, finish){
+    if(w <= 0 || h <= 0) return null;
+
+    var area = w * h;
+    var glassFactor = 0.8; // 4x4 reference: 16 sqft opening -> 12.8 sqft glass.
+    var glassArea = area * glassFactor;
+
+    var parts = [
+      ["Outer Top", "2121N", w],
+      ["Outer Bottom", "2120N", w],
+      ["Outer Side", "2122N", h * 2],
+      ["Shutter Top", "1440", w],
+      ["Shutter Bottom", "1441", w],
+      ["Inter Lock", "2124", h * 2],
+      ["Shutter Lock", "1443", h * 2]
+    ];
+
+    var aluminiumCostTotal = 0;
+    parts.forEach(function(p){
+      aluminiumCostTotal += aluminiumCost("standard", p[1], p[2], finish || "silver");
+    });
+
+    var glassPrice = materialPrice(glassId) || materialPrice("glass_3_5");
+    var glassCost = glassArea * glassPrice;
+
+    // 4x4 reference uses two 44x21in shutters. Rubber is estimated from total
+    // glass perimeter; fitting follows total aluminium running feet.
+    var glassPerimeter = 2 * (2 * ((w * 0.9166667) + (h * 0.4375)));
+    // For the 4x4 reference this evaluates to ~21.67 ft.
+    var wheelCost = accessoryCost("wheel_pair", 1);
+    var lockCost = accessoryCost("lock", 1);
+    var rubberCost = accessoryCost("rubber", glassPerimeter);
+    var fittingCost = accessoryCost("fitting", w*4 + h*4);
+
+    var accessoryTotal = wheelCost + lockCost + rubberCost + fittingCost;
+    var subtotal = aluminiumCostTotal + glassCost + accessoryTotal;
+    var wastage = subtotal * (PRICING_SETTINGS.wastagePercent / 100);
+    var labour = area * PRICING_SETTINGS.labourPerSqFt;
+    var profit = (subtotal + wastage + labour) * (PRICING_SETTINGS.profitPercent / 100);
+    var finalPrice = subtotal + wastage + labour + profit;
+
+    return {
+      area: area, glassArea: glassArea, aluminiumCost: aluminiumCostTotal,
+      glassCost: glassCost, accessoryTotal: accessoryTotal,
+      wheelCost: wheelCost, lockCost: lockCost, rubberCost: rubberCost,
+      fittingCost: fittingCost, wastage: wastage, labour: labour,
+      profit: profit, finalPrice: finalPrice, glassPerimeter: glassPerimeter,
+      parts: parts
+    };
+  }
 
   function updateConfigurator(){
     var product = document.getElementById("cfgProduct").value;
@@ -828,18 +880,28 @@
     var color = document.getElementById("cfgColor").value;
     var finish = document.getElementById("cfgFinish").value;
 
-    var area = w * h;
-    var rate = RATES[material] || 300;
-    var mult = MULT[product] || 1;
-    var price = Math.round((area * rate * mult + FIXED_COST) / 50) * 50;
-    if(area <= 0) price = 0;
+    var isWindow = product === "Sliding Window";
+    var glassId = finish === "5mm Glass" ? "glass_5" :
+                  finish === "Reflective Blue 5.5mm" ? "reflective_blue_5_5" : "glass_3_5";
+    var result = isWindow ? calculateSlidingWindowPrice(w, h, glassId, color === "Black" ? "black" : "silver") : null;
 
-    document.getElementById("cfgPrice").textContent = "৳" + price.toLocaleString('en-IN');
+    var price = result ? Math.round(result.finalPrice) : 0;
+    document.getElementById("cfgPrice").textContent = result ? "৳" + price.toLocaleString('en-IN') : "Quote";
+
     var list = document.getElementById("cfgSpecList");
     list.innerHTML = "";
-    var rows = [
+    var rows = result ? [
       ["Product", product],
-      ["Size", w+"ft × "+h+"ft ("+ (area||0) +" sqft)"],
+      ["Size", w+"ft × "+h+"ft ("+result.area+" sqft)"],
+      ["Aluminium", "Standard list price"],
+      ["Glass", result.glassArea.toFixed(2)+" sqft"],
+      ["Accessories", "Wheel + Lock + Rubber + Fitting"],
+      ["Wastage", PRICING_SETTINGS.wastagePercent+"%"],
+      ["Labour", "৳"+PRICING_SETTINGS.labourPerSqFt+"/sqft"],
+      ["Profit", "0% (launching)"]
+    ] : [
+      ["Product", product],
+      ["Size", w+"ft × "+h+"ft"],
       ["Material", material],
       ["Colour / Style", color],
       ["Glass / Board type", finish]
@@ -855,7 +917,7 @@
       + "Material: "+material+"\n"
       + "Colour/Style: "+color+"\n"
       + "Glass/Board type: "+finish+"\n"
-      + "Estimated price shown on site: ৳"+price.toLocaleString('en-IN');
+      + (result ? "Estimated launch price: ৳"+price.toLocaleString('en-IN') : "Please provide a quotation.");
     document.getElementById("cfgQuoteBtn").href = waLink(msg);
   }
   ["cfgProduct","cfgWidth","cfgHeight","cfgMaterial","cfgColor","cfgFinish"].forEach(function(id){
