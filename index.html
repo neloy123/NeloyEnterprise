@@ -157,7 +157,7 @@
   .hero .bn-line{ font-size: clamp(1.05rem, 1.9vw, 1.3rem); color: var(--green); margin-top:18px; font-weight:500; }
   .hero .desc{ margin-top:20px; color: var(--ink-soft); font-size: 1.08rem; max-width: 46ch; }
   .hero .actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
-  .hero-visual{ position:relative; aspect-ratio: 4/5; border:1px solid var(--line-strong); border-radius:6px; background: var(--bg-raised); overflow:hidden; }
+  .hero-visual{ position:relative; aspect-ratio: 4/5; border:1px solid var(--line-strong); border-radius:6px; background:var(--bg-raised); overflow:hidden; box-shadow:0 22px 55px rgba(25,30,26,.16); }
   .corner{ position:absolute; width:14px; height:14px; }
   .corner.tl{ top:-1px; left:-1px; border-top:2px solid var(--green); border-left:2px solid var(--green); }
   .corner.br{ bottom:-1px; right:-1px; border-bottom:2px solid var(--green); border-right:2px solid var(--green); }
@@ -670,12 +670,14 @@
 
   function renderHeroVisual(){
     var v = document.getElementById("heroVisual");
-    v.innerHTML = texturePanel("aluminium") +
+    v.innerHTML =
+      '<div style="position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(20,25,22,.08),rgba(20,25,22,0)),url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=88");background-size:cover;background-position:center;"></div>' +
+      '<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(15,24,19,.18));"></div>' +
       '<div class="corner tl"></div><div class="corner br"></div>' +
-      '<svg viewBox="0 0 32 32" style="position:absolute; width:64px; height:64px; top:50%; left:50%; transform:translate(-50%,-50%); color:var(--green-deep); opacity:.85"><use href="#i-window"/></svg>' +
-      '<div style="position:absolute; bottom:16px; left:16px; font-size:.75rem; color:var(--ink-soft); background:var(--bg-raised); padding:5px 10px; border:1px solid var(--line-strong); border-radius:4px;">4.0ft × 5.0ft — Aluminium</div>';
-    document.getElementById("aboutVisual").innerHTML = texturePanel("board") +
-      '<svg viewBox="0 0 32 32" style="position:absolute; width:56px; height:56px; top:50%; left:50%; transform:translate(-50%,-50%); color:#fff; opacity:.9"><use href="#i-hub"/></svg>';
+      '<div style="position:absolute;bottom:16px;left:16px;font-size:.75rem;color:#fff;background:rgba(25,30,26,.72);padding:7px 11px;border:1px solid rgba(255,255,255,.35);border-radius:4px;backdrop-filter:blur(5px);backdrop-filter:blur(5px);">Modern home interior • Glass & Aluminium</div>';
+    document.getElementById("aboutVisual").innerHTML =
+      '<div style="position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(20,25,22,.06),rgba(20,25,22,.05)),url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=88");background-size:cover;background-position:center;"></div>' +
+      '<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(15,24,19,.16));"></div>';
   }
 
   function renderCategories(){
