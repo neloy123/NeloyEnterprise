@@ -157,7 +157,7 @@
   .hero .bn-line{ font-size: clamp(1.05rem, 1.9vw, 1.3rem); color: var(--green); margin-top:18px; font-weight:500; }
   .hero .desc{ margin-top:20px; color: var(--ink-soft); font-size: 1.08rem; max-width: 46ch; }
   .hero .actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
-  .hero-visual{ position:relative; aspect-ratio: 4/5; border:1px solid var(--line-strong); border-radius:6px; background:var(--bg-raised); overflow:hidden; box-shadow:0 22px 55px rgba(25,30,26,.16); }
+  .hero-visual{ position:relative; aspect-ratio: 4/5; border:1px solid var(--line-strong); border-radius:6px; background: var(--bg-raised); overflow:hidden; }
   .corner{ position:absolute; width:14px; height:14px; }
   .corner.tl{ top:-1px; left:-1px; border-top:2px solid var(--green); border-left:2px solid var(--green); }
   .corner.br{ bottom:-1px; right:-1px; border-bottom:2px solid var(--green); border-right:2px solid var(--green); }
@@ -293,7 +293,35 @@
   .foot-nav button{ background:none; border:none; color: var(--ink-soft); font-size:.88rem; }
   footer .fine{ color: var(--steel); font-size:.8rem; margin-top: 22px; }
 
+  /* ---------- Visual shelf configurator ---------- */
+  .visual-cfg{ display:grid; grid-template-columns: 360px 1fr; border:1px solid var(--line-strong); border-radius:8px; overflow:hidden; background: var(--card); }
+  @media (max-width: 900px){ .visual-cfg{ grid-template-columns: 1fr; } }
+  .vc-steps{ border-right:1px solid var(--line); max-height: 640px; overflow-y:auto; }
+  @media (max-width: 900px){ .vc-steps{ border-right:none; border-bottom:1px solid var(--line); max-height:none; } }
+  .vc-step{ padding: 20px 22px; border-bottom:1px solid var(--line); }
+  .vc-step .head{ display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+  .vc-step .head .n{ width:24px; height:24px; border-radius:50%; border:1.5px solid var(--green); color: var(--green); display:grid; place-items:center; font-size:.75rem; font-weight:700; flex-shrink:0; }
+  .vc-step .head h4{ font-size:.95rem; }
+  .vc-field-row{ display:flex; gap:10px; flex-wrap:wrap; }
+  .vc-field{ flex:1; min-width:90px; }
+  .vc-field label{ display:block; font-size:.78rem; color: var(--ink-soft); margin-bottom:6px; }
+  .vc-field input[type=number], .vc-field select{ width:100%; padding:9px 10px; border:1px solid var(--line-strong); border-radius:4px; background: var(--bg); color:var(--ink); font-family: var(--font-body); font-size:.9rem; }
+  .stepper{ display:flex; align-items:center; border:1px solid var(--line-strong); border-radius:4px; overflow:hidden; width: fit-content; }
+  .stepper button{ width:32px; height:32px; background: var(--bg); border:none; font-size:1.1rem; color: var(--ink); }
+  .stepper button:hover{ background: var(--green-tint); }
+  .stepper .val{ width:38px; text-align:center; font-size:.92rem; font-weight:600; }
+  .vc-toggle{ display:flex; align-items:center; gap:10px; font-size:.9rem; }
+  .vc-toggle input{ width:16px; height:16px; accent-color: var(--green); }
+  .vc-preview{ display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 28px; background: repeating-linear-gradient(135deg, var(--bg) 0 14px, var(--bg-raised) 14px 28px); min-height: 420px; }
+  .vc-canvas{ width:100%; display:flex; justify-content:center; }
+  .vc-canvas svg{ max-width:100%; height:auto; }
+  .vc-bar{ position: sticky; bottom: 0; display:flex; align-items:center; justify-content:space-between; gap:16px; padding: 16px 22px; padding-bottom: calc(16px + env(safe-area-inset-bottom,0px)); background: var(--ink); color:#fff; flex-wrap:wrap; grid-column: 1 / -1; }
+  .vc-bar .price-block .p{ font-family: var(--font-display); font-size:1.5rem; font-weight:700; }
+  .vc-bar .price-block .note{ font-size:.75rem; opacity:.7; }
+  .vc-bar .btn.primary{ border-color:#fff; }
+
   /* ---------- WhatsApp float ---------- */
+
   .wa-float{
     position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 60;
     width:52px; height:52px; border-radius:50%; background: var(--green); color:#fff; display:grid; place-items:center;
@@ -302,33 +330,7 @@
   .wa-float svg{ width:24px; height:24px; }
 
   ::selection{ background: var(--green); color:#fff; }
-
-/* ===== Image + configurator polish ===== */
-.hero-visual img,.market .art img,.pd-thumb img,.p-card .thumb img,.gal-tile img,.about-grid .art img{width:100%;height:100%;object-fit:cover;display:block}
-.hero-visual:has(img){background:#dfe6e1}
-@media (max-width:900px){
-  .configurator-pro{grid-template-columns:1fr}
-  .cfg-steps{border-right:none;border-bottom:1px solid var(--line);display:flex;gap:6px;overflow-x:auto;padding:12px}
-  .cfg-step{min-width:150px}
-  .cfg-summary{border-top:1px solid var(--line)}
-}
-@media (max-width:560px){
-  .cfg-main{padding:18px}
-  .cfg-visual{min-height:300px}
-}
-
-/* ===== Pickawood-inspired configurator upgrade ===== */
-.configurator-pro{display:grid;grid-template-columns:230px minmax(0,1fr) 330px;border:1px solid var(--line-strong);border-radius:14px;overflow:hidden;background:var(--card);box-shadow:0 18px 50px rgba(25,30,26,.08)}
-.cfg-steps{background:var(--bg);border-right:1px solid var(--line);padding:24px 16px}.cfg-step{display:flex;gap:12px;align-items:flex-start;padding:13px 10px;border-radius:8px;color:var(--ink-soft);font-size:.9rem}.cfg-step.active{background:var(--green-tint);color:var(--green-deep);font-weight:700}.cfg-step .dot{width:28px;height:28px;border:1px solid var(--line-strong);border-radius:50%;display:grid;place-items:center;flex:none;font-size:.75rem}.cfg-step.active .dot{background:var(--green);color:#fff;border-color:var(--green)}
-.cfg-main{padding:28px;min-width:0}.cfg-main-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:20px}.cfg-main-head h3{font-size:1.45rem}.cfg-main-head p{color:var(--ink-soft);font-size:.9rem;margin-top:5px}
-.cfg-visual{position:relative;min-height:390px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(145deg,#f7f5ef,#e7ece8);overflow:hidden;display:grid;place-items:center;perspective:900px}.cfg-room{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(218,225,220,.75))}.cfg-floor{position:absolute;left:-15%;right:-15%;bottom:-24%;height:45%;background:repeating-linear-gradient(90deg,#c9c2b5 0 2px,transparent 2px 92px);transform:perspective(500px) rotateX(58deg);opacity:.55}.cfg-product-3d{position:relative;width:min(72%,390px);aspect-ratio:1.25/1;transform:rotateX(4deg) rotateY(-8deg);filter:drop-shadow(0 24px 20px rgba(0,0,0,.16))}.cfg-frame{position:absolute;inset:5%;border:12px solid #77817d;background:linear-gradient(135deg,rgba(151,205,220,.35),rgba(255,255,255,.12));box-shadow:inset 0 0 0 3px rgba(255,255,255,.6),12px 12px 0 rgba(40,55,48,.12)}.cfg-frame:before{content:"";position:absolute;left:50%;top:-12px;bottom:-12px;width:10px;transform:translateX(-50%);background:#69746f}.cfg-frame:after{content:"";position:absolute;top:50%;left:-12px;right:-12px;height:8px;transform:translateY(-50%);background:#69746f}.cfg-glass{position:absolute;inset:18%;background:linear-gradient(135deg,rgba(92,167,190,.32),rgba(255,255,255,.42),rgba(74,125,142,.2));border:1px solid rgba(70,100,110,.35)}.cfg-dim{position:absolute;background:var(--ink);color:#fff;font-size:.72rem;padding:4px 8px;border-radius:4px;white-space:nowrap}.cfg-dim.w{left:50%;bottom:5%;transform:translateX(-50%)}.cfg-dim.h{right:4%;top:50%;transform:translateY(-50%) rotate(90deg)}
-.cfg-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}.cfg-control label{display:block;font-size:.8rem;color:var(--ink-soft);font-weight:700;margin-bottom:7px}.cfg-control select,.cfg-control input{width:100%;padding:12px 13px;border:1px solid var(--line-strong);border-radius:7px;background:var(--bg);color:var(--ink);font:inherit}
-.cfg-price-panel{padding:28px;background:var(--green-tint);display:flex;flex-direction:column}.cfg-price-panel .eyebrow{font-size:.78rem;color:var(--steel);font-weight:700;text-transform:uppercase;letter-spacing:.06em}.cfg-live-price{font-family:var(--font-display);font-size:2.65rem;font-weight:700;color:var(--green-deep);margin:7px 0 2px}.cfg-price-panel .small-note{font-size:.78rem;color:var(--ink-soft);line-height:1.5}.cfg-breakdown{margin:24px 0;display:flex;flex-direction:column;gap:9px}.cfg-breakdown div{display:flex;justify-content:space-between;gap:10px;font-size:.84rem;border-bottom:1px dashed var(--line-strong);padding-bottom:7px}.cfg-breakdown span:first-child{color:var(--ink-soft)}.cfg-actions{margin-top:auto;display:grid;gap:9px}.cfg-actions .btn{width:100%}
-@media(max-width:1050px){.configurator-pro{grid-template-columns:190px minmax(0,1fr)}.cfg-price-panel{grid-column:1/-1;border-top:1px solid var(--line)}}@media(max-width:760px){.configurator-pro{grid-template-columns:1fr}.cfg-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;border-right:none;border-bottom:1px solid var(--line);padding:10px}.cfg-step{justify-content:center;padding:8px;font-size:0}.cfg-step .dot{font-size:.72rem}.cfg-main{padding:18px}.cfg-form-grid{grid-template-columns:1fr}.cfg-visual{min-height:300px}}
 </style>
-<script src="data/aluminium.js"></script>
-<script src="data/materials.js"></script>
-<script src="data/accessories.js"></script>
 </head>
 <body>
 
@@ -458,8 +460,8 @@
     <div class="wrap">
       <div class="section-head">
         <div class="kicker">Shop</div>
-        <h2>8 products you can customize</h2>
-        <p>Choose from 8 made-to-measure products. Pick a product, open the configurator, change size and materials, then continue to WhatsApp.</p>
+        <h2>Our current product catalogue</h2>
+        <p>A starting-point catalogue of what we manufacture most often. Every product ships as a custom job — pick one to configure it for your space.</p>
       </div>
       <div class="filter-row" id="shopFilters"></div>
       <div class="product-grid" id="shopGrid"></div>
@@ -487,20 +489,57 @@
         <p>Set your dimensions and materials to see an estimated price, then send the design straight to us on WhatsApp.</p>
       </div>
 
-      <div class="configurator-pro">
-<aside class="cfg-steps"><div class="cfg-step active"><span class="dot">1</span><span>Product</span></div><div class="cfg-step active"><span class="dot">2</span><span>Size</span></div><div class="cfg-step active"><span class="dot">3</span><span>Material</span></div><div class="cfg-step active"><span class="dot">4</span><span>Price</span></div></aside>
-<div class="cfg-main"><div class="cfg-main-head"><div><h3 id="cfgTitle">Glass & Aluminium Window</h3><p>Choose a product, enter your measurements and see the estimate update instantly.</p></div><span class="tag">Made to measure</span></div>
-<div class="cfg-visual" id="cfgVisual"><div class="cfg-room"></div><div class="cfg-floor"></div><div class="cfg-product-3d"><div class="cfg-frame"><div class="cfg-glass"></div></div><div class="cfg-dim w" id="cfgDimW">4 ft</div><div class="cfg-dim h" id="cfgDimH">4 ft</div></div></div>
-<div class="cfg-form-grid">
-<div class="cfg-control"><label for="cfgProduct">Product</label><select id="cfgProduct"><option value="Sliding Window">Glass & Aluminium Window</option><option value="Sliding Door">Glass Aluminium Door</option><option value="Fixed Glass">Glass Aluminium Showcase</option><option value="Partition">Glass & Aluminium Partition</option><option value="Bookshelf">Melamine Board Book Shelf</option><option value="Home Decor">Customizable Home Decor</option><option value="Mirror">Custom Mirror</option><option value="Board Furniture">Custom Board Furniture</option></select></div>
-<div class="cfg-control"><label for="cfgMaterial">Main material</label><select id="cfgMaterial"><option>Aluminium + Glass</option><option>Aluminium + Mirror</option><option>Melamine Board</option><option>Hardboard</option><option>Chipboard</option></select></div>
-<div class="cfg-control"><label for="cfgWidth">Width (ft)</label><input type="number" id="cfgWidth" min="1" step="0.25" value="4"></div>
-<div class="cfg-control"><label for="cfgHeight">Height (ft)</label><input type="number" id="cfgHeight" min="1" step="0.25" value="4"></div>
-<div class="cfg-control"><label for="cfgColor">Frame / finish</label><select id="cfgColor"><option value="Silver">Silver</option><option value="Black">Black</option><option value="Bronze">Bronze</option><option value="Golden">Golden</option></select></div>
-<div class="cfg-control"><label for="cfgFinish">Glass / surface</label><select id="cfgFinish"><option>3.5mm Glass</option><option>5mm Glass</option><option>Reflective Blue 5.5mm</option><option>Mirror</option><option>Melamine Board</option><option>Hardboard</option><option>Chipboard</option></select></div>
-</div></div>
-<aside class="cfg-price-panel"><div class="eyebrow">Live estimate</div><div class="cfg-live-price" id="cfgPrice">৳0</div><div class="small-note">Current launch inputs: 2% wastage + ৳20/sqft labour + 0% profit. Final quotation is confirmed after measurement/site review.</div><div class="cfg-breakdown" id="cfgBreakdown"></div><div class="cfg-actions"><a class="btn primary" href="#" id="cfgQuoteBtn" target="_blank" rel="noopener">Continue on WhatsApp</a><button class="btn" type="button" id="cfgContactBtn">Ask for exact measurement</button></div></aside>
-</div>
+      <div class="configurator">
+        <div class="cfg-form">
+          <div class="cfg-row">
+            <label for="cfgProduct">Product</label>
+            <select id="cfgProduct">
+              <option value="Sliding Window">Sliding Window</option>
+              <option value="Sliding Door">Sliding Door</option>
+              <option value="Fixed Glass">Fixed Glass</option>
+              <option value="Partition">Partition</option>
+            </select>
+          </div>
+          <div class="cfg-row">
+            <label>Dimensions</label>
+            <div class="dims">
+              <input type="number" id="cfgWidth" min="1" step="0.5" value="4" placeholder="Width (ft)">
+              <input type="number" id="cfgHeight" min="1" step="0.5" value="5" placeholder="Height (ft)">
+            </div>
+          </div>
+          <div class="cfg-row">
+            <label for="cfgMaterial">Material</label>
+            <select id="cfgMaterial">
+              <option>Glass</option>
+              <option>Mirror</option>
+              <option>Plywood</option>
+              <option>Melamine Board</option>
+              <option>PVC Board</option>
+            </select>
+          </div>
+          <div class="cfg-row">
+            <label for="cfgThickness">Thickness / Type</label>
+            <select id="cfgThickness"></select>
+          </div>
+          <div class="cfg-row">
+            <label for="cfgColor">Colour / Style</label>
+            <select id="cfgColor">
+              <option>Natural Finish</option>
+              <option>White</option>
+              <option>Black</option>
+              <option>Wood Tone</option>
+              <option>Custom (tell us on WhatsApp)</option>
+            </select>
+          </div>
+        </div>
+        <div class="cfg-summary">
+          <div class="label">Estimated Price</div>
+          <div class="price-tag" id="cfgPrice">৳0</div>
+          <div class="note">Estimate only. Final price depends on exact dimensions, fittings, site conditions and installation.</div>
+          <ul class="spec-list" id="cfgSpecList"></ul>
+          <a class="btn primary" href="#" id="cfgQuoteBtn" target="_blank" rel="noopener">Request a Quote on WhatsApp</a>
+        </div>
+      </div>
     </div>
   </section>
 </div>
@@ -583,6 +622,92 @@
   </section>
 </div>
 
+<!-- ============ VISUAL SHELF CONFIGURATOR ============ -->
+<div class="view" data-view="shelfconfig" id="view-shelfconfig">
+  <section>
+    <div class="wrap">
+      <button class="pd-back" data-view="shop"><svg class="icn" style="width:16px;height:16px" viewBox="0 0 24 24"><use href="#i-back"/></svg> Back to Shop</button>
+      <div class="section-head">
+        <div class="kicker">Visual configurator</div>
+        <h2>Design your shelf or cabinet</h2>
+        <p>Set the size, material and compartments and watch it update live, then send the design straight to us.</p>
+      </div>
+
+      <div class="visual-cfg">
+        <div class="vc-steps">
+          <div class="vc-step">
+            <div class="head"><span class="n">1</span><h4>Size</h4></div>
+            <div class="vc-field-row">
+              <div class="vc-field"><label>Width (ft)</label><input type="number" id="vcWidth" min="1" step="0.5" value="5"></div>
+              <div class="vc-field"><label>Height (ft)</label><input type="number" id="vcHeight" min="1" step="0.5" value="6"></div>
+              <div class="vc-field"><label>Depth (ft)</label><input type="number" id="vcDepth" min="0.5" step="0.25" value="1"></div>
+            </div>
+          </div>
+
+          <div class="vc-step">
+            <div class="head"><span class="n">2</span><h4>Material</h4></div>
+            <div class="vc-field-row">
+              <div class="vc-field">
+                <label>Material</label>
+                <select id="vcMaterial">
+                  <option>Melamine Board</option>
+                  <option>Plywood</option>
+                  <option>PVC Board</option>
+                </select>
+              </div>
+              <div class="vc-field"><label>Thickness</label><select id="vcThickness"></select></div>
+            </div>
+          </div>
+
+          <div class="vc-step">
+            <div class="head"><span class="n">3</span><h4>Columns &amp; Compartments</h4></div>
+            <div class="vc-field-row">
+              <div class="vc-field">
+                <label>Columns</label>
+                <div class="stepper">
+                  <button type="button" data-target="vcCols" data-dir="-1">–</button>
+                  <span class="val" id="vcColsVal">3</span>
+                  <button type="button" data-target="vcCols" data-dir="1">+</button>
+                </div>
+              </div>
+              <div class="vc-field">
+                <label>Rows</label>
+                <div class="stepper">
+                  <button type="button" data-target="vcRows" data-dir="-1">–</button>
+                  <span class="val" id="vcRowsVal">4</span>
+                  <button type="button" data-target="vcRows" data-dir="1">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vc-step">
+            <div class="head"><span class="n">4</span><h4>Back Panel</h4></div>
+            <label class="vc-toggle"><input type="checkbox" id="vcBack" checked> Add a solid back panel (PVC 1.75mm)</label>
+          </div>
+
+          <div class="vc-step">
+            <div class="head"><span class="n">5</span><h4>Doors</h4></div>
+            <label class="vc-toggle"><input type="checkbox" id="vcDoors"> Add doors to the bottom row</label>
+          </div>
+        </div>
+
+        <div class="vc-preview">
+          <div class="vc-canvas" id="vcCanvas"></div>
+        </div>
+
+        <div class="vc-bar">
+          <div class="price-block">
+            <div class="p" id="vcPrice">৳0</div>
+            <div class="note">Estimate only — final price confirmed on WhatsApp</div>
+          </div>
+          <a class="btn primary" href="#" id="vcQuoteBtn" target="_blank" rel="noopener">Request Quote on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
 </main>
 
 <footer>
@@ -612,14 +737,15 @@
 
   /* ---------------- Product data (would map to a CMS/products.json later) ---------------- */
   var PRODUCTS = [
-    { id:"alu-sliding-window", name:"Glass & Aluminium Window", cat:"Windows", galCats:["Home","Windows"], materials:["Aluminium","Glass"], desc:"A smooth-running two-panel aluminium sliding window with clear, tinted or reflective glass, built to your opening size.", from:9000, product:"Sliding Window", material:"Aluminium", sizes:"Made to opening size", warranty:"1 year on frame & fittings" },
-    { id:"glass-showcase", name:"Glass Aluminium Showcase", cat:"Glass & Mirror", galCats:["Shop","Glass"], materials:["Aluminium","Glass"], desc:"Custom glass-and-aluminium display showcase for shops, counters and product presentation.", from:9000, product:"Fixed Glass", material:"Aluminium + Glass", sizes:"Fully custom", warranty:"1 year on frame & fittings" },
-    { id:"bookshelf", name:"Melamine Board Book Shelf", cat:"Storage & Shelves", galCats:["Home","Shelves","Board Furniture"], materials:["Melamine Board","Hardboard"], desc:"A made-to-measure bookshelf designed around your wall, study room or alcove.", from:6500, product:"Bookshelf", material:"Melamine Board", sizes:"Made to wall dimensions", warranty:"1 year on hardware" },
-    { id:"home-decor", name:"Customizable Home Decor", cat:"Board Furniture", galCats:["Home","Board Furniture"], materials:["Melamine Board","Hardboard","Mirror"], desc:"Custom shelves, wall décor, display units and small furniture pieces designed to match your room.", from:4500, product:"Home Decor", material:"Melamine Board", sizes:"Fully custom", warranty:"1 year on hardware" },
-    { id:"alu-glass-door", name:"Aluminium Glass Door", cat:"Doors", galCats:["Home","Doors"], materials:["Aluminium","Glass"], desc:"A framed aluminium-and-glass door for entrances, balconies, rooms and shop fronts.", from:16000, product:"Sliding Door", material:"Aluminium + Glass", sizes:"Made to opening size", warranty:"1 year on frame & fittings" },
-    { id:"glass-partition", name:"Glass & Aluminium Partition", cat:"Partitions", galCats:["Office","Shop","Glass"], materials:["Aluminium","Glass"], desc:"A clean aluminium-framed glass partition for offices, shops and practical space division.", from:12000, product:"Partition", material:"Glass", sizes:"Floor-to-ceiling or custom", warranty:"1 year on frame" },
-    { id:"custom-mirror", name:"Custom Mirror", cat:"Glass & Mirror", galCats:["Home","Shop","Mirror"], materials:["Mirror"], desc:"Cut-to-size mirror for bedrooms, salons, shops and feature walls, with optional framing.", from:2500, product:"Mirror", material:"Mirror", sizes:"Any size", warranty:"6 months on silvering" },
-    { id:"board-furniture", name:"Custom Board Furniture", cat:"Board Furniture", galCats:["Home","Office","Shop","Board Furniture"], materials:["Melamine Board","Hardboard","Chipboard"], desc:"Custom storage, counters, cabinets and furniture built from the board materials you choose.", from:8000, product:"Board Furniture", material:"Melamine Board", sizes:"Fully custom layout", warranty:"1 year on hardware" }
+    { id:"alu-sliding-window", name:"Aluminium Sliding Window", cat:"Windows", galCats:["Home","Windows"], materials:["Aluminium","Glass"], desc:"A smooth-running aluminium frame sliding window with clear or tinted glass, built to your opening size.", from:9000, product:"Sliding Window", material:"Glass", sizes:"Any size up to 8ft width", warranty:"1 year on frame & fittings" },
+    { id:"alu-glass-door", name:"Aluminium Glass Door", cat:"Doors", galCats:["Home","Doors"], materials:["Aluminium","Glass"], desc:"A framed aluminium door with tempered glass, suited for main entrances, balconies and shop fronts.", from:16000, product:"Sliding Door", material:"Glass", sizes:"Standard & custom heights", warranty:"1 year on frame & fittings" },
+    { id:"sliding-door", name:"Sliding Door", cat:"Doors", galCats:["Shop","Doors"], materials:["Aluminium","Glass"], desc:"Space-saving sliding door for shop fronts and partitioned rooms, in aluminium and glass.", from:15000, product:"Sliding Door", material:"Glass", sizes:"Made to opening width", warranty:"1 year on track & rollers" },
+    { id:"glass-partition", name:"Glass Partition", cat:"Partitions", galCats:["Office","Glass"], materials:["Aluminium","Glass"], desc:"Aluminium-framed glass partition for offices and shops that need to divide space without losing light.", from:12000, product:"Partition", material:"Glass", sizes:"Per panel, floor to ceiling", warranty:"1 year on frame" },
+    { id:"custom-mirror", name:"Custom Mirror", cat:"Glass & Mirror", galCats:["Home","Mirror"], materials:["Mirror"], desc:"Cut-to-size mirror for bedrooms, salons and shop interiors, with optional edge polishing and framing.", from:2500, product:"Fixed Glass", material:"Mirror", sizes:"Any size, edge-polished", warranty:"6 months on silvering" },
+    { id:"bookshelf", name:"Bookshelf", cat:"Storage & Shelves", galCats:["Home","Shelves"], materials:["Melamine Board","Plywood"], desc:"Custom melamine-board bookshelf sized to your wall or alcove, in a range of finishes.", from:6500, product:"Partition", material:"Melamine Board", sizes:"Made to wall dimensions", warranty:"1 year on hardware" },
+    { id:"corner-shelf", name:"Corner Shelf", cat:"Storage & Shelves", galCats:["Home","Shop","Shelves"], materials:["Melamine Board","PVC Board"], desc:"A practical corner shelving unit for homes and shops, built from board materials to your corner's exact angle.", from:3200, product:"Partition", material:"PVC Board", sizes:"Fitted to corner", warranty:"1 year on hardware" },
+    { id:"study-table-hutch", name:"Study Table with Hutch", cat:"Board Furniture", galCats:["Home","Office","Board Furniture"], materials:["Melamine Board"], desc:"A two-part study/office table: lower desk with drawer and side panels, topped with an open-shelf hutch. Built to your height and width.", from:5200, product:"Partition", material:"Melamine Board", sizes:"Example: 3ft W x 5ft H (custom sizes available)", warranty:"1 year on hardware" },
+    { id:"melamine-furniture", name:"Custom Melamine Board Furniture", cat:"Board Furniture", galCats:["Home","Office","Board Furniture"], materials:["Melamine Board","Plywood","PVC Board"], desc:"Cabinets, counters and storage units built from melamine board to whatever layout your room needs.", from:8000, product:"Partition", material:"Melamine Board", sizes:"Fully custom layout", warranty:"1 year on hardware" }
   ];
 
   var CATEGORIES = [
@@ -670,39 +796,26 @@
   function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
 
   function texturePanel(kind, seed){
-    var photos = {
-      aluminium: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=85",
-      glass: "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1000&q=85",
-      board: "https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=1000&q=85",
-      green: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=85"
+    // Abstract material-representative panel using layered CSS gradients — stands in for real photography.
+    var palettes = {
+      aluminium: "linear-gradient(135deg, #cfd6d3, #9aa6a2 40%, #cfd6d3 60%, #8b9793)",
+      glass: "linear-gradient(135deg, rgba(140,170,160,.25), rgba(255,255,255,.05) 40%, rgba(90,120,110,.3))",
+      board: "linear-gradient(160deg, #b98f63, #8a6a45 55%, #a67e51)",
+      green: "linear-gradient(150deg, var(--green-tint), var(--bg-raised) 60%)"
     };
-    var img = photos[kind] || photos.green;
-    var fallback = {
-      aluminium: "linear-gradient(135deg,#cfd6d3,#8b9793)",
-      glass: "linear-gradient(135deg,#9db8b5,#eef4f1)",
-      board: "linear-gradient(160deg,#b98f63,#80603e)",
-      green: "linear-gradient(150deg,var(--green-tint),var(--bg-raised))"
-    };
-    var bg = fallback[kind] || fallback.green;
-    return '<div style="position:absolute;inset:0;background:'+bg+'"></div>' +
-      '<img src="'+img+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">' +
-      '<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,25,20,.03),rgba(15,25,20,.24));"></div>';
+    var bg = palettes[kind] || palettes.green;
+    return '<div style="position:absolute;inset:0;background:'+bg+'"></div>'
+      + '<div style="position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px, transparent 1px),linear-gradient(90deg, var(--line) 1px, transparent 1px);background-size:26px 26px;opacity:.28"></div>';
   }
 
   function renderHeroVisual(){
     var v = document.getElementById("heroVisual");
-    var heroImg = "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=90";
-    v.innerHTML =
-      '<img src="'+heroImg+'" alt="Modern home interior with glass and aluminium features" loading="eager" referrerpolicy="no-referrer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;">' +
-      '<div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,25,22,.12),rgba(15,24,19,.05));"></div>' +
+    v.innerHTML = texturePanel("aluminium") +
       '<div class="corner tl"></div><div class="corner br"></div>' +
-      '<div style="position:absolute;bottom:16px;left:16px;font-size:.75rem;color:#fff;background:rgba(25,30,26,.72);padding:7px 11px;border:1px solid rgba(255,255,255,.35);border-radius:4px;">Modern home interior • Glass & Aluminium</div>';
-
-    var about = document.getElementById("aboutVisual");
-    var aboutImg = "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=90";
-    about.innerHTML =
-      '<img src="'+aboutImg+'" alt="Modern interior decoration" loading="lazy" referrerpolicy="no-referrer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;">' +
-      '<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(15,24,19,.16));"></div>';
+      '<svg viewBox="0 0 32 32" style="position:absolute; width:64px; height:64px; top:50%; left:50%; transform:translate(-50%,-50%); color:var(--green-deep); opacity:.85"><use href="#i-window"/></svg>' +
+      '<div style="position:absolute; bottom:16px; left:16px; font-size:.75rem; color:var(--ink-soft); background:var(--bg-raised); padding:5px 10px; border:1px solid var(--line-strong); border-radius:4px;">4.0ft × 5.0ft — Aluminium</div>';
+    document.getElementById("aboutVisual").innerHTML = texturePanel("board") +
+      '<svg viewBox="0 0 32 32" style="position:absolute; width:56px; height:56px; top:50%; left:50%; transform:translate(-50%,-50%); color:#fff; opacity:.9"><use href="#i-hub"/></svg>';
   }
 
   function renderCategories(){
@@ -799,122 +912,89 @@
       + '</div>'
       + '<div class="pd-actions">'
         + '<button class="btn primary" id="pdConfigureBtn">Configure This Product</button>'
+        + (["Storage & Shelves","Board Furniture"].indexOf(p.cat)>-1 ? '<button class="btn" id="pdVisualBtn">Open Visual Configurator</button>' : '')
         + '<a class="btn wa" href="'+waLink("Hi Neloy Enterprise, I'm interested in the "+p.name+". Could you help me with pricing and details?")+'" target="_blank" rel="noopener"><svg class="icn" style="width:16px;height:16px" viewBox="0 0 32 32"><use href="#i-wa"/></svg> WhatsApp</a>'
       + '</div></div>';
     box.querySelector("#pdConfigureBtn").addEventListener("click", function(){
       document.getElementById("cfgProduct").value = p.product;
       document.getElementById("cfgMaterial").value = p.material;
+      populateThickness();
       updateConfigurator();
       showView("configure");
     });
+    var pdVisualBtn = box.querySelector("#pdVisualBtn");
+    if(pdVisualBtn){
+      pdVisualBtn.addEventListener("click", function(){
+        document.getElementById("vcMaterial").value = p.material;
+        vcPopulateThickness();
+        vcUpdate();
+        showView("shelfconfig");
+      });
+    }
     showView("product");
   }
 
-  /* ---------------- Configurator ---------------- */
-  // Real Neloy Enterprise launch pricing for the sliding window.
-  // Standard aluminium list prices, 2% wastage, ৳20/sqft labour, 0% profit.
-  function calculateSlidingWindowPrice(w,h,glassId,finish){
-    if(w<=0||h<=0)return null;
-    var area=w*h,glassArea=area*.8,parts=[["Outer Top","2121N",w],["Outer Bottom","2120N",w],["Outer Side","2122N",h*2],["Shutter Top","1440",w],["Shutter Bottom","1441",w],["Inter Lock","2124",h*2],["Shutter Lock","1443",h*2]],aluminiumCostTotal=0;
-    parts.forEach(function(p){aluminiumCostTotal+=aluminiumCost("standard",p[1],p[2],finish)||0});
-    var glassCost=glassArea*(materialPrice(glassId)||0),glassPerimeter=2*(2*((w*.9166667)+(h*.4375))),wheelCost=accessoryCost("wheel_pair",1),lockCost=accessoryCost("lock",1),rubberCost=accessoryCost("rubber",glassPerimeter),fittingCost=accessoryCost("fitting",w*4+h*4),accessoryTotal=wheelCost+lockCost+rubberCost+fittingCost,subtotal=aluminiumCostTotal+glassCost+accessoryTotal,wastage=subtotal*.02,labour=area*20;
-    return {area:area,glassArea:glassArea,aluminiumCost:aluminiumCostTotal,glassCost:glassCost,accessoryTotal:accessoryTotal,wastage:wastage,labour:labour,finalPrice:subtotal+wastage+labour};
-  }
-  function genericEstimate(product,w,h,finish){
-    var area=Math.max(1,w*h),p=PRODUCTS.find(function(x){return x.product===product}),base=p?p.from:5000,scale=Math.max(.55,area/20),factor=finish==="5mm Glass"?1.25:finish==="Reflective Blue 5.5mm"?1.55:finish==="Mirror"?1.15:1;
-    return Math.round(base*scale*factor);
-  }
-  function updateConfigurator(){
-    var product=document.getElementById("cfgProduct").value,w=parseFloat(document.getElementById("cfgWidth").value)||0,h=parseFloat(document.getElementById("cfgHeight").value)||0,material=document.getElementById("cfgMaterial").value,color=document.getElementById("cfgColor").value,finish=document.getElementById("cfgFinish").value,glassId=finish==="5mm Glass"?"glass_5":finish==="Reflective Blue 5.5mm"?"reflective_blue_5_5":"glass_3_5",result=product==="Sliding Window"?calculateSlidingWindowPrice(w,h,glassId,color.toLowerCase()):null,price=result?Math.round(result.finalPrice):genericEstimate(product,w,h,finish);
-    document.getElementById("cfgPrice").textContent="৳"+price.toLocaleString("en-IN");document.getElementById("cfgTitle").textContent=document.getElementById("cfgProduct").selectedOptions[0].textContent;document.getElementById("cfgDimW").textContent=w+" ft";document.getElementById("cfgDimH").textContent=h+" ft";
-    var rows=result?[["Aluminium","৳"+Math.round(result.aluminiumCost).toLocaleString("en-IN")],["Glass ("+result.glassArea.toFixed(1)+" sqft)","৳"+Math.round(result.glassCost).toLocaleString("en-IN")],["Accessories","৳"+Math.round(result.accessoryTotal).toLocaleString("en-IN")],["Wastage","2%"],["Labour","৳"+Math.round(result.labour).toLocaleString("en-IN")],["Profit","0% launch"]]:[["Size",w+" × "+h+" ft"],["Material",material],["Surface",finish],["Estimate basis","Starting price scaled to size"]];
-    document.getElementById("cfgBreakdown").innerHTML=rows.map(function(r){return "<div><span>"+r[0]+"</span><strong>"+r[1]+"</strong></div>"}).join("");
-    var msg="Hi Neloy Enterprise, I want to configure a product.\nProduct: "+document.getElementById("cfgProduct").selectedOptions[0].textContent+"\nSize: "+w+"ft × "+h+"ft\nMaterial: "+material+"\nFinish: "+finish+"\nColour: "+color+"\nEstimated price: ৳"+price.toLocaleString("en-IN");
-    document.getElementById("cfgQuoteBtn").href=waLink(msg);
-  }
-  ["cfgProduct","cfgWidth","cfgHeight","cfgMaterial","cfgColor","cfgFinish"].forEach(function(id){document.getElementById(id).addEventListener("input",updateConfigurator);document.getElementById(id).addEventListener("change",updateConfigurator)});
-  document.getElementById("cfgContactBtn").addEventListener("click",function(){showView("contact")});
+  /* ---------------- Configurator: component-based manufacturing pricing engine ----------------
+     Mirrors the material / aluminium-profile / accessories / labour / wastage / profit model,
+     instead of a single flat rate. All rates below are illustrative starting points — replace
+     with your real workshop costs in one place (this block) once you have them. */
+  // Real rates from Neloy Enterprise (BDT / sqft unless noted):
+  var MATERIALS = {
+    "Glass":          { "3.5mm": 80, "5mm": 115, "Reflective Blue 5.5mm": 180 },
+    "Mirror":         { "3.5mm": 100 },
+    "Plywood":        { "3.5mm": 30, "5mm": 50 },
+    "Melamine Board": { "16mm (৳1700/4x8ft sheet)": 53 },
+    "PVC Board":      { "1.75mm": 20, "2.75mm": 25 }
+  };
+  // PLACEHOLDER — replace with your real numbers when you have them:
+  var ALU_RATE_PER_FT = 180; // BDT / running ft of aluminium profile
+  var ACCESSORIES_COST = { "Sliding Window":800, "Sliding Door":1400, "Fixed Glass":300, "Partition":600 }; // wheel, lock, rubber, fitting
+  var PROFILE_FACTOR = { "Sliding Window":1.4, "Sliding Door":1.5, "Fixed Glass":1.0, "Partition":1.3 }; // extra profile runs (track/interlock etc.)
 
-  /* ---------------- Gallery ---------------- */
-  var currentGalFilter = "All";
-  function renderGallery(){
-    var filters = document.getElementById("galFilters");
-    GAL_CATS.forEach(function(c){
-      var chip = el("button","chip"+(c===currentGalFilter?" active":""), c);
-      chip.addEventListener("click", function(){
-        currentGalFilter = c;
-        document.querySelectorAll("#galFilters .chip").forEach(function(ch){ ch.classList.toggle("active", ch.textContent===c); });
-        renderGalGrid();
-      });
-      filters.appendChild(chip);
+  var LABOUR_RATE = 20;    // BDT / sqft — confirmed
+  var WASTAGE_PCT = 0.02;  // confirmed
+  var PROFIT_PCT = 0;      // launch pricing — break-even, confirmed
+
+  function money(n){ return "৳" + Math.round(n).toLocaleString('en-IN'); }
+
+  function populateThickness(){
+    var material = document.getElementById("cfgMaterial").value;
+    var thickSel = document.getElementById("cfgThickness");
+    thickSel.innerHTML = "";
+    Object.keys(MATERIALS[material] || {}).forEach(function(t){
+      var opt = document.createElement("option");
+      opt.value = t; opt.textContent = t;
+      thickSel.appendChild(opt);
     });
-    renderGalGrid();
-  }
-  function renderGalGrid(){
-    var grid = document.getElementById("galGrid");
-    grid.innerHTML = "";
-    var kinds = ["aluminium","glass","board"];
-    GAL_ITEMS.filter(function(g){ return currentGalFilter==="All" || g.cats.indexOf(currentGalFilter)>-1; })
-      .forEach(function(g,i){
-        var tile = el("div","gal-tile");
-        tile.innerHTML = texturePanel(kinds[i%3]) + '<div class="cap">'+g.t+'</div>';
-        grid.appendChild(tile);
-      });
   }
 
-  /* ---------------- Map placeholder ---------------- */
-  function renderMap(){
-    var box = document.getElementById("mapBox");
-    box.innerHTML = '<div style="position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px, transparent 1px),linear-gradient(90deg, var(--line) 1px, transparent 1px);background-size:22px 22px;"></div>'
-      + '<svg viewBox="0 0 32 32" style="position:absolute; width:34px;height:34px; top:50%;left:50%; transform:translate(-50%,-100%); color:var(--green)"><use href="#i-pin"/></svg>'
-      + '<div style="position:absolute; bottom:10px; left:10px; font-size:.75rem; color:var(--ink-soft); background:var(--bg-raised); padding:5px 10px; border:1px solid var(--line-strong); border-radius:4px;">Netrakona Sadar, Dakshin Bishiuara — interactive map coming soon</div>';
-  }
+  function updateConfigurator(){
+    var product = document.getElementById("cfgProduct").value;
+    var w = parseFloat(document.getElementById("cfgWidth").value) || 0;
+    var h = parseFloat(document.getElementById("cfgHeight").value) || 0;
+    var material = document.getElementById("cfgMaterial").value;
+    var thickness = document.getElementById("cfgThickness").value;
+    var color = document.getElementById("cfgColor").value;
 
-  /* ---------------- Contact form ---------------- */
-  document.getElementById("contactForm").addEventListener("submit", function(e){
-    e.preventDefault();
-    var name = document.getElementById("cName").value.trim();
-    var phone = document.getElementById("cPhone").value.trim();
-    var msg = document.getElementById("cMsg").value.trim();
-    var text = "Hi Neloy Enterprise, my name is "+(name||"—")+" (phone: "+(phone||"—")+").\n"+(msg||"I'd like to know more about your products.");
-    var out = document.getElementById("formMsg");
-    out.style.display = "block";
-    window.open(waLink(text), "_blank", "noopener");
-  });
+    var area = w * h;
+    var perimeter = 2 * (w + h);
 
-  /* ---------------- View routing ---------------- */
-  function showView(name){
-    document.querySelectorAll(".view").forEach(function(v){ v.classList.toggle("active", v.dataset.view===name); });
-    document.querySelectorAll(".navlink").forEach(function(b){ b.classList.toggle("active", b.dataset.view===name); });
-    document.getElementById("siteHeader").classList.remove("open");
-    window.scrollTo({top:0, behavior:"instant"});
-  }
-  document.querySelectorAll("[data-view]").forEach(function(btn){
-    if(btn.tagName==="BUTTON"){
-      btn.addEventListener("click", function(){ showView(btn.dataset.view); });
-    }
-  });
-  document.getElementById("hamburgerBtn").addEventListener("click", function(){
-    document.getElementById("siteHeader").classList.toggle("open");
-  });
+    var frameCost = perimeter * ALU_RATE_PER_FT * (PROFILE_FACTOR[product] || 1);
+    var infillRate = (MATERIALS[material] && MATERIALS[material][thickness]) || 0;
+    var infillCost = area * infillRate;
+    var accessoriesCost = ACCESSORIES_COST[product] || 500;
+    var labourCost = area * LABOUR_RATE;
 
-  /* ---------------- WhatsApp links (generic) ---------------- */
-  var genericWa = waLink("Hi Neloy Enterprise, I'd like to know more about your products.");
-  ["navWaBtn","heroWaBtn","contactWaBtn","floatWaBtn"].forEach(function(id){
-    document.getElementById(id).href = genericWa;
-  });
+    var subtotal = frameCost + infillCost + accessoriesCost + labourCost;
+    var wastage = subtotal * WASTAGE_PCT;
+    var profit = (subtotal + wastage) * PROFIT_PCT;
+    var total = subtotal + wastage + profit;
+    var price = Math.round(total / 50) * 50;
+    if(area <= 0) price = 0;
 
-  /* ---------------- Init ---------------- */
-  renderHeroVisual();
-  renderCategories();
-  renderMarkets();
-  renderProcess();
-  renderWhy();
-  renderShop();
-  renderGallery();
-  renderMap();
-  updateConfigurator();
-})();
-</script>
-</body>
-</html>
+    document.getElementById("cfgPrice").textContent = money(price);
+    var list = document.getElementById("cfgSpecList");
+    list.innerHTML = "";
+    var rows = area > 0 ? [
+      ["Size", w+"ft × "+h+"ft ("+area+" sqft)"],
+      ["Aluminium frame (placeholder rate)", money(frameCost)],
