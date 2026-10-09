@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Neloy Enterprise | Cabinet Configurator</title>
+
+<style>
+:root{
+    --bg:#f5f1e8;
+    --card:#fffdf8;
+    --text:#20231f;
+    --muted:#77736a;
+    --line:#d8d0c2;
+    --accent:#8b6f3d;
+    --green:#356b49;
+    --warning:#9a6a19;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+header{
+    background:var(--card);
+    border-bottom:1px solid var(--line);
+    padding:20px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:800;
+}
+
+.logo small{
+    display:block;
+    font-size:12px;
+    color:var(--muted);
+    margin-top:4px;
+    font-weight:400;
+}
+
+main{
+    max-width:1250px;
+    margin:auto;
+    padding:28px 18px 60px;
+}
+
+.layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.04);
+}
+
+h1{
+    margin:0 0 8px;
+    font-size:30px;
+}
+
+h2{
+    margin:0 0 16px;
+    font-size:20px;
+}
+
+h3{
+    font-size:15px;
+    margin:23px 0 10px;
+}
+
+.muted{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.5;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.row2{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+label{
+    display:block;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+input,
+select{
+    width:100%;
+    padding:11px;
+    border:1px solid var(--line);
+    border-radius:9px;
+    background:white;
+    font-size:14px;
+}
+
+button{
+    border:0;
+    border-radius:10px;
+    padding:12px 17px;
+    background:var(--text);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button.accent{
+    background:var(--accent);
+}
+
+button.light{
+    background:#ebe5d9;
+    color:var(--text);
+}
+
+.actions{
+    display:flex;
+    gap:9px;
+    flex-wrap:wrap;
+    margin-top:18px;
+}
+
+.notice{
+    background:#f1eadc;
+    padding:12px;
+    border-radius:10px;
+    font-size:12px;
+    line-height:1.5;
+    margin-top:16px;
+}
+
+/* PREVIEW */
+
+.preview{
+    min-height:370px;
+    background:#eee9de;
+    border-radius:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    overflow:auto;
+}
+
+.cabinet{
+    width:min(90%,430px);
+    height:330px;
+    border:7px solid #68645b;
+    background:#ddd6c7;
+    display:flex;
+}
+
+.compartment{
+    flex:1;
+    position:relative;
+    border-right:3px solid #77736a;
+    background:linear-gradient(
+        90deg,
+        #d7d0c1,
+        #eee9dc
+    );
+}
+
+.compartment:last-child{
+    border-right:0;
+}
+
+.shelf{
+    position:absolute;
+    left:0;
+    right:0;
+    height:5px;
+    background:#706a60;
+}
+
+.glass-door{
+    position:absolute;
+    inset:0;
+    background:rgba(180,220,230,.28);
+    border:3px solid #9da7aa;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#555e61;
+    font-size:9px;
+}
+
+.glass-door span{
+    background:rgba(255,255,255,.75);
+    padding:4px 6px;
+    border-radius:4px;
+}
+
+/* PRICE */
+
+.price-box{
+    border-top:1px solid var(--line);
+    margin-top:18px;
+    padding-top:15px;
+}
+
+.big-price{
+    font-size:30px;
+    font-weight:800;
+}
+
+.status{
+    display:inline-block;
+    background:#e5eee8;
+    color:var(--green);
+    padding:4px 8px;
+    border-radius:12px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.warning{
+    color:var(--warning);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+}
+
+td{
+    padding:8px 3px;
+    border-bottom:1px solid #eee;
+}
+
+td:last-child{
+    text-align:right;
+    font-weight:bold;
+}
+
+.section-title{
+    margin-top:23px;
+}
+
+.total-row td{
+    font-size:16px;
+    border-top:2px solid var(--line);
+}
+
+@media(max-width:850px){
+
+    .layout{
+        grid-template-columns:1fr;
+    }
+
+    .row{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:500px){
+
+    header{
+        display:block;
+    }
+
+    header .muted{
+        margin-top:8px;
+    }
+
+    .row,
+    .row2{
+        grid-template-columns:1fr;
+    }
+
+    h1{
+        font-size:25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        নিলয় এন্টারপ্রাইজ
+        <small>
+            Neloy Enterprise · Cabinet Configurator
+        </small>
+    </div>
+
+    <div class="muted">
+        Custom Glass & Interior Solutions
+    </div>
+
+</header>
+
+
+<main>
+
+<div class="layout">
+
+
+<!-- =========================
+     LEFT SIDE
+========================= -->
+
+<section class="card">
+
+<h1>Custom Cabinet</h1>
+
+<p class="muted">
+Configure your cabinet and see the material quantity,
+cutting requirement and price live.
+</p>
+
+
+<!-- DIMENSIONS -->
+
+<h3>1. Cabinet Dimensions</h3>
+
+<div class="row">
+
+<div>
+<label>Height (ft)</label>
+<input
+id="height"
+type="number"
+value="8"
+min="0"
+step="0.01">
+</div>
+
+<div>
+<label>Width (ft)</label>
+<input
+id="width"
+type="number"
+value="4"
+min="0"
+step="0.01">
+</div>
+
+<div>
+<label>Depth (ft)</label>
+<input
+id="depth"
+type="number"
+value="1"
+min="0"
+step="0.01">
+</div>
+
+</div>
+
+
+<!-- COMPARTMENTS -->
+
+<h3>2. Cabinet Compartments</h3>
+
+<div class="row2">
+
+<div>
+
+<label>
+Number of Compartments
+</label>
+
+<select id="compartments">
+
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4" selected>4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+Shelves per Compartment
+</label>
+
+<input
+id="shelves"
+type="number"
+value="1"
+min="0"
+step="1">
+
+</div>
+
+</div>
+
+
+<!-- DOORS -->
+
+<h3>3. Door Configuration</h3>
+
+<div class="row2">
+
+<div>
+
+<label>
+Door Type
+</label>
+
+<select id="doorType">
+
+<option value="glassSliding" selected>
+Glass Sliding Door
+</option>
+
+<option value="glassHinged">
+Glass Hinged Door
+</option>
+
+<option value="board">
+Board / Melamine Door
+</option>
+
+<option value="none">
+Open Front
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+Sliding Sections / Tracks
+</label>
+
+<select id="slidingSections">
+
+<option value="0">0</option>
+<option value="2">2</option>
+<option value="3" selected>3</option>
+<option value="4">4</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<!-- GLASS -->
+
+<div class="row2" style="margin-top:10px">
+
+<div>
+
+<label>
+Glass Door Clearance (inch)
+</label>
+
+<input
+id="clearance"
+type="number"
+value="2"
+min="0"
+step="0.1">
+
+</div>
+
+
+<div>
+
+<label>
+Number of Glass Doors
+</label>
+
+<input
+id="glassDoors"
+type="number"
+value="3"
+min="0"
+step="1">
+
+</div>
+
+</div>
+
+
+<!-- PRICING -->
+
+<h3>4. Pricing Settings</h3>
+
+<div class="row">
+
+<div>
+
+<label>
+Board / 8×4 Sheet (৳)
+</label>
+
+<input
+id="boardPrice"
+type="number"
+value="1700"
+min="0">
+
+</div>
+
+
+<div>
+
+<label>
+Fitting / Board (৳)
+</label>
+
+<input
+id="fittingPrice"
+type="number"
+value="1000"
+min="0">
+
+</div>
+
+
+<div>
+
+<label>
+Glass / Sq Ft (৳)
+</label>
+
+<input
+id="glassPrice"
+type="number"
+value="0"
+min="0">
+
+</div>
+
+</div>
+
+
+<div class="row">
+
+<div>
+
+<label>
+E-channel / Ft (৳)
+</label>
+
+<input
+id="ePrice"
+type="number"
+value="0"
+min="0">
+
+</div>
+
+
+<div>
+
+<label>
+Door Hardware / Door (৳)
+</label>
+
+<input
+id="hardwarePrice"
+type="number"
+value="0"
+min="0">
+
+</div>
+
+
+<div>
+
+<label>
+Extra Back Boards
+</label>
+
+<input
+id="backBoards"
+type="number"
+value="0"
+min="0">
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="accent"
+onclick="calculate()">
+Calculate
+</button>
+
+<button
+class="light"
+onclick="resetForm()">
+Reset
+</button>
+
+<button
+onclick="window.print()">
+Print
+</button>
+
+</div>
+
+
+<div class="notice">
+
+<strong>Important:</strong>
+
+Standard board is assumed to be
+<strong>8 ft × 4 ft = 32 sq ft</strong>.
+
+The calculator calculates the basic cutting-area requirement.
+A future nesting engine can optimize the exact cutting layout
+and waste.
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     RIGHT SIDE
+========================= -->
+
+<section class="card">
+
+<h2>Cabinet Preview</h2>
+
+
+<div class="preview">
+
+<div
+id="cabinetPreview"
+class="cabinet">
+</div>
+
+</div>
+
+
+<!-- PRICE -->
+
+<div class="price-box">
+
+<div class="muted">
+CONFIGURED COST
+</div>
+
+<div
+id="configuredTotal"
+class="big-price">
+৳0
+</div>
+
+<div
+id="statusText"
+class="muted">
+Calculating...
+</div>
+
+</div>
+
+
+<!-- BREAKDOWN -->
+
+<div class="section-title">
+
+<h3>
+Material Breakdown
+</h3>
+
+</div>
+
+
+<table>
+
+<tbody id="breakdown">
+</tbody>
+
+</table>
+
+
+<!-- CUTTING -->
+
+<div class="section-title">
+
+<h3>
+Actual Cutting List
+</h3>
+
+</div>
+
+
+<table>
+
+<tbody id="cuttingList">
+</tbody>
+
+</table>
+
+
+<!-- BOARD DETAILS -->
+
+<div class="section-title">
+
+<h3>
+Board Calculation
+</h3>
+
+</div>
+
+
+<div
+id="boardDetails"
+class="muted">
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+
+<script>
+
+/* ==========================================================
+   NELOY ENTERPRISE
+   CABINET CONFIGURATOR ENGINE
+========================================================== */
+
+
+/* STANDARD BOARD */
+
+const STANDARD_BOARD = {
+
+    widthFt: 4,
+
+    heightFt: 8,
+
+    areaSqFt: 32
+
+};
+
+
+/* SHORTCUT */
+
+function $(id){
+
+    return document.getElementById(id);
+
+}
+
+
+/* NUMBER INPUT */
+
+function num(id){
+
+    return Math.max(
+        0,
+        Number($(id).value) || 0
+    );
+
+}
+
+
+/* MONEY FORMAT */
+
+function money(value){
+
+    return "৳" +
+        Math.round(value)
+        .toLocaleString("en-BD");
+
+}
+
+
+/* ==========================================================
+   MAIN CALCULATION
+========================================================== */
+
+function calculate(){
+
+
+    /* -------------------------
+       DIMENSIONS
+    ------------------------- */
+
+    const H = num("height");
+
+    const W = num("width");
+
+    const D = num("depth");
+
+
+    /* -------------------------
+       COMPARTMENTS
+    ------------------------- */
+
+    const C =
+        Math.max(
+            1,
+            Math.round(
+                num("compartments")
+            )
+        );
+
+
+    const shelvesPer =
+        Math.max(
+            0,
+            Math.round(
+                num("shelves")
+            )
+        );
+
+
+    /* -------------------------
+       DOOR
+    ------------------------- */
+
+    const doorType =
+        $("doorType").value;
+
+
+    const tracks =
+        Math.max(
+            0,
+            Math.round(
+                num("slidingSections")
+            )
+        );
+
+
+    const clearanceIn =
+        num("clearance");
+
+
+    const glassDoors =
+        Math.max(
+            0,
+            Math.round(
+                num("glassDoors")
+            )
+        );
+
+
+    /* -------------------------
+       PRICES
+    ------------------------- */
+
+    const boardPrice =
+        num("boardPrice");
+
+
+    const fittingPrice =
+        num("fittingPrice");
+
+
+    const glassPrice =
+        num("glassPrice");
+
+
+    const ePrice =
+        num("ePrice");
+
+
+    const hardwarePrice =
+        num("hardwarePrice");
+
+
+    const backBoards =
+        Math.max(
+            0,
+            Math.round(
+                num("backBoards")
+            )
+        );
+
+
+    /* ======================================================
+       BASIC CARCASS CUTTING LIST
+    ====================================================== */
+
+
+    /*
+       2 outside sides
+    */
+
+    const sideQty = 2;
+
+
+    /*
+       4 compartments require
+       3 internal partitions
+    */
+
+    const partitionQty =
+        Math.max(
+            0,
+            C - 1
+        );
+
+
+    /*
+       Each compartment width
+    */
+
+    const compartmentWidth =
+        W / C;
+
+
+    /*
+       Shelf quantity
+    */
+
+    const shelfQty =
+        C * shelvesPer;
+
+
+    /*
+       PIECES
+    */
+
+    const pieces = [
+
+
+        {
+
+            name:
+            "Left + Right Side",
+
+            qty:
+            sideQty,
+
+            width:
+            D,
+
+            height:
+            H,
+
+            area:
+            sideQty * D * H
+
+        },
+
+
+        {
+
+            name:
+            "Internal Partitions",
+
+            qty:
+            partitionQty,
+
+            width:
+            D,
+
+            height:
+            H,
+
+            area:
+            partitionQty * D * H
+
+        },
+
+
+        {
+
+            name:
+            "Top + Bottom",
+
+            qty:
+            2,
+
+            width:
+            D,
+
+            height:
+            W,
+
+            area:
+            2 * D * W
+
+        },
+
+
+        {
+
+            name:
+            "Shelves",
+
+            qty:
+            shelfQty,
+
+            width:
+            D,
+
+            height:
+            compartmentWidth,
+
+            area:
+            shelfQty *
+            D *
+            compartmentWidth
+
+        }
+
+    ];
+
+
+    /* TOTAL CARCASS AREA */
+
+    const carcassArea =
+        pieces.reduce(
+            function(sum,p){
+
+                return sum + p.area;
+
+            },
+            0
+        );
+
+
+    /* ======================================================
+       BOARD QUANTITY
+    ====================================================== */
+
+
+    const extraBackBoardArea =
+        backBoards *
+        STANDARD_BOARD.areaSqFt;
+
+
+    const totalBoardArea =
+        carcassArea +
+        extraBackBoardArea;
+
+
+    const boardQty =
+        Math.ceil(
+            totalBoardArea /
+            STANDARD_BOARD.areaSqFt
+        );
+
+
+    /* ======================================================
+       GLASS DOOR CALCULATION
+    ====================================================== */
+
+
+    let doorQty = 0;
+
+    let glassArea = 0;
+
+    let doorWidth = 0;
+
+
+    if(
+        doorType ===
+        "glassSliding"
+    ){
+
+        doorQty =
+            glassDoors > 0
+            ? glassDoors
+            : Math.max(2,tracks);
+
+
+        /*
+           2-inch clearance converted
+           from inch to feet.
+        */
+
+        const clearanceFt =
+            clearanceIn / 12;
+
+
+        /*
+           Usable front width
+        */
+
+        const usableWidth =
+            Math.max(
+                0,
+                W - clearanceFt
+            );
+
+
+        /*
+           Width of each glass door
+        */
+
+        doorWidth =
+            usableWidth /
+            doorQty;
+
+
+        /*
+           Total glass
+        */
+
+        glassArea =
+            doorQty *
+            doorWidth *
+            H;
+
+    }
+
+
+    else if(
+        doorType ===
+        "glassHinged"
+    ){
+
+        doorQty =
+            glassDoors > 0
+            ? glassDoors
+            : C;
+
+
+        doorWidth =
+            W / doorQty;
+
+
+        glassArea =
+            doorQty *
+            doorWidth *
+            H;
+
+    }
+
+
+    /* ======================================================
+       E-CHANNEL
+    ====================================================== */
+
+
+    let eLength = 0;
+
+
+    if(
+        doorType ===
+        "glassSliding" &&
+        tracks > 0
+    ){
+
+        /*
+           E-channel =
+           cabinet width × tracks
+        */
+
+        eLength =
+            W * tracks;
+
+    }
+
+
+    /* ======================================================
+       COST CALCULATION
+    ====================================================== */
+
+
+    const boardCost =
+        boardQty *
+        boardPrice;
+
+
+    const fittingCost =
+        boardQty *
+        fittingPrice;
+
+
+    const glassCost =
+        glassArea *
+        glassPrice;
+
+
+    const eCost =
+        eLength *
+        ePrice;
+
+
+    const hardwareCost =
+        doorQty *
+        hardwarePrice;
+
+
+    const total =
+        boardCost +
+        fittingCost +
+        glassCost +
+        eCost +
+        hardwareCost;
+
+
+    /* ======================================================
+       DISPLAY TOTAL
+    ====================================================== */
+
+
+    $("configuredTotal")
+        .textContent =
+        money(total);
+
+
+    /* ======================================================
+       MATERIAL BREAKDOWN
+    ====================================================== */
+
+
+    const rows = [
+
+
+        {
+
+            name:"Board",
+
+            detail:
+            boardQty +
+            " board × " +
+            money(boardPrice),
+
+            cost:
+            boardCost
+
+        },
+
+
+        {
+
+            name:"Fitting",
+
+            detail:
+            boardQty +
+            " board × " +
+            money(fittingPrice),
+
+            cost:
+            fittingCost
+
+        },
+
+
+        {
+
+            name:"Glass",
+
+            detail:
+            glassArea.toFixed(2) +
+            " sq ft × " +
+            money(glassPrice),
+
+            cost:
+            glassCost
+
+        },
+
+
+        {
+
+            name:"E-channel",
+
+            detail:
+            eLength.toFixed(2) +
+            " ft × " +
+            money(ePrice),
+
+            cost:
+            eCost
+
+        },
+
+
+        {
+
+            name:"Door Hardware",
+
+            detail:
+            doorQty +
+            " × " +
+            money(hardwarePrice),
+
+            cost:
+            hardwareCost
+
+        }
+
+    ];
+
+
+    $("breakdown").innerHTML =
+
+        rows.map(
+
+            function(row){
+
+                let displayCost;
+
+                if(
+                    row.cost > 0
+                ){
+
+                    displayCost =
+                        money(row.cost);
+
+                }
+
+                else{
+
+                    displayCost =
+                        '<span class="warning">' +
+                        'Not configured' +
+                        '</span>';
+
+                }
+
+
+                return `
+
+                <tr>
+
+                    <td>
+
+                        <strong>
+                        ${row.name}
+                        </strong>
+
+                        <br>
+
+                        <span class="muted">
+                        ${row.detail}
+                        </span>
+
+                    </td>
+
+                    <td>
+                        ${displayCost}
+                    </td>
+
+                </tr>
+
+                `;
+
+            }
+
+        ).join("");
+
+
+    /* ======================================================
+       CUTTING LIST
+    ====================================================== */
+
+
+    $("cuttingList").innerHTML =
+
+        pieces.map(
+
+            function(piece){
+
+                return `
+
+                <tr>
+
+                    <td>
+
+                        <strong>
+                        ${piece.name}
+                        </strong>
+
+                    </td>
+
+                    <td>
+
+                        ${piece.qty}
+                        ×
+                        ${piece.width.toFixed(2)}
+                        ft
+                        ×
+                        ${piece.height.toFixed(2)}
+                        ft
+
+                        <br>
+
+                        <span class="muted">
+
+                        ${piece.area.toFixed(2)}
+                        sq ft
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+                `;
+
+            }
+
+        ).join("");
+
+
+    /* ======================================================
+       BOARD DETAILS
+    ====================================================== */
+
+
+    const unusedArea =
+
+        Math.max(
+
+            0,
+
+            boardQty *
+            STANDARD_BOARD.areaSqFt
+            -
+            totalBoardArea
+
+        );
+
+
+    let details = `
+
+        <p>
+
+        <strong>
+        Cabinet:
+        </strong>
+
+        ${H} ft ×
+        ${W} ft ×
+        ${D} ft
+
+        </p>
+
+
+        <p>
+
+        <strong>
+        Compartments:
+        </strong>
+
+        ${C}
+
+        </p>
+
+
+        <p>
+
+        <strong>
+        Internal partitions:
+        </strong>
+
+        ${partitionQty}
+
+        </p>
+
+
+        <p>
+
+        <strong>
+        Shelves:
+        </strong>
+
+        ${shelfQty}
+
+        </p>
+
+
+        <p>
+
+        <strong>
+        Total cutting area:
+        </strong>
+
+        ${carcassArea.toFixed(2)}
+        sq ft
+
+        </p>
+
+
+        <p>
+
+        <strong>
+        Standard board:
+        </strong>
+
+        8 × 4 ft =
+        32 sq ft
+
+        </p>
+
+
+        <p>
+
+        <strong>
+        Board estimate:
+        </strong>
+
+        ${boardQty} board(s)
+
+        </p>
+
+
+        <p>
+
+        <strong>
+        Remaining area before
+        cutting loss:
+        </strong>
+
+        ${unusedArea.toFixed(2)}
+        sq ft
+
+        </p>
+
+    `;
+
+
+    /* GLASS INFORMATION */
+
+    if(
+        doorType ===
+        "glassSliding"
+    ){
+
+        const clearanceFt =
+            clearanceIn / 12;
+
+
+        details += `
+
+        <p>
+
+        <strong>
+        Glass sliding door:
+        </strong>
+
+        ${doorQty} doors
+
+        </p>
+
+
+        <p>
+
+        <strong>
+        Door clearance:
+        </strong>
+
+        ${clearanceIn}
+        inch
+
+        </p>
+
+
+        <p>
+
+        <strong>
+        Usable front width:
+        </strong>
+
+        ${Math.max(
+            0,
+            W - clearanceFt
+        ).toFixed(2)}
+        ft
+
+        </p>
+
+
+        <p>
+
+        <strong>
+        Approx. each door width:
+        </strong>
+
+        ${doorWidth.toFixed(2)}
+        ft
+
+        </p>
+
+
+        <p>
+
+        <strong>
+        Glass required:
+        </strong>
+
+        ${glassArea.toFixed(2)}
+        sq ft
+
+        </p>
+
+
+        <p>
+
+        <strong>
+        E-channel:
+        </strong>
+
+        ${eLength.toFixed(2)}
+        ft
+
+        </p>
+
+        `;
+
+    }
+
+
+    if(
+        glassArea > 0 &&
+        glassPrice === 0
+    ){
+
+        details += `
+
+        <p class="warning">
+
+        <strong>
+        Glass price not configured.
+        </strong>
+
+        Quantity is calculated,
+        but no confirmed glass price
+        has been entered.
+
+        </p>
+
+        `;
+
+    }
+
+
+    if(
+        eLength > 0 &&
+        ePrice === 0
+    ){
+
+        details += `
+
+        <p class="warning">
+
+        <strong>
+        E-channel price not configured.
+        </strong>
+
+        Required:
+        ${eLength.toFixed(2)}
+        ft
+
+        </p>
+
+        `;
+
+    }
+
+
+    $("boardDetails")
+        .innerHTML =
+        details;
+
+
+    /* ======================================================
+       PREVIEW
+    ====================================================== */
+
+    renderPreview(
+        C,
+        shelvesPer,
+        doorType
+    );
+
+
+    /* STATUS */
+
+    $("statusText").innerHTML =
+
+        `
+
+        Board:
+        <strong>
+        ${boardQty}
+        </strong>
+
+        ·
+
+        Fitting:
+        <strong>
+        ${money(fittingCost)}
+        </strong>
+
+        `;
+
+}
+
+
+/* ==========================================================
+   CABINET PREVIEW
+========================================================== */
+
+function renderPreview(
+    compartmentCount,
+    shelvesPer,
+    doorType
+){
+
+    const preview =
+        $("cabinetPreview");
+
+
+    preview.innerHTML = "";
+
+
+    for(
+        let i=0;
+        i<compartmentCount;
+        i++
+    ){
+
+        const compartment =
+            document.createElement(
+                "div"
+            );
+
+
+        compartment.className =
+            "compartment";
+
+
+        /* SHELVES */
+
+        for(
+            let s=1;
+            s<=shelvesPer;
+            s++
+        ){
+
+            const shelf =
+                document.createElement(
+                    "div"
+                );
+
+
+            shelf.className =
+                "shelf";
+
+
+            shelf.style.top =
+                (
+                    s /
+                    (shelvesPer + 1)
+                    *
+                    100
+                ) + "%";
+
+
+            compartment.appendChild(
+                shelf
+            );
+
+        }
+
+
+        /* GLASS */
+
+        if(
+            doorType ===
+            "glassSliding" ||
+
+            doorType ===
+            "glassHinged"
+        ){
+
+            const door =
+                document.createElement(
+                    "div"
+                );
+
+
+            door.className =
+                "glass-door";
+
+
+            door.innerHTML =
+                "<span>GLASS</span>";
+
+
+            compartment.appendChild(
+                door
+            );
+
+        }
+
+
+        preview.appendChild(
+            compartment
+        );
+
+    }
+
+}
+
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+function resetForm(){
+
+    $("height").value = 8;
+
+    $("width").value = 4;
+
+    $("depth").value = 1;
+
+    $("compartments").value = 4;
+
+    $("shelves").value = 1;
+
+    $("doorType").value =
+        "glassSliding";
+
+    $("slidingSections").value = 3;
+
+    $("clearance").value = 2;
+
+    $("glassDoors").value = 3;
+
+    $("boardPrice").value = 1700;
+
+    $("fittingPrice").value = 1000;
+
+    $("glassPrice").value = 0;
+
+    $("ePrice").value = 0;
+
+    $("hardwarePrice").value = 0;
+
+    $("backBoards").value = 0;
+
+
+    calculate();
+
+}
+
+
+/* ==========================================================
+   LIVE CALCULATION
+========================================================== */
+
+document
+.querySelectorAll(
+    "input, select"
+)
+.forEach(
+
+    function(element){
+
+        element.addEventListener(
+            "input",
+            calculate
+        );
+
+        element.addEventListener(
+            "change",
+            calculate
+        );
+
+    }
+
+);
+
+
+/* INITIAL */
+
+calculate();
+
+</script>
+
+</body>
+</html>
