@@ -1,7 +1,16 @@
-# Website Images
+# Neloy Enterprise — Image Library
 
-Place Neloy Enterprise website images in this folder.
+Images are organized into folders for easier maintenance in VS Code.
 
-Use descriptive, lowercase filenames, for example `glass-aluminium-window.webp` or `melamine-bookshelf.webp`.
+## Folders
 
-Before changing image paths in `index.html`, confirm the actual filename and test the page locally.
+- `products/` — glass/aluminium doors and showcases, bookshelves, melamine-board showcase, partitions, room décor, tables, and wall décor.
+- `branding/` — Neloy Enterprise logos and profile image.
+- `backgrounds/` — existing background images.
+
+## Important
+
+- The files were copied from the existing `neloy123-patch-1` upload using their original Git objects; the image content was not edited.
+- The live `index.html` has not been changed, so these new paths do not affect the current website yet.
+- Before updating image paths in `index.html`, check which images the page currently uses and test locally.
+- Prefer compressed WebP images for large product photos to keep the website fast.
