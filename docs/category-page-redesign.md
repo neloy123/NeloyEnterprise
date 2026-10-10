@@ -3,6 +3,19 @@
 ## Status
 This branch adds isolated, opt-in category grid styles and scroll-reveal JavaScript. It intentionally does not replace `index.html`, product data, configurators, stock values, or pricing functions.
 
+## Approved category structure
+Build seven main category cards, in this order:
+
+1. **Glass & Aluminium Windows, Doors & Partitions** — windows, doors, glass partitions.
+2. **Glass & Aluminium Showcases, Bookshelves & Counters** — display showcases, glass/aluminium bookshelves, counters.
+3. **Glass & Aluminium Home Décor, Aquarium & Cabinets** — home décor items, aquariums, cabinets.
+4. **PVC & Gypsum Ceiling** — PVC ceiling and gypsum ceiling.
+5. **Melamine Board Showcases, Bookshelves & Tables** — display showcases, bookshelves, tables.
+6. **Melamine Board Cabinets** — cabinets, TV cabinets, bedside cabinets.
+7. **Melamine Board Home Décor & Wall Décor** — melamine-board home décor and wall décor.
+
+Keep the seven cards as navigation groups; retain existing individual product IDs, configurator URLs, and options underneath each group. Do not assume a product has a working calculator until verified in the current page.
+
 ## Files
 - `css/category-page-redesign.css` — responsive 4/3/2-column card grid and visual styles.
 - `js/category-page-animations.js` — small IntersectionObserver reveal effect with reduced-motion fallback.
@@ -19,22 +32,13 @@ This branch adds isolated, opt-in category grid styles and scroll-reveal JavaScr
 7. Replace image sources only after selecting and committing the approved product image files; use descriptive alt text, `loading="lazy"`, and explicit width/height or aspect ratio.
 
 ## Image plan
-Use distinct, realistic product images for:
-- Glass & aluminium sliding window
-- Glass & aluminium door
-- Glass/aluminium showcase
-- Melamine-board bookshelf
-- Glass partition
-- Mirror
-- Shop display/storage
-- PVC ceiling (only if this category already exists in the current page)
-
-The repository already contains product assets in `assets/images/products/`; the new images requested still need to be sourced/approved and added as files. Avoid changing the current image paths until the live markup is inspected.
+Use distinct, realistic product photos for each of the seven categories above. Prefer product-focused images that show the complete item clearly, with consistent aspect ratios and optimized file sizes (WebP where practical). The repository already contains product assets in `assets/images/products/`; the new images requested still need to be sourced and added as files. Avoid changing current image paths until the live markup is inspected.
 
 ## Acceptance checks
-- Every original category link opens the same destination as before.
-- Existing configurator entry points still open and calculations match before/after.
-- No changes to `data/materials.js`, `data/aluminium.js`, or `data/accessories.js`.
+- All seven category cards appear in the approved order.
+- Every original product link and configurator entry point still opens the same destination.
+- Existing configurator calculations match before and after the redesign.
+- No changes to `data/materials.js`, `data/aluminium.js`, or `data/accessories.js` unless separately requested and reviewed.
 - Mobile 320–390px: two readable columns, no horizontal overflow.
 - Desktop: four columns on wide screens, three on medium screens.
 - Scroll reveal works once per card; reduced-motion users see all cards without animation.
