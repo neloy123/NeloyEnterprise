@@ -941,6 +941,62 @@
   </section>
 </div>
 
+<!-- ============ STUDY TABLE WITH HUTCH CONFIGURATOR ============ -->
+<div class="view" data-view="tablecfg" id="view-tablecfg">
+  <section>
+    <div class="wrap">
+      <button class="pd-back" data-view="shop"><svg class="icn" style="width:16px;height:16px" viewBox="0 0 24 24"><use href="#i-back"/></svg> Back to Shop</button>
+      <div class="section-head">
+        <div class="kicker">Visual configurator</div>
+        <h2>Design your study table with hutch</h2>
+        <p>Set the size, colours, hutch and drawers and watch it update live, then send the design straight to us.</p>
+      </div>
+
+      <div class="pw">
+        <div class="pw-panel"><div class="pw-title"><h3>Your study table</h3><p>Design your table yourself in simple steps.</p></div>
+          <div class="pw-steps" id="tcSteps">
+            <div class="pw-step open" data-step="1"><button type="button" class="head"><span class="t">1. Define dimensions</span><span class="sum" id="tcs1"></span><span class="chev">▲</span></button><div class="body">
+              <div class="vc-field" style="margin-bottom:10px;max-width:220px"><label>Unit</label><select id="tcUnit"><option value="in">Inch</option><option value="suta">Suta (1 inch = 8 suta)</option><option value="mm">Millimetre</option></select></div>
+              <div class="vc-field-row"><div class="vc-field"><label>Length (front)</label><input type="number" id="tcL" min="0" step="any" value="36"></div><div class="vc-field"><label>Depth</label><input type="number" id="tcD" min="0" step="any" value="30"></div></div>
+              <div class="vc-field-row"><div class="vc-field"><label>Table height</label><input type="number" id="tcHl" min="0" step="any" value="30"></div><div class="vc-field"><label>Hutch height</label><input type="number" id="tcHh" min="0" step="any" value="24"></div></div>
+              <div class="pw-hint" id="tcTotal"></div>
+              <div class="pw-hint">Allowed: length 18–120 in, depth 12–60 in, table height 20–40 in, hutch 8–60 in.</div>
+            </div></div>
+            <div class="pw-step" data-step="2"><button type="button" class="head"><span class="t">2. Material &amp; colours</span><span class="sum" id="tcs2"></span><span class="chev">▲</span></button><div class="body">
+              <div class="vc-field"><label>Material</label><select id="tcMaterial"><option>Melamine Board</option><option>Plywood</option><option>PVC Board</option></select></div>
+              <div id="tcColorWrap" style="margin-top:10px">
+                <label style="font-size:.74rem">Body colour: <b id="tcBodyName"></b></label><div class="vc-swatches" id="tcSwBody"></div>
+                <label style="font-size:.74rem;display:block;margin-top:14px">Top &amp; drawer colour: <b id="tcTopName"></b></label><div class="vc-swatches" id="tcSwTop"></div>
+              </div>
+            </div></div>
+            <div class="pw-step" data-step="3"><button type="button" class="head"><span class="t">3. Hutch</span><span class="sum" id="tcs3"></span><span class="chev">▲</span></button><div class="body">
+              <label style="display:flex;gap:8px;align-items:center;font-size:.85rem;margin-bottom:12px"><input type="checkbox" id="tcHutch" checked> Include hutch on top</label>
+              <div class="vc-field" style="margin-bottom:12px"><label>Upper-left compartment</label><select id="tcDoor"><option value="o">Open</option><option value="b">Board door</option><option value="g">Glass door</option></select></div>
+              <div class="vc-field" style="margin-bottom:12px"><label>Small drawers (hutch, right side)</label><div class="stepper"><button type="button" id="tcHDrMinus">−</button><span class="val" id="tcHDr">2</span><button type="button" id="tcHDrPlus">+</button></div></div>
+              <label style="display:flex;gap:8px;align-items:center;font-size:.85rem;margin-bottom:12px"><input type="checkbox" id="tcHBack" checked> Hutch back panel</label>
+              <div class="pw-hint"><b>Drag &amp; drop:</b> drag the hutch shelf up/down, or the divider left/right, directly in the picture. They snap to 1 inch.</div>
+            </div></div>
+            <div class="pw-step" data-step="4"><button type="button" class="head"><span class="t">4. Table</span><span class="sum" id="tcs4"></span><span class="chev">▲</span></button><div class="body">
+              <label style="display:flex;gap:8px;align-items:center;font-size:.85rem;margin-bottom:12px"><input type="checkbox" id="tcDrawer" checked> Drawer under the table top (with lock)</label>
+              <label style="display:flex;gap:8px;align-items:center;font-size:.85rem;margin-bottom:12px"><input type="checkbox" id="tcModesty" checked> Front panel under the drawer</label>
+              <div class="pw-hint">Use <b>Open drawers</b> above the picture to preview the drawers and the door opening.</div>
+            </div></div>
+            <div class="pw-step" data-step="5"><button type="button" class="head"><span class="t">5. Your details</span><span class="sum" id="tcs5"></span><span class="chev">▲</span></button><div class="body">
+              <div class="vc-field" style="margin-bottom:8px"><label>Name</label><input type="text" id="tcName"></div>
+              <div class="vc-field" style="margin-bottom:8px"><label>Phone</label><input type="tel" id="tcPhone"></div>
+              <div class="vc-field" style="margin-bottom:8px"><label>WhatsApp</label><input type="tel" id="tcWa"></div>
+              <div class="vc-field"><label>Location</label><input type="text" id="tcLoc"></div>
+            </div></div>
+          </div>
+          <div class="pw-price"><div class="pr"><b id="tcPrice">৳0</b><small>Estimate only — final price confirmed on WhatsApp</small></div><a class="pw-cta" href="#" id="tcQuoteBtn" target="_blank" rel="noopener">Send on WhatsApp</a></div></div>
+        <div class="pw-stage"><div class="pw-tools"><button type="button" id="tcTFront" class="on">Front</button><button type="button" id="tcTSize">Sizing</button><button type="button" id="tcTOpen">Open drawers</button><button type="button" id="tcTPrice">Price list</button></div>
+          <div class="vc-canvas" id="tcCanvas"></div><button type="button" class="pw-undo" id="tcUndo">↶ Undo</button>
+          <div class="pw-extra" id="tcExtra"><div class="vc-break" id="tcBreak"></div><details class="vc-set"><summary>Pricing settings (editable)</summary><div id="tcSettings"></div></details></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
 </main>
 
 <footer>
@@ -1087,7 +1143,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
       { name:"Showcase",    img:"showcase",   alt:"Walnut showcase with sliding glass doors and lit shelves", go:{view:"shelfconfig",preset:"glassShow"} },
       { name:"Cabinet",     img:"cabinet",    alt:"Walnut-finish cabinet with glass doors",         go:{view:"shelfconfig",preset:"furniture"} },
       { name:"Counter",     img:"counter",    alt:"Walnut and black counter with a glass display top",                                        go:{view:"shelfconfig",preset:"furniture"} },
-      { name:"Table",       img:"table",      alt:"Walnut study table with white drawers and a hutch",                                          go:{view:"shelfconfig",preset:"studyHutch"} }
+      { name:"Table",       img:"table",      alt:"Walnut study table with white drawers and a hutch",                                          go:{view:"tablecfg"} }
     ]},
     { title:"Home Decor", items:[
       { name:"Corner Shelf",  img:"corner",     alt:"Lit wooden corner shelf with books and plants",                    go:{view:"shelfconfig",preset:"cornerShelf"} },
@@ -1098,7 +1154,9 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   ];
 
   function openCfgLanding(c){
-    if(c.view==="configure"){
+    if(c.view==="tablecfg"){
+      tcReset();
+    } else if(c.view==="configure"){
       document.getElementById("cfgProduct").value = c.product;
       setCfgMaterial(c.material);
       populateThickness();
@@ -1332,6 +1390,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     var pdVisualBtn = box.querySelector("#pdVisualBtn");
     if(pdVisualBtn){
       pdVisualBtn.addEventListener("click", function(){
+        if(p.id==="study-table-hutch"){ tcReset(); showView("tablecfg"); return; }
         vcApplyPreset(({"bookshelf":"bookshelf","corner-shelf":"cornerShelf","study-table-hutch":"studyHutch","melamine-furniture":"furniture"})[p.id]||"bookshelf");
         showView("shelfconfig");
       });
@@ -1514,8 +1573,8 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   });
 
   /* ---------------- View routing ---------------- */
-  var VALID_VIEWS = ["home","shop","configure","shelfconfig","configurelanding","gallery","about","contact"];
-  var CFG_PAGE = ["configurelanding","configure","shelfconfig"]; // these 3 views are shown together as ONE Configure page
+  var VALID_VIEWS = ["home","shop","configure","shelfconfig","tablecfg","configurelanding","gallery","about","contact"];
+  var CFG_PAGE = ["configurelanding","configure","shelfconfig","tablecfg"]; // these views are shown together as ONE Configure page
   function showView(name, skipHash){
     var group = CFG_PAGE.indexOf(name)>-1;
     document.querySelectorAll(".view").forEach(function(v){ v.classList.toggle("active", v.dataset.view===name || (group && CFG_PAGE.indexOf(v.dataset.view)>-1)); });
@@ -1764,8 +1823,195 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   ["vcH","vcHi","vcW","vcWi","vcD","vcDi","vcMaterial","vcBoards","vcBack","vcSlideN","vcName","vcPhone","vcWa","vcLoc"].forEach(function(id){ $(id).addEventListener("input",vcUpdate); $(id).addEventListener("change",vcUpdate); });
   VC_COLORS.forEach(function(c,i){ var b=document.createElement("button"); b.type="button"; b.className="sw"; b.title=c[0]; b.style.background=c[1]; b.addEventListener("click",function(){ vcColor=i; vcUpdate(); }); $("vcSwatches").appendChild(b); });
   $("vcSettings").innerHTML=PLAB.map(function(p){ return '<label>'+p[1]+'<input type="number" min="0" data-p="'+p[0]+'" value="'+(pricing[p[0]]==null?"":pricing[p[0]])+'" placeholder="not set"></label>'; }).join("");
-  $("vcSettings").addEventListener("input",function(e){ var p=e.target.dataset.p; if(p){ pricing[p]=e.target.value===""?null:parseFloat(e.target.value); vcUpdate(); } });
+  $("vcSettings").addEventListener("input",function(e){ var p=e.target.dataset.p; if(p){ pricing[p]=e.target.value===""?null:parseFloat(e.target.value); vcUpdate(); if(typeof tcUpdate==="function") tcUpdate(); } });
 
+
+  /* ---------------- Study table with hutch configurator (all sizes in inches inside) ---------------- */
+  var TC = { hRow:.59, hDiv:.5 };            // hutch shelf height and divider position (fractions, draggable)
+  var tcBodyC = 5, tcTopC = 0, tcN = 2, tcUnit = "in", tcHist = [], tcShowDim = false, tcOpenT = 0, tcOpenTarget = 0, tcDrag = null, tcGeo = null, tcLast = null;
+  var TC_UL = {"in":"in", "suta":"suta", "mm":"mm"};
+  function tcToIn(v,u){ return u==="suta" ? v/8 : (u==="mm" ? v/25.4 : v); }
+  function tcFromIn(v,u){ var x = u==="suta" ? v*8 : (u==="mm" ? v*25.4 : v); return u==="mm" ? Math.round(x) : Math.round(x*100)/100; }
+  function tcFmt(inch){ return tcFromIn(inch,tcUnit) + " " + TC_UL[tcUnit]; }
+  function tcDims(){
+    function g(id,def,lo,hi){ var v = tcToIn(parseFloat($(id).value),tcUnit); if(!isFinite(v)) v = def; return Math.max(lo,Math.min(hi,v)); }
+    return { L:g("tcL",36,18,120), D:g("tcD",30,12,60), Hl:g("tcHl",30,20,40), Hh:g("tcHh",24,0,60) };
+  }
+  function tcCalc(){
+    var d = tcDims(), hut = $("tcHutch").checked && d.Hh >= 8, ld = $("tcDrawer").checked, md = $("tcModesty").checked, hb = $("tcHBack").checked, dt = $("tcDoor").value, nd = tcN;
+    var Lp = d.L - 3.5, area = 0, glass = 0, drawers = 0, hinged = 0, shelves = 0, back = 0;
+    area += d.L*d.D + 2*d.D*(d.Hl-1.5);                         // table top + two side panels
+    if(md) area += Lp*14;                                       // front (modesty) panel
+    if(ld){ area += 2*(d.D-2)*4.5 + Lp*(d.D-2) + Lp*4.5; drawers++; }
+    var Lh = d.L - 4, Dh = Math.min(12,d.D), innerH = Math.max(1,d.Hh-3.5), rowH = TC.hRow*innerH, innerW = Lh-1.5, wl = TC.hDiv*innerW, wr = innerW-wl;
+    if(hut){
+      area += 2*Dh*d.Hh + 3*innerW*Dh + Dh*rowH; shelves = 1;
+      if(nd > 0){ var ch = rowH/nd; area += nd*(2*Dh*ch + wr*Dh + wr*ch); drawers += nd; }
+      if(dt !== "o"){ hinged = 1; if(dt === "g") glass += wl*rowH/144; else area += wl*rowH; }
+      if(hb) back = Lh*d.Hh/144;
+    }
+    var sq = area/144;
+    return { d:d, hut:hut, ld:ld, md:md, hb:hb, dt:dt, nd:nd, area:sq, boards:Math.max(1,Math.ceil(sq/32)), glass:glass, drawers:drawers, hinged:hinged, shelves:shelves, back:back, Htot:d.Hl+(hut?d.Hh:0) };
+  }
+  function tcDoorSvg(fx,fy,fw,fh,glass,color,dk){
+    var th = tcOpenT*115*Math.PI/180, hx = fx, xf = hx + fw*Math.cos(th), sc = 1+0.2*Math.sin(th), hh = fh*sc, yf = fy-(hh-fh)/2;
+    var o = '<polygon style="pointer-events:none" points="'+[hx,fy,xf,yf,xf,yf+hh,hx,fy+fh].join(" ")+'" fill="'+(glass?"url(#tcGl)":vcShade(color,14))+'" stroke="'+(glass?"#8d9aa2":dk)+'" stroke-width="1.3"/>';
+    var hxp = xf - Math.max(5,Math.abs(xf-hx)*0.08);
+    return o + '<rect style="pointer-events:none" x="'+(hxp-1.5)+'" y="'+(yf+hh/2-9*sc)+'" width="3" height="'+(18*sc)+'" fill="'+dk+'"/>';
+  }
+  function tcDrawerSvg(fx,fy,fw,fh,top,body,dk,lock){
+    var pull = tcOpenT*Math.min(14,fh*0.9), o = '';
+    if(pull > 0.5) o += '<rect style="pointer-events:none" x="'+fx+'" y="'+fy+'" width="'+fw+'" height="'+(fh+2)+'" fill="'+vcShade(body,-40)+'"/>';
+    o += '<rect style="pointer-events:none" x="'+(fx-pull*0.25)+'" y="'+(fy+pull)+'" width="'+(fw+pull*0.5)+'" height="'+fh+'" fill="'+top+'" stroke="'+dk+'"/>';
+    if(lock) o += '<circle style="pointer-events:none" cx="'+(fx+fw/2)+'" cy="'+(fy+pull+fh*0.42)+'" r="3.2" fill="#8f8f8f" stroke="#666"/>';
+    return o;
+  }
+  function tcDraw(k,body,top){
+    var d = k.d, L = d.L, s = Math.min(430/L, 410/k.Htot), sw = L*s, x0 = 60, floor = 470, tw = sw+120;
+    var dk = vcShade(body,-45), inn = "#ebebe7", oh = 1*s, sidePx = Math.max(8,1.6*s), ttPx = Math.max(7,1.5*s);
+    var yTop = floor - d.Hl*s, yy = yTop + ttPx, yHt = k.hut ? yTop - d.Hh*s : yTop;
+    var o = '<svg id="tcSvg" viewBox="0 0 '+tw+' 520" xmlns="http://www.w3.org/2000/svg" style="touch-action:none"><defs><linearGradient id="tcGl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset=".5" stop-color="#cfe6ee" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity=".5"/></linearGradient><linearGradient id="tcFl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bdbdbf"/><stop offset="1" stop-color="#9d9d9f"/></linearGradient></defs>';
+    o += '<rect x="0" y="'+floor+'" width="'+tw+'" height="'+(520-floor)+'" fill="url(#tcFl)"/><ellipse cx="'+(x0+sw/2)+'" cy="'+(floor+4)+'" rx="'+(sw*0.54)+'" ry="9" fill="rgba(0,0,0,.18)"/>';
+    // side panels (legs)
+    var sx1 = x0+oh, sx2 = x0+sw-oh-sidePx, ix0 = sx1+sidePx, ix1 = sx2;
+    [sx1,sx2].forEach(function(x){
+      o += '<rect x="'+x+'" y="'+yy+'" width="'+sidePx+'" height="'+(floor-yy)+'" fill="'+vcShade(body,-6)+'" stroke="'+dk+'"/>';
+      o += '<rect x="'+(x+sidePx*0.18)+'" y="'+yy+'" width="'+(sidePx*0.22)+'" height="'+(floor-yy)+'" fill="rgba(255,255,255,.12)"/>';
+    });
+    // front panel + drawer
+    var drawerH = 4.5*s, modTop = yy + (k.ld ? drawerH+2 : 0), modH = Math.max(0,Math.min(14*s, floor-modTop-6));
+    if(k.md) o += '<rect x="'+ix0+'" y="'+modTop+'" width="'+(ix1-ix0)+'" height="'+modH+'" fill="'+vcShade(body,-16)+'" stroke="'+dk+'"/>';
+    if(k.ld) o += tcDrawerSvg(ix0+1,yy+1,ix1-ix0-2,drawerH,top,body,dk,true);
+    // table top
+    o += '<rect x="'+x0+'" y="'+yTop+'" width="'+sw+'" height="'+ttPx+'" fill="'+top+'" stroke="'+dk+'"/><rect x="'+x0+'" y="'+(yTop+ttPx-Math.max(2,0.5*s))+'" width="'+sw+'" height="'+Math.max(2,0.5*s)+'" fill="'+vcShade(body,-4)+'"/>';
+    // hutch
+    var ctl = '';
+    if(k.hut){
+      var hx0 = x0+2*s, hw = (L-4)*s, hh = d.Hh*s, th = Math.max(6,1.2*s), rail = 2.5*s, mt = th*0.6;
+      var xi0 = hx0+th, xi1 = hx0+hw-th, yi0 = yHt+th, yi1 = yTop-rail;
+      var yMid = yi0 + TC.hRow*(yi1-yi0), xd = xi0 + TC.hDiv*(xi1-xi0);
+      tcGeo = {xi0:xi0, xi1:xi1, yi0:yi0, yi1:yi1, s:s};
+      o += '<rect x="'+hx0+'" y="'+yHt+'" width="'+hw+'" height="'+hh+'" fill="'+body+'" stroke="'+dk+'"/>';
+      o += '<rect x="'+xi0+'" y="'+yi0+'" width="'+(xi1-xi0)+'" height="'+(yi1-yi0)+'" fill="'+(k.hb?inn:"#cfcfca")+'"/><rect x="'+xi0+'" y="'+yi0+'" width="'+(xi1-xi0)+'" height="4" fill="rgba(0,0,0,.10)"/>';
+      o += '<rect x="'+xi0+'" y="'+(yMid-mt/2)+'" width="'+(xi1-xi0)+'" height="'+mt+'" fill="'+vcShade(body,6)+'" stroke="'+dk+'"/>';
+      o += '<rect x="'+(xd-mt/2)+'" y="'+yi0+'" width="'+mt+'" height="'+(yMid-mt/2-yi0)+'" fill="'+vcShade(body,6)+'" stroke="'+dk+'"/>';
+      var rowTop = yi0, rowBot = yMid-mt/2;
+      if(k.nd > 0){
+        var rx = xd+mt/2, rw = xi1-rx, rh = (rowBot-rowTop)/k.nd;
+        for(var i=0;i<k.nd;i++) o += tcDrawerSvg(rx+1,rowTop+i*rh+1,rw-2,rh-2,top,body,dk,false);
+      }
+      if(k.dt !== "o") o += tcDoorSvg(xi0,rowTop,xd-mt/2-xi0,rowBot-rowTop,k.dt==="g",body,dk);
+      ctl += '<rect class="hs" x="'+xi0+'" y="'+(yMid-7)+'" width="'+(xi1-xi0)+'" height="14" fill="transparent" style="cursor:ns-resize"><title>Drag up / down</title></rect>';
+      ctl += '<rect class="dv" x="'+(xd-6)+'" y="'+yi0+'" width="12" height="'+(yMid-yi0)+'" fill="transparent" style="cursor:ew-resize"><title>Drag left / right</title></rect>';
+    } else { tcGeo = null; }
+    o += ctl;
+    if(tcShowDim){
+      var cx = x0+sw/2;
+      o += '<text x="'+cx+'" y="'+(yHt-10)+'" text-anchor="middle" font-size="13" fill="#333">'+tcFmt(L)+'</text>';
+      o += '<text x="'+(x0-10)+'" y="'+((yTop+floor)/2)+'" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 '+(x0-10)+' '+((yTop+floor)/2)+')">table '+tcFmt(d.Hl)+'</text>';
+      if(k.hut) o += '<text x="'+(x0-10)+'" y="'+((yHt+yTop)/2)+'" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 '+(x0-10)+' '+((yHt+yTop)/2)+')">hutch '+tcFmt(d.Hh)+'</text>';
+      o += '<text x="'+cx+'" y="'+(floor+22)+'" text-anchor="middle" font-size="12" fill="#333">depth '+tcFmt(d.D)+'</text>';
+    }
+    $("tcCanvas").innerHTML = o + '</svg>';
+  }
+  function tcAnim(){ var dd = tcOpenTarget-tcOpenT; if(Math.abs(dd) < 0.01){ tcOpenT = tcOpenTarget; } else { tcOpenT += dd*0.2; requestAnimationFrame(tcAnim); } if(tcLast) tcDraw(tcLast[0],tcLast[1],tcLast[2]); }
+  function tcSnap(){ tcHist.push(JSON.stringify({r:TC.hRow, d:TC.hDiv, n:tcN})); if(tcHist.length > 40) tcHist.shift(); }
+
+  function tcUpdate(){
+    var material = $("tcMaterial").value, isMel = material === "Melamine Board", k = tcCalc();
+    var body = isMel ? VC_COLORS[tcBodyC][1] : (VC_OTHER[material] || "#ddd"), top = isMel ? VC_COLORS[tcTopC][1] : body;
+    $("tcColorWrap").style.display = isMel ? "" : "none";
+    $("tcBodyName").textContent = VC_COLORS[tcBodyC][0]; $("tcTopName").textContent = VC_COLORS[tcTopC][0];
+    document.querySelectorAll("#tcSwBody .sw").forEach(function(b,i){ b.classList.toggle("on", i===tcBodyC); });
+    document.querySelectorAll("#tcSwTop .sw").forEach(function(b,i){ b.classList.toggle("on", i===tcTopC); });
+    $("tcHDr").textContent = tcN;
+    $("tcTotal").textContent = "Total height: " + tcFmt(k.Htot) + (k.hut ? " (table " + tcFmt(k.d.Hl) + " + hutch " + tcFmt(k.d.Hh) + ")" : " (no hutch)");
+    tcLast = [k,body,top]; tcDraw(k,body,top);
+
+    var rows = [], total = 0, missing = 0;
+    function add(label,detail,qty,unit){ var cost = (unit==null) ? null : qty*unit; if(cost==null) missing++; else total += cost;
+      rows.push('<div'+(cost==null?' class="nc"':'')+'><span>'+label+' — '+detail+'</span><span>'+(cost==null?'Price not configured':money(Math.round(cost)))+'</span></div>'); }
+    add("Board", k.boards+" board"+(k.boards>1?"s":"")+" × "+money(pricing.boardPerPiece||0)+" (parts ≈ "+k.area.toFixed(0)+" sq ft ÷ 32)", k.boards, pricing.boardPerPiece);
+    add("Fitting", k.boards+" × "+money(pricing.fittingPerBoard||0)+" per board", k.boards, pricing.fittingPerBoard);
+    if(k.glass > 0) add("Glass", k.glass.toFixed(1)+" sq ft", k.glass, pricing.glassPerSqFt);
+    if(k.drawers > 0) add("Drawers", k.drawers+" pcs", k.drawers, pricing.drawerEach);
+    if(k.hinged > 0) add("Hinged door hardware", k.hinged+" door", k.hinged, pricing.hingedDoorEach);
+    if(k.shelves > 0) add("Shelf accessories", k.shelves+" shelf", k.shelves, pricing.shelfEach);
+    if(k.back > 0) add("Back panel", k.back.toFixed(1)+" sq ft", k.back, pricing.backPerSqFt);
+    add("SS / metal fittings","lump sum",1,pricing.ssTotal); add("Labour","lump sum",1,pricing.labour); add("Other materials","lump sum",1,pricing.other);
+    rows.push('<div class="tot"><span>Estimated total'+(missing?" (incomplete: "+missing+" price"+(missing>1?"s":"")+" not configured)":"")+'</span><span>'+money(Math.round(total))+'</span></div>');
+    $("tcBreak").innerHTML = rows.join("");
+    $("tcPrice").textContent = money(Math.round(total)) + (missing ? "+" : "");
+
+    $("tcs1").textContent = tcFromIn(k.d.L,tcUnit)+" × "+tcFromIn(k.d.D,tcUnit)+" × "+tcFromIn(k.Htot,tcUnit)+" "+TC_UL[tcUnit];
+    $("tcs2").textContent = material + (isMel ? " · " + VC_COLORS[tcBodyC][0] : "");
+    $("tcs3").textContent = k.hut ? (k.nd+" drawer"+(k.nd===1?"":"s")) : "No hutch";
+    $("tcs4").textContent = (k.ld ? "Drawer" : "No drawer") + (k.md ? " · panel" : "");
+    $("tcs5").textContent = $("tcName").value || "";
+    var doorName = {o:"Open", b:"Board door", g:"Glass door"}[k.dt];
+    var msg = "Hi Neloy Enterprise, study table with hutch inquiry:\nSize: "+tcFmt(k.d.L)+" (length) x "+tcFmt(k.d.D)+" (depth) x "+tcFmt(k.d.Hl)+" (table height)"
+      + "\nHutch: " + (k.hut ? tcFmt(k.d.Hh)+" high; upper-left: "+doorName+"; small drawers: "+k.nd+"; back panel: "+(k.hb?"yes":"no") : "none")
+      + "\nMaterial: " + material + (isMel ? ", body "+VC_COLORS[tcBodyC][0]+", top & drawers "+VC_COLORS[tcTopC][0] : "")
+      + "\nDrawer under top: " + (k.ld?"yes":"no") + "; front panel: " + (k.md?"yes":"no")
+      + "\nBoards: " + k.boards + (k.glass>0 ? "\nGlass: "+k.glass.toFixed(1)+" sq ft" : "")
+      + "\nEstimate: " + money(Math.round(total)) + (missing ? " (incomplete, some prices pending)" : "")
+      + "\nName: "+$("tcName").value+"\nPhone: "+$("tcPhone").value+"\nWhatsApp: "+$("tcWa").value+"\nLocation: "+$("tcLoc").value;
+    $("tcQuoteBtn").href = waLink(msg);
+    document.querySelectorAll("#vcSettings input[data-p], #tcSettings input[data-p]").forEach(function(i){ if(document.activeElement !== i){ var v = pricing[i.dataset.p]; i.value = (v==null) ? "" : v; } });
+  }
+
+  function tcReset(){
+    tcUnit = "in"; $("tcUnit").value = "in";
+    [["tcL",36],["tcD",30],["tcHl",30],["tcHh",24]].forEach(function(a){ $(a[0]).value = a[1]; $(a[0]).dataset.inch = a[1]; });
+    $("tcMaterial").value = "Melamine Board"; tcBodyC = 5; tcTopC = 0;
+    $("tcHutch").checked = true; $("tcHBack").checked = true; $("tcDoor").value = "o"; tcN = 2;
+    $("tcDrawer").checked = true; $("tcModesty").checked = true;
+    TC.hRow = .59; TC.hDiv = .5; tcHist = []; tcOpenT = 0; tcOpenTarget = 0;
+    $("tcTOpen").classList.remove("on"); $("tcTOpen").textContent = "Open drawers";
+    tcOpenStep(1); tcUpdate();
+  }
+  function tcOpenStep(n){ document.querySelectorAll("#tcSteps .pw-step").forEach(function(st){ st.classList.toggle("open", parseInt(st.dataset.step,10)===n); }); }
+  document.querySelectorAll("#tcSteps .pw-step .head").forEach(function(hd){ hd.addEventListener("click", function(){ var st = hd.closest(".pw-step"); tcOpenStep(st.classList.contains("open") ? -1 : parseInt(st.dataset.step,10)); }); });
+  [["tcSwBody",function(i){ tcBodyC = i; }],["tcSwTop",function(i){ tcTopC = i; }]].forEach(function(p){
+    VC_COLORS.forEach(function(c,i){ var b = document.createElement("button"); b.type = "button"; b.className = "sw"; b.title = c[0]; b.style.background = c[1]; b.addEventListener("click", function(){ p[1](i); tcUpdate(); }); $(p[0]).appendChild(b); });
+  });
+  $("tcSettings").innerHTML = PLAB.map(function(p){ return '<label>'+p[1]+'<input type="number" min="0" data-p="'+p[0]+'" value="'+(pricing[p[0]]==null?"":pricing[p[0]])+'" placeholder="not set"></label>'; }).join("");
+  $("tcSettings").addEventListener("input", function(e){ var p = e.target.dataset.p; if(p){ pricing[p] = e.target.value==="" ? null : parseFloat(e.target.value); tcUpdate(); vcUpdate(); } });
+  ["tcL","tcD","tcHl","tcHh"].forEach(function(id){ $(id).addEventListener("input", function(){ var v = parseFloat(this.value); if(isFinite(v)) this.dataset.inch = tcToIn(v,tcUnit); }); });
+  ["tcL","tcD","tcHl","tcHh","tcMaterial","tcHutch","tcDoor","tcHBack","tcDrawer","tcModesty","tcName","tcPhone","tcWa","tcLoc"].forEach(function(id){ $(id).addEventListener("input", tcUpdate); $(id).addEventListener("change", tcUpdate); });
+  $("tcUnit").addEventListener("change", function(){
+    var old = tcUnit, nu = this.value;
+    ["tcL","tcD","tcHl","tcHh"].forEach(function(id){ var el2 = $(id), inch = parseFloat(el2.dataset.inch); if(!isFinite(inch)){ var v = parseFloat(el2.value); inch = isFinite(v) ? tcToIn(v,old) : NaN; } if(isFinite(inch)) el2.value = tcFromIn(inch,nu); });
+    tcUnit = nu; tcUpdate();
+  });
+  $("tcHDrPlus").addEventListener("click", function(){ if(tcN < 3){ tcSnap(); tcN++; tcUpdate(); } });
+  $("tcHDrMinus").addEventListener("click", function(){ if(tcN > 0){ tcSnap(); tcN--; tcUpdate(); } });
+  $("tcUndo").addEventListener("click", function(){ var h = tcHist.pop(); if(!h) return; var o = JSON.parse(h); TC.hRow = o.r; TC.hDiv = o.d; tcN = o.n; tcUpdate(); });
+  $("tcTSize").addEventListener("click", function(){ tcShowDim = !tcShowDim; this.classList.toggle("on",tcShowDim); $("tcTFront").classList.toggle("on",!tcShowDim); tcUpdate(); });
+  $("tcTFront").addEventListener("click", function(){ tcShowDim = false; this.classList.add("on"); $("tcTSize").classList.remove("on"); tcUpdate(); });
+  $("tcTOpen").addEventListener("click", function(){ tcOpenTarget = tcOpenTarget ? 0 : 1; this.classList.toggle("on",!!tcOpenTarget); this.textContent = tcOpenTarget ? "Close drawers" : "Open drawers"; tcAnim(); });
+  $("tcTPrice").addEventListener("click", function(){ this.classList.toggle("on"); $("tcExtra").classList.toggle("on"); });
+
+  /* drag & drop: hutch shelf (up/down) and divider (left/right), snapping to 1 inch */
+  function tcPt(e){ var sv = $("tcSvg"), p = sv.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(sv.getScreenCTM().inverse()); }
+  $("tcCanvas").addEventListener("pointerdown", function(e){
+    var hs = e.target.closest(".hs"), dv = e.target.closest(".dv");
+    if(hs){ tcSnap(); tcDrag = {k:"s", moved:false}; } else if(dv){ tcSnap(); tcDrag = {k:"d", moved:false}; } else return;
+    e.preventDefault();
+  });
+  window.addEventListener("pointermove", function(e){
+    if(!tcDrag || !$("tcSvg") || !tcGeo) return; var p = tcPt(e), g = tcGeo; tcDrag.moved = true;
+    if(tcDrag.k === "s"){
+      var hIn = (g.yi1-g.yi0)/g.s, u = 1/hIn, f = (p.y-g.yi0)/(g.yi1-g.yi0);
+      f = Math.round(f/u)*u; TC.hRow = Math.max(6/hIn, Math.min(1-6/hIn, f));
+    } else {
+      var wIn = (g.xi1-g.xi0)/g.s, u2 = 1/wIn, f2 = (p.x-g.xi0)/(g.xi1-g.xi0);
+      f2 = Math.round(f2/u2)*u2; TC.hDiv = Math.max(6/wIn, Math.min(1-6/wIn, f2));
+    }
+    tcUpdate();
+  });
+  window.addEventListener("pointerup", function(){ if(tcDrag && !tcDrag.moved) tcHist.pop(); tcDrag = null; });
+  tcReset();
 
   /* ---------------- Motion: scroll reveals, counters, header, hero parallax ---------------- */
   function initMotion(){
@@ -1847,7 +2093,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   }
   function langWalk(root,bn){
     var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT), n, list=[];
-    while(n=w.nextNode()){ var pe=n.parentElement; if(!pe||/^(SCRIPT|STYLE|OPTION|TEXTAREA)$/.test(pe.tagName)) continue; if(pe.closest("#view-shelfconfig,#view-configure,#view-product")) continue; list.push(n); }
+    while(n=w.nextNode()){ var pe=n.parentElement; if(!pe||/^(SCRIPT|STYLE|OPTION|TEXTAREA)$/.test(pe.tagName)) continue; if(pe.closest("#view-shelfconfig,#view-tablecfg,#view-configure,#view-product")) continue; list.push(n); }
     list.forEach(function(n){
       if(n.__o===undefined){ if(!bn) return; n.__o=n.nodeValue; }
       if(!bn){ n.nodeValue=n.__o; return; }
