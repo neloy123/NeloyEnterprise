@@ -1065,6 +1065,56 @@
   </section>
 </div>
 
+<!-- ============ WALL SHELF UNIT CONFIGURATOR ============ -->
+<div class="view" data-view="wscfg" id="view-wscfg">
+  <section>
+    <div class="wrap">
+      <button class="pd-back" data-view="shop"><svg class="icn" style="width:16px;height:16px" viewBox="0 0 24 24"><use href="#i-back"/></svg> Back to Shop</button>
+      <div class="section-head">
+        <div class="kicker">Visual configurator</div>
+        <h2>Design your wall shelf unit</h2>
+        <p>Two cube units with floating shelves between them. Set the sizes, colours and shelves and watch it update live.</p>
+      </div>
+      <div class="pw">
+        <div class="pw-panel"><div class="pw-title"><h3>Your wall shelf unit</h3><p>Design it yourself in simple steps.</p></div>
+          <div class="pw-steps" id="wsSteps">
+            <div class="pw-step open" data-step="1"><button type="button" class="head"><span class="t">1. Define dimensions</span><span class="sum" id="wss1"></span><span class="chev">▲</span></button><div class="body">
+              <div class="vc-field" style="margin-bottom:10px;max-width:220px"><label>Unit</label><select id="wsUnit"><option value="in">Inch</option><option value="suta">Suta (1 inch = 8 suta)</option><option value="mm">Millimetre</option></select></div>
+              <div class="vc-field-row"><div class="vc-field"><label>Left unit width</label><input type="number" id="wsWL" min="0" step="any" value="12"></div><div class="vc-field"><label>Left unit height</label><input type="number" id="wsHL" min="0" step="any" value="21"></div></div>
+              <div class="vc-field-row"><div class="vc-field"><label>Right unit width</label><input type="number" id="wsWR" min="0" step="any" value="14"></div><div class="vc-field"><label>Right unit height</label><input type="number" id="wsHR" min="0" step="any" value="25"></div></div>
+              <div class="vc-field-row"><div class="vc-field"><label>Depth (both units)</label><input type="number" id="wsD" min="0" step="any" value="10"></div><div class="vc-field"><label>Gap between units</label><input type="number" id="wsG" min="0" step="any" value="12"></div></div>
+              <div class="pw-hint" id="wsTotal"></div>
+              <div class="pw-hint">Allowed: width 6–36 in, height 8–60 in, depth 4–20 in, gap 4–48 in. The gap is the length of the floating shelves.</div>
+            </div></div>
+            <div class="pw-step" data-step="2"><button type="button" class="head"><span class="t">2. Material &amp; colours</span><span class="sum" id="wss2"></span><span class="chev">▲</span></button><div class="body">
+              <div class="vc-field"><label>Material</label><select id="wsMaterial"><option>Melamine Board</option><option>Plywood</option><option>PVC Board</option></select></div>
+              <div id="wsColorWrap" style="margin-top:10px">
+                <label style="font-size:.74rem">Unit colour: <b id="wsBodyName"></b></label><div class="vc-swatches" id="wsSwBody"></div>
+                <label style="font-size:.74rem;display:block;margin-top:14px">Floating shelf colour: <b id="wsShelfName"></b></label><div class="vc-swatches" id="wsSwShelf"></div>
+              </div>
+            </div></div>
+            <div class="pw-step" data-step="3"><button type="button" class="head"><span class="t">3. Cubes &amp; shelves</span><span class="sum" id="wss3"></span><span class="chev">▲</span></button><div class="body">
+              <div class="vc-field" style="margin-bottom:12px"><label>Cubes in left unit</label><div class="stepper"><button type="button" id="wsNLMinus">−</button><span class="val" id="wsNL">2</span><button type="button" id="wsNLPlus">+</button></div></div>
+              <div class="vc-field" style="margin-bottom:12px"><label>Cubes in right unit</label><div class="stepper"><button type="button" id="wsNRMinus">−</button><span class="val" id="wsNR">2</span><button type="button" id="wsNRPlus">+</button></div></div>
+              <div class="vc-field" style="margin-bottom:12px"><label>Floating shelves between</label><div class="stepper"><button type="button" id="wsNFMinus">−</button><span class="val" id="wsNF">2</span><button type="button" id="wsNFPlus">+</button></div></div>
+              <div class="pw-hint"><b>Drag &amp; drop:</b> drag any shelf or divider up or down in the picture. They snap to 1 inch.</div>
+            </div></div>
+            <div class="pw-step" data-step="4"><button type="button" class="head"><span class="t">4. Your details</span><span class="sum" id="wss4"></span><span class="chev">▲</span></button><div class="body">
+              <div class="vc-field" style="margin-bottom:8px"><label>Name</label><input type="text" id="wsName"></div>
+              <div class="vc-field" style="margin-bottom:8px"><label>Phone</label><input type="tel" id="wsPhone"></div>
+              <div class="vc-field" style="margin-bottom:8px"><label>WhatsApp</label><input type="tel" id="wsWa"></div>
+              <div class="vc-field"><label>Location</label><input type="text" id="wsLoc"></div>
+            </div></div>
+          </div>
+          <div class="pw-price"><div class="pr"><b id="wsPrice">৳0</b><small>Estimate only — final price confirmed on WhatsApp</small></div><a class="pw-cta" href="#" id="wsQuoteBtn" target="_blank" rel="noopener">Send on WhatsApp</a></div></div>
+        <div class="pw-stage"><div class="pw-tools"><button type="button" id="wsTFront" class="on">Front</button><button type="button" id="wsTSize">Sizing</button><button type="button" id="wsTPrice">Price list</button></div>
+          <div class="vc-canvas" id="wsCanvas"></div><button type="button" class="pw-undo" id="wsUndo">↶ Undo</button>
+          <div class="pw-extra" id="wsExtra"><div class="vc-break" id="wsBreak"></div><details class="vc-set"><summary>Pricing settings (editable)</summary><div id="wsSettings"></div></details></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
 </main>
 
 <footer>
@@ -1464,10 +1514,11 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
       + '</div>'
       + '<div class="pd-actions">'
         + '<button class="btn primary" id="pdConfigureBtn">Configure This Product</button>'
-        + (["Storage & Shelves","Board Furniture"].indexOf(p.cat)>-1 ? '<button class="btn" id="pdVisualBtn">Open Visual Configurator</button>' : '')
+        + (["Storage & Shelves","Board Furniture"].indexOf(p.cat)>-1 && p.id!=="wall-shelf" ? '<button class="btn" id="pdVisualBtn">Open Visual Configurator</button>' : '')
         + '<a class="btn wa" href="'+waLink("Hi Neloy Enterprise, I'm interested in the "+p.name+". Could you help me with pricing and details?")+'" target="_blank" rel="noopener"><svg class="icn" style="width:16px;height:16px" viewBox="0 0 32 32"><use href="#i-wa"/></svg> WhatsApp</a>'
       + '</div></div>';
     box.querySelector("#pdConfigureBtn").addEventListener("click", function(){
+      if(p.id==="wall-shelf"){ wsReset(); showView("wscfg"); return; }
       document.getElementById("cfgProduct").value = p.product;
       setCfgMaterial(p.material);
       populateThickness();
@@ -1660,7 +1711,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   });
 
   /* ---------------- View routing ---------------- */
-  var VALID_VIEWS = ["home","shop","configure","shelfconfig","tablecfg","configurelanding","gallery","about","blog","blogpost","blogpost2","contact"];
+  var VALID_VIEWS = ["home","shop","configure","shelfconfig","tablecfg","wscfg","configurelanding","gallery","about","blog","blogpost","blogpost2","contact"];
   var CFG_PAGE = ["configurelanding","configure","shelfconfig"]; // these views are shown together as ONE Configure page
   function showView(name, skipHash){
     var group = CFG_PAGE.indexOf(name)>-1;
@@ -1911,7 +1962,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   ["vcH","vcHi","vcW","vcWi","vcD","vcDi","vcMaterial","vcBoards","vcBack","vcSlideN","vcName","vcPhone","vcWa","vcLoc"].forEach(function(id){ $(id).addEventListener("input",vcUpdate); $(id).addEventListener("change",vcUpdate); });
   VC_COLORS.forEach(function(c,i){ var b=document.createElement("button"); b.type="button"; b.className="sw"; b.title=c[0]; b.style.background=c[1]; b.addEventListener("click",function(){ vcColor=i; vcUpdate(); }); $("vcSwatches").appendChild(b); });
   $("vcSettings").innerHTML=PLAB.map(function(p){ return '<label>'+p[1]+'<input type="number" min="0" data-p="'+p[0]+'" value="'+(pricing[p[0]]==null?"":pricing[p[0]])+'" placeholder="not set"></label>'; }).join("");
-  $("vcSettings").addEventListener("input",function(e){ var p=e.target.dataset.p; if(p){ pricing[p]=e.target.value===""?null:parseFloat(e.target.value); vcUpdate(); if(typeof tcUpdate==="function") tcUpdate(); } });
+  $("vcSettings").addEventListener("input",function(e){ var p=e.target.dataset.p; if(p){ pricing[p]=e.target.value===""?null:parseFloat(e.target.value); vcUpdate(); if(typeof tcUpdate==="function") tcUpdate(); if(typeof wsUpdate==="function") wsUpdate(); } });
 
 
   /* ---------------- Study table with hutch configurator (all sizes in inches inside) ---------------- */
@@ -2045,7 +2096,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
       + "\nEstimate: " + money(Math.round(total)) + (missing ? " (incomplete, some prices pending)" : "")
       + "\nName: "+$("tcName").value+"\nPhone: "+$("tcPhone").value+"\nWhatsApp: "+$("tcWa").value+"\nLocation: "+$("tcLoc").value;
     $("tcQuoteBtn").href = waLink(msg);
-    document.querySelectorAll("#vcSettings input[data-p], #tcSettings input[data-p]").forEach(function(i){ if(document.activeElement !== i){ var v = pricing[i.dataset.p]; i.value = (v==null) ? "" : v; } });
+    document.querySelectorAll("#vcSettings input[data-p], #tcSettings input[data-p], #wsSettings input[data-p]").forEach(function(i){ if(document.activeElement !== i){ var v = pricing[i.dataset.p]; i.value = (v==null) ? "" : v; } });
   }
 
   function tcReset(){
@@ -2064,7 +2115,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     VC_COLORS.forEach(function(c,i){ var b = document.createElement("button"); b.type = "button"; b.className = "sw"; b.title = c[0]; b.style.background = c[1]; b.addEventListener("click", function(){ p[1](i); tcUpdate(); }); $(p[0]).appendChild(b); });
   });
   $("tcSettings").innerHTML = PLAB.map(function(p){ return '<label>'+p[1]+'<input type="number" min="0" data-p="'+p[0]+'" value="'+(pricing[p[0]]==null?"":pricing[p[0]])+'" placeholder="not set"></label>'; }).join("");
-  $("tcSettings").addEventListener("input", function(e){ var p = e.target.dataset.p; if(p){ pricing[p] = e.target.value==="" ? null : parseFloat(e.target.value); tcUpdate(); vcUpdate(); } });
+  $("tcSettings").addEventListener("input", function(e){ var p = e.target.dataset.p; if(p){ pricing[p] = e.target.value==="" ? null : parseFloat(e.target.value); tcUpdate(); vcUpdate(); if(typeof wsUpdate==="function") wsUpdate(); } });
   ["tcL","tcD","tcHl","tcHh"].forEach(function(id){ $(id).addEventListener("input", function(){ var v = parseFloat(this.value); if(isFinite(v)) this.dataset.inch = tcToIn(v,tcUnit); }); });
   ["tcL","tcD","tcHl","tcHh","tcMaterial","tcHutch","tcDoor","tcHBack","tcDrawer","tcModesty","tcName","tcPhone","tcWa","tcLoc"].forEach(function(id){ $(id).addEventListener("input", tcUpdate); $(id).addEventListener("change", tcUpdate); });
   $("tcUnit").addEventListener("change", function(){
@@ -2104,6 +2155,159 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   (function(){ ["blogCta","blogCta2"].forEach(function(id){ var b = document.getElementById(id); if(b) b.href = waLink("Hi Neloy Enterprise, I read your blog post and have a question."); }); })();
 
   document.querySelectorAll(".blog-card[data-post]").forEach(function(c){ c.addEventListener("click", function(){ showView(c.dataset.target || "blogpost"); }); });
+
+  /* ---------------- Wall shelf unit configurator (two cube units + floating shelves; inches inside) ---------------- */
+  var WS_COLORS = VC_COLORS.concat([["Anthracite Grey","#3E464F"],["Light Grey","#BFC3C6"]]);
+  function wsEq(n){ var a = []; for(var i=1;i<n;i++) a.push(i/n); return a; }
+  function wsFloat(n){ if(n===2) return [.31,.70]; var a = []; for(var i=1;i<=n;i++) a.push(i/(n+1)); return a; }
+  var WS_DIV = { l:wsEq(2), r:wsEq(2) }, WS_F = wsFloat(2);
+  var wsBodyC = WS_COLORS.length-2, wsShelfC = 0, wsUnit = "in", wsHist = [], wsShowDim = false, wsDrag = null, wsGeo = null;
+  function wsDims(){
+    function g(id,def,lo,hi){ var v = tcToIn(parseFloat($(id).value),wsUnit); if(!isFinite(v)) v = def; return Math.max(lo,Math.min(hi,v)); }
+    return { WL:g("wsWL",12,6,36), HL:g("wsHL",21,8,60), WR:g("wsWR",14,6,36), HR:g("wsHR",25,8,60), D:g("wsD",10,4,20), G:g("wsG",12,4,48) };
+  }
+  function wsFmt(inch){ return tcFromIn(inch,wsUnit) + " " + TC_UL[wsUnit]; }
+  function wsCalc(){
+    var d = wsDims(), area = 0;
+    function unit(W,H,nd){ return 2*d.D*H + 2*(W-1.5)*d.D + nd*(W-1.5)*d.D; }
+    area += unit(d.WL,d.HL,WS_DIV.l.length) + unit(d.WR,d.HR,WS_DIV.r.length) + WS_F.length*d.G*d.D;
+    var sq = area/144;
+    return { d:d, area:sq, boards:Math.max(1,Math.ceil(sq/32)), nf:WS_F.length, nl:WS_DIV.l.length+1, nr:WS_DIV.r.length+1 };
+  }
+  function wsDraw(k,body,shelf){
+    var d = k.d, totW = d.WL+d.G+d.WR, Hmax = Math.max(d.HL,d.HR), Hmin = Math.min(d.HL,d.HR);
+    var s = Math.min(440/totW, 400/Hmax), x0 = 60, cy = 260, tw = totW*s+120, t = Math.max(5,0.75*s), tt = t*0.8;
+    var dk = vcShade(body,-40), wall = "#e6e4dc", inner = "#d3d1c8", hits = "";
+    var o = '<svg id="wsSvg" viewBox="0 0 '+tw+' 520" xmlns="http://www.w3.org/2000/svg" style="touch-action:none"><rect x="0" y="0" width="'+tw+'" height="520" fill="'+wall+'"/>';
+    wsGeo = { s:s };
+    function unitSvg(x,W,H,divs,tag){
+      var w = W*s, h = H*s, y = cy-h/2, xi0 = x+t, xi1 = x+w-t, yi0 = y+t, yi1 = y+h-t, out = "";
+      out += '<rect x="'+(x+7)+'" y="'+(y+9)+'" width="'+w+'" height="'+h+'" fill="rgba(0,0,0,.13)"/>';
+      out += '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+body+'" stroke="'+dk+'"/>';
+      var B = [yi0]; divs.forEach(function(f){ B.push(yi0+f*(yi1-yi0)); }); B.push(yi1);
+      for(var i=0;i<B.length-1;i++){
+        var top = i===0 ? B[0] : B[i]+tt/2, bot = i===B.length-2 ? B[B.length-1] : B[i+1]-tt/2;
+        out += '<rect x="'+xi0+'" y="'+top+'" width="'+(xi1-xi0)+'" height="'+Math.max(0,bot-top)+'" fill="'+inner+'"/>';
+        out += '<rect x="'+xi0+'" y="'+top+'" width="'+(xi1-xi0)+'" height="'+Math.min(9,Math.max(0,bot-top))+'" fill="rgba(0,0,0,.16)"/>';
+        out += '<rect x="'+xi0+'" y="'+top+'" width="5" height="'+Math.max(0,bot-top)+'" fill="rgba(0,0,0,.10)"/>';
+      }
+      for(var j=1;j<B.length-1;j++){
+        out += '<rect x="'+xi0+'" y="'+(B[j]-tt/2)+'" width="'+(xi1-xi0)+'" height="'+tt+'" fill="'+vcShade(body,6)+'" stroke="'+dk+'"/>';
+        hits += '<rect class="hs" data-t="'+tag+'" data-i="'+(j-1)+'" x="'+xi0+'" y="'+(B[j]-7)+'" width="'+(xi1-xi0)+'" height="14" fill="transparent" style="cursor:ns-resize"><title>Drag up / down</title></rect>';
+      }
+      wsGeo[tag] = { y0:yi0, y1:yi1 };
+      return out;
+    }
+    o += unitSvg(x0,d.WL,d.HL,WS_DIV.l,"l");
+    var xr = x0+(d.WL+d.G)*s;
+    o += unitSvg(xr,d.WR,d.HR,WS_DIV.r,"r");
+    var yO0 = cy-Hmin*s/2, yO1 = cy+Hmin*s/2, sx = x0+d.WL*s, ts = Math.max(5,0.75*s);
+    WS_F.forEach(function(f,i){
+      var y = yO0+f*(yO1-yO0);
+      o += '<rect x="'+(sx-1)+'" y="'+(y-ts/2+4)+'" width="'+(d.G*s+2)+'" height="'+ts+'" fill="rgba(0,0,0,.13)"/>';
+      o += '<rect x="'+(sx-1)+'" y="'+(y-ts/2)+'" width="'+(d.G*s+2)+'" height="'+ts+'" fill="'+shelf+'" stroke="#9a9a96"/>';
+      hits += '<rect class="hs" data-t="f" data-i="'+i+'" x="'+sx+'" y="'+(y-8)+'" width="'+(d.G*s)+'" height="16" fill="transparent" style="cursor:ns-resize"><title>Drag up / down</title></rect>';
+    });
+    wsGeo.f = { y0:yO0, y1:yO1 };
+    o += hits;
+    if(wsShowDim){
+      o += '<text x="'+(x0+d.WL*s/2)+'" y="'+(cy-d.HL*s/2-10)+'" text-anchor="middle" font-size="12" fill="#333">'+wsFmt(d.WL)+'</text>';
+      o += '<text x="'+(xr+d.WR*s/2)+'" y="'+(cy-d.HR*s/2-10)+'" text-anchor="middle" font-size="12" fill="#333">'+wsFmt(d.WR)+'</text>';
+      o += '<text x="'+(sx+d.G*s/2)+'" y="'+(cy+Hmin*s/2+26)+'" text-anchor="middle" font-size="12" fill="#333">shelf '+wsFmt(d.G)+'</text>';
+      o += '<text x="'+(x0-10)+'" y="'+cy+'" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 '+(x0-10)+' '+cy+')">'+wsFmt(d.HL)+'</text>';
+      o += '<text x="'+(xr+d.WR*s+14)+'" y="'+cy+'" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 '+(xr+d.WR*s+14)+' '+cy+')">'+wsFmt(d.HR)+'</text>';
+      o += '<text x="'+(tw/2)+'" y="500" text-anchor="middle" font-size="12" fill="#333">depth '+wsFmt(d.D)+'</text>';
+    }
+    $("wsCanvas").innerHTML = o + '</svg>';
+  }
+  function wsSnap(){ wsHist.push(JSON.stringify({l:WS_DIV.l, r:WS_DIV.r, f:WS_F})); if(wsHist.length > 40) wsHist.shift(); }
+
+  function wsUpdate(){
+    var material = $("wsMaterial").value, isMel = material === "Melamine Board", k = wsCalc();
+    var body = isMel ? WS_COLORS[wsBodyC][1] : (VC_OTHER[material] || "#ddd"), shelf = isMel ? WS_COLORS[wsShelfC][1] : body;
+    $("wsColorWrap").style.display = isMel ? "" : "none";
+    $("wsBodyName").textContent = WS_COLORS[wsBodyC][0]; $("wsShelfName").textContent = WS_COLORS[wsShelfC][0];
+    document.querySelectorAll("#wsSwBody .sw").forEach(function(b,i){ b.classList.toggle("on", i===wsBodyC); });
+    document.querySelectorAll("#wsSwShelf .sw").forEach(function(b,i){ b.classList.toggle("on", i===wsShelfC); });
+    $("wsNL").textContent = k.nl; $("wsNR").textContent = k.nr; $("wsNF").textContent = k.nf;
+    $("wsTotal").textContent = "Total width: " + wsFmt(k.d.WL+k.d.G+k.d.WR) + " · tallest unit: " + wsFmt(Math.max(k.d.HL,k.d.HR));
+    wsDraw(k,body,shelf);
+
+    var rows = [], total = 0, missing = 0;
+    function add(label,detail,qty,unit){ var cost = (unit==null) ? null : qty*unit; if(cost==null) missing++; else total += cost;
+      rows.push('<div'+(cost==null?' class="nc"':'')+'><span>'+label+' — '+detail+'</span><span>'+(cost==null?'Price not configured':money(Math.round(cost)))+'</span></div>'); }
+    add("Board", k.boards+" board"+(k.boards>1?"s":"")+" × "+money(pricing.boardPerPiece||0)+" (parts ≈ "+k.area.toFixed(0)+" sq ft ÷ 32)", k.boards, pricing.boardPerPiece);
+    add("Fitting", k.boards+" × "+money(pricing.fittingPerBoard||0)+" per board", k.boards, pricing.fittingPerBoard);
+    if(k.nf > 0) add("Shelf accessories", k.nf+(k.nf>1?" floating shelves":" floating shelf"), k.nf, pricing.shelfEach);
+    add("SS / metal fittings","lump sum",1,pricing.ssTotal); add("Labour","lump sum",1,pricing.labour); add("Other materials","lump sum",1,pricing.other);
+    rows.push('<div class="tot"><span>Estimated total'+(missing?" (incomplete: "+missing+" price"+(missing>1?"s":"")+" not configured)":"")+'</span><span>'+money(Math.round(total))+'</span></div>');
+    $("wsBreak").innerHTML = rows.join("");
+    $("wsPrice").textContent = money(Math.round(total)) + (missing ? "+" : "");
+
+    $("wss1").textContent = wsFmt(k.d.WL+k.d.G+k.d.WR) + " wide";
+    $("wss2").textContent = material + (isMel ? " · " + WS_COLORS[wsBodyC][0] : "");
+    $("wss3").textContent = k.nl+" + "+k.nr+" cubes · "+k.nf+" shelves";
+    $("wss4").textContent = $("wsName").value || "";
+    var msg = "Hi Neloy Enterprise, wall shelf unit inquiry:"
+      + "\nLeft unit: "+wsFmt(k.d.WL)+" wide x "+wsFmt(k.d.HL)+" high, "+k.nl+" cube"+(k.nl>1?"s":"")
+      + "\nRight unit: "+wsFmt(k.d.WR)+" wide x "+wsFmt(k.d.HR)+" high, "+k.nr+" cube"+(k.nr>1?"s":"")
+      + "\nDepth: "+wsFmt(k.d.D)+"; gap between units (shelf length): "+wsFmt(k.d.G)+"; floating shelves: "+k.nf
+      + "\nMaterial: "+material+(isMel ? ", units "+WS_COLORS[wsBodyC][0]+", shelves "+WS_COLORS[wsShelfC][0] : "")
+      + "\nBoards: "+k.boards
+      + "\nEstimate: "+money(Math.round(total))+(missing ? " (incomplete, some prices pending)" : "")
+      + "\nName: "+$("wsName").value+"\nPhone: "+$("wsPhone").value+"\nWhatsApp: "+$("wsWa").value+"\nLocation: "+$("wsLoc").value;
+    $("wsQuoteBtn").href = waLink(msg);
+    document.querySelectorAll("#vcSettings input[data-p], #tcSettings input[data-p], #wsSettings input[data-p]").forEach(function(i){ if(document.activeElement !== i){ var v = pricing[i.dataset.p]; i.value = (v==null) ? "" : v; } });
+  }
+  function wsReset(){
+    wsUnit = "in"; $("wsUnit").value = "in";
+    [["wsWL",12],["wsHL",21],["wsWR",14],["wsHR",25],["wsD",10],["wsG",12]].forEach(function(a){ $(a[0]).value = a[1]; $(a[0]).dataset.inch = a[1]; });
+    $("wsMaterial").value = "Melamine Board"; wsBodyC = WS_COLORS.length-2; wsShelfC = 0;
+    WS_DIV.l = wsEq(2); WS_DIV.r = wsEq(2); WS_F = wsFloat(2); wsHist = [];
+    wsOpenStep(1); wsUpdate();
+  }
+  function wsOpenStep(n){ document.querySelectorAll("#wsSteps .pw-step").forEach(function(st){ st.classList.toggle("open", parseInt(st.dataset.step,10)===n); }); }
+  document.querySelectorAll("#wsSteps .pw-step .head").forEach(function(hd){ hd.addEventListener("click", function(){ var st = hd.closest(".pw-step"); wsOpenStep(st.classList.contains("open") ? -1 : parseInt(st.dataset.step,10)); }); });
+  [["wsSwBody",function(i){ wsBodyC = i; }],["wsSwShelf",function(i){ wsShelfC = i; }]].forEach(function(p){
+    WS_COLORS.forEach(function(c,i){ var b = document.createElement("button"); b.type = "button"; b.className = "sw"; b.title = c[0]; b.style.background = c[1]; b.addEventListener("click", function(){ p[1](i); wsUpdate(); }); $(p[0]).appendChild(b); });
+  });
+  $("wsSettings").innerHTML = PLAB.map(function(p){ return '<label>'+p[1]+'<input type="number" min="0" data-p="'+p[0]+'" value="'+(pricing[p[0]]==null?"":pricing[p[0]])+'" placeholder="not set"></label>'; }).join("");
+  $("wsSettings").addEventListener("input", function(e){ var p = e.target.dataset.p; if(p){ pricing[p] = e.target.value==="" ? null : parseFloat(e.target.value); wsUpdate(); vcUpdate(); tcUpdate(); } });
+  ["wsWL","wsHL","wsWR","wsHR","wsD","wsG"].forEach(function(id){ $(id).addEventListener("input", function(){ var v = parseFloat(this.value); if(isFinite(v)) this.dataset.inch = tcToIn(v,wsUnit); }); });
+  ["wsWL","wsHL","wsWR","wsHR","wsD","wsG","wsMaterial","wsName","wsPhone","wsWa","wsLoc"].forEach(function(id){ $(id).addEventListener("input", wsUpdate); $(id).addEventListener("change", wsUpdate); });
+  $("wsUnit").addEventListener("change", function(){
+    var old = wsUnit, nu = this.value;
+    ["wsWL","wsHL","wsWR","wsHR","wsD","wsG"].forEach(function(id){ var e2 = $(id), inch = parseFloat(e2.dataset.inch); if(!isFinite(inch)){ var v = parseFloat(e2.value); inch = isFinite(v) ? tcToIn(v,old) : NaN; } if(isFinite(inch)) e2.value = tcFromIn(inch,nu); });
+    wsUnit = nu; wsUpdate();
+  });
+  function wsStep(id,fn){ $(id).addEventListener("click", function(){ wsSnap(); fn(); wsUpdate(); }); }
+  wsStep("wsNLPlus", function(){ var n = WS_DIV.l.length+1; if(n < 4) WS_DIV.l = wsEq(n+1); });
+  wsStep("wsNLMinus", function(){ var n = WS_DIV.l.length+1; if(n > 1) WS_DIV.l = wsEq(n-1); });
+  wsStep("wsNRPlus", function(){ var n = WS_DIV.r.length+1; if(n < 4) WS_DIV.r = wsEq(n+1); });
+  wsStep("wsNRMinus", function(){ var n = WS_DIV.r.length+1; if(n > 1) WS_DIV.r = wsEq(n-1); });
+  wsStep("wsNFPlus", function(){ if(WS_F.length < 3) WS_F = wsFloat(WS_F.length+1); });
+  wsStep("wsNFMinus", function(){ if(WS_F.length > 0) WS_F = wsFloat(WS_F.length-1); });
+  $("wsUndo").addEventListener("click", function(){ var h = wsHist.pop(); if(!h) return; var o = JSON.parse(h); WS_DIV.l = o.l; WS_DIV.r = o.r; WS_F = o.f; wsUpdate(); });
+  $("wsTSize").addEventListener("click", function(){ wsShowDim = !wsShowDim; this.classList.toggle("on",wsShowDim); $("wsTFront").classList.toggle("on",!wsShowDim); wsUpdate(); });
+  $("wsTFront").addEventListener("click", function(){ wsShowDim = false; this.classList.add("on"); $("wsTSize").classList.remove("on"); wsUpdate(); });
+  $("wsTPrice").addEventListener("click", function(){ this.classList.toggle("on"); $("wsExtra").classList.toggle("on"); });
+
+  /* drag & drop: shelves and dividers move up / down, snapping to 1 inch */
+  function wsPt(e){ var sv = $("wsSvg"), p = sv.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(sv.getScreenCTM().inverse()); }
+  $("wsCanvas").addEventListener("pointerdown", function(e){
+    var h = e.target.closest(".hs"); if(!h) return;
+    wsSnap(); wsDrag = { t:h.getAttribute("data-t"), i:parseInt(h.getAttribute("data-i"),10), moved:false }; e.preventDefault();
+  });
+  window.addEventListener("pointermove", function(e){
+    if(!wsDrag || !$("wsSvg") || !wsGeo) return;
+    var g = wsGeo, p = wsPt(e), tg = wsDrag.t, i = wsDrag.i, arr = tg==="f" ? WS_F : WS_DIV[tg], y0 = g[tg].y0, y1 = g[tg].y1;
+    var hIn = (y1-y0)/g.s, u = 1/hIn, f = (p.y-y0)/(y1-y0); f = Math.round(f/u)*u; wsDrag.moved = true;
+    var mn = (tg==="f" ? 3 : 4)/hIn, lo = i>0 ? arr[i-1]+mn : mn, hi = i<arr.length-1 ? arr[i+1]-mn : 1-mn;
+    arr[i] = Math.max(lo, Math.min(hi, f));
+    wsUpdate();
+  });
+  window.addEventListener("pointerup", function(){ if(wsDrag && !wsDrag.moved) wsHist.pop(); wsDrag = null; });
+  wsReset();
 
   /* ---------------- Motion: scroll reveals, counters, header, hero parallax ---------------- */
   function initMotion(){
@@ -2185,7 +2389,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   }
   function langWalk(root,bn){
     var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT), n, list=[];
-    while(n=w.nextNode()){ var pe=n.parentElement; if(!pe||/^(SCRIPT|STYLE|OPTION|TEXTAREA)$/.test(pe.tagName)) continue; if(pe.closest("#view-shelfconfig,#view-configure,#view-product")) continue; list.push(n); }
+    while(n=w.nextNode()){ var pe=n.parentElement; if(!pe||/^(SCRIPT|STYLE|OPTION|TEXTAREA)$/.test(pe.tagName)) continue; if(pe.closest("#view-shelfconfig,#view-tablecfg,#view-wscfg,#view-configure,#view-product")) continue; list.push(n); }
     list.forEach(function(n){
       if(n.__o===undefined){ if(!bn) return; n.__o=n.nodeValue; }
       if(!bn){ n.nodeValue=n.__o; return; }
