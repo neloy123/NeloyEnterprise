@@ -471,6 +471,41 @@
     header.site .brand .mark{ width:24px; height:24px; }
   }
 
+  /* ================= How it works + Why Neloy (one combined section) ================= */
+  .combo .combo-topic + .combo-topic{ margin-top:clamp(56px,8vw,96px); padding-top:clamp(40px,6vw,64px); border-top:1px solid rgba(255,255,255,.28); }
+  .combo .process{ border:0; gap:14px; grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .combo .why-grid{ gap:14px; grid-template-columns:repeat(5,minmax(0,1fr)); }
+  @media (max-width:1100px){ .combo .why-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media (max-width:980px){ .combo .process{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media (max-width:560px){ .combo .process, .combo .why-grid{ grid-template-columns:1fr; } }
+  .combo .p-step, .combo .why-card{ background:rgba(255,255,255,.97); color:#1D3324; border-radius:14px; padding:22px 20px; box-shadow:0 14px 30px rgba(0,0,0,.28); border:0; }
+  .combo .p-step .num{ font:800 1.6rem/1 'Manrope',sans-serif; color:#B8860B; margin-bottom:12px; }
+  .combo .p-step h4, .combo .why-card h4{ font:700 1.08rem/1.35 'Manrope','Noto Sans Bengali',sans-serif; color:#1D3324; margin:0 0 8px; }
+  .combo .p-step p, .combo .why-card p{ font:500 .93rem/1.6 'Manrope','Noto Sans Bengali',sans-serif; color:#33443a; margin:0; }
+  .combo .why-card .icn{ width:26px; height:26px; color:#B8860B; margin-bottom:12px; }
+  .combo .section-head h2{ text-shadow:0 2px 14px rgba(0,0,0,.45); }
+  .combo .section-head .kicker{ font-weight:700; }
+
+  /* ================= Blog ================= */
+  .blog-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:22px; margin-top:12px; }
+  .blog-card{ text-align:left; display:flex; flex-direction:column; gap:12px; padding:26px; border-radius:16px; border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.96); color:#1D3324; cursor:pointer; font:inherit; transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease; }
+  @media (hover:hover){ .blog-card:hover{ transform:translateY(-5px); box-shadow:0 18px 36px rgba(0,0,0,.3); } }
+  .blog-card:focus-visible{ outline:2px solid #D9A441; outline-offset:3px; }
+  .blog-tag{ font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:#8a6420; font-weight:600; }
+  .blog-card-title{ font:700 1.35rem/1.35 'Noto Sans Bengali','Manrope',sans-serif; }
+  .blog-card-sub{ font-size:.92rem; color:#3c5a48; font-family:'Noto Sans Bengali','Manrope',sans-serif; line-height:1.5; }
+  .blog-card-excerpt{ font-size:.95rem; line-height:1.7; color:#444; font-family:'Noto Sans Bengali','Manrope',sans-serif; }
+  .blog-read{ margin-top:auto; font-weight:600; color:#1D3324; }
+  .blog-article{ max-width:760px; margin:0 auto; padding:clamp(22px,4vw,44px); border-radius:18px; background:rgba(255,255,255,.97); color:#1D3324; box-shadow:0 22px 50px rgba(0,0,0,.3); }
+  .blog-article .kicker{ color:#8a6420 !important; text-shadow:none !important; }
+  .blog-article h1{ font:800 clamp(1.7rem,4vw,2.5rem)/1.25 'Noto Sans Bengali','Manrope',sans-serif; margin:10px 0 8px; }
+  .blog-sub{ font:500 1.05rem/1.6 'Noto Sans Bengali','Manrope',sans-serif; color:#3c5a48; margin:0 0 26px; padding-bottom:22px; border-bottom:1px solid #e2e6e0; }
+  .blog-body p{ font:400 1.04rem/1.95 'Noto Sans Bengali','Manrope',sans-serif; margin:0 0 16px; color:#2b2b2b; }
+  .blog-body h3{ font:700 1.2rem/1.5 'Noto Sans Bengali','Manrope',sans-serif; margin:28px 0 10px; color:#1D3324; }
+  .blog-cta{ margin-top:34px; padding-top:24px; border-top:1px solid #e2e6e0; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px; }
+  .blog-cta p{ margin:0; font-size:.95rem; color:#3c5a48; }
+  .blog-cta .btn{ color:#fff; }
+
   /* ================= v2: category fixes, compact hero preview, motion ================= */
 
   /* Category group titles were dark text on the dark photo - make them readable */
@@ -619,7 +654,8 @@
       <button class="navlink" data-view="configurelanding">Configure</button>
       <button class="navlink" data-view="gallery">Projects</button>
       <button class="navlink" data-view="about">About</button>
-      <button class="navlink" data-view="contact">Contact</button>
+      <button class="navlink" data-view="blog">Blog</button>
+       <button class="navlink" data-view="contact">Contact</button>
     </nav>
     <div class="cta-group">
       <div class="lang-sw" role="group" aria-label="Language / ভাষা"><button type="button" data-lang="en" class="on" aria-pressed="true">EN</button><button type="button" data-lang="bn" aria-pressed="false">বাংলা</button></div>
@@ -634,7 +670,8 @@
     <button class="navlink" data-view="configurelanding">Configure</button>
     <button class="navlink" data-view="gallery">Projects</button>
     <button class="navlink" data-view="about">About</button>
-    <button class="navlink" data-view="contact">Contact</button>
+    <button class="navlink" data-view="blog">Blog</button>
+       <button class="navlink" data-view="contact">Contact</button>
   </div>
 </header>
 
@@ -662,11 +699,6 @@
           <div class="trust-pill"><span class="dot"></span> Direct WhatsApp quoting</div>
         </div>
 
-        <div class="mini-stats">
-          <div class="mini-stat"><strong>8+</strong><span>Product categories</span></div>
-          <div class="mini-stat"><strong>3</strong><span>Spaces we serve</span></div>
-          <div class="mini-stat"><strong>1</strong><span>Workshop, custom-built</span></div>
-        </div>
       </div>
       <div class="hero-visual" id="heroVisual"></div>
     </div>
@@ -685,46 +717,9 @@
     </div>
   </section>
 
-  <section>
+    <section>
     <div class="wrap">
       <div class="section-head">
-        <div class="kicker">Why customers choose us</div>
-        <h2>Smart, practical manufacturing for everyday spaces</h2>
-        <p>Neloy Enterprise focuses on custom-built products that solve real use cases — not generic off-the-shelf fittings.</p>
-      </div>
-
-      <div class="feature-row">
-        <div class="feature-card">
-          <svg class="icn" viewBox="0 0 32 32"><use href="#i-ruler"/></svg>
-          <h4>Exact size, exact fit</h4>
-          <p>Every product is made around your wall opening, room size, and practical use.</p>
-        </div>
-        <div class="feature-card">
-          <svg class="icn" viewBox="0 0 32 32"><use href="#i-hub"/></svg>
-          <h4>One workshop, many solutions</h4>
-          <p>From windows and doors to shelves, partitions, and board furniture — we build under one roof.</p>
-        </div>
-        <div class="feature-card">
-          <svg class="icn" viewBox="0 0 32 32"><use href="#i-check"/></svg>
-          <h4>Fast, direct quoting</h4>
-          <p>Send your dimensions on WhatsApp and we respond with practical guidance and pricing.</p>
-        </div>
-      </div>
-
-      <div class="cta-band">
-        <div>
-          <strong>Need a custom solution for your home, shop or office?</strong>
-          <p>Tell us your dimensions and we’ll help you build the right product.</p>
-        </div>
-        <a class="btn primary" href="#" id="bandWaBtn" target="_blank" rel="noopener">Request a Quote</a>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="section-head">
-        <div class="kicker">Where it goes</div>
         <h2>Home, Shop &amp; Office Decoration</h2>
         <p>One workshop for every space: homes, shops and offices, built to your exact size.</p>
       </div>
@@ -732,23 +727,23 @@
     </div>
   </section>
 
-  <section class="tight">
+  <section class="tight combo">
     <div class="wrap">
-      <div class="section-head">
-        <div class="kicker">How it works</div>
-        <h2>From idea to installation, in four steps</h2>
+      <div class="combo-topic">
+        <div class="section-head">
+          <div class="kicker">How it works</div>
+          <h2>From measurement to installation in four steps</h2>
+        </div>
+        <div class="process" id="processGrid"></div>
       </div>
-      <div class="process" id="processGrid"></div>
-    </div>
-  </section>
 
-  <section class="tight">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="kicker">Why Neloy Enterprise</div>
-        <h2>Built around what you actually need</h2>
+      <div class="combo-topic">
+        <div class="section-head">
+          <div class="kicker">Why Neloy Enterprise</div>
+          <h2>Built around your space, not a catalogue</h2>
+        </div>
+        <div class="why-grid" id="whyGrid"></div>
       </div>
-      <div class="why-grid" id="whyGrid"></div>
     </div>
   </section>
 
@@ -997,6 +992,47 @@
   </section>
 </div>
 
+<!-- ============ BLOG ============ -->
+<div class="view" data-view="blog" id="view-blog">
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Blog</div>
+        <h2>Notes on home, order and everyday living</h2>
+        <p>Simple ideas for a calmer, tidier home.</p>
+      </div>
+      <div class="blog-grid">
+        <button type="button" class="blog-card" data-post="1">
+          <span class="blog-tag">Home decor · Minimalism</span>
+          <strong class="blog-card-title">ঘরের পরিপাটিই মনের শান্তি</strong>
+          <span class="blog-card-sub">কেন হোম ডেকোর এবং মিনিমালিজম আপনার জীবন বদলে দিতে পারে</span>
+          <span class="blog-card-excerpt">আপনার কি কখনো এমন মনে হয়েছে যে আপনার ঘর বা রুমটি শুধু একটু অগোছালো, কিন্তু আসল সমস্যাটি আপনার মাথায়?</span>
+          <span class="blog-read">Read article →</span>
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ BLOG POST ============ -->
+<div class="view" data-view="blogpost" id="view-blogpost">
+  <section>
+    <div class="wrap">
+      <button class="pd-back" data-view="blog"><svg class="icn" style="width:16px;height:16px" viewBox="0 0 24 24"><use href="#i-back"/></svg> Back to Blog</button>
+      <article class="blog-article" lang="bn">
+        <div class="kicker">Blog · Home decor</div>
+        <h1>ঘরের পরিপাটিই মনের শান্তি</h1>
+        <p class="blog-sub">কেন হোম ডেকোর এবং মিনিমালিজম আপনার জীবন বদলে দিতে পারে</p>
+        <div class="blog-body"><p>আপনার কি কখনো এমন মনে হয়েছে যে আপনার ঘর বা রুমটি শুধু একটু অগোছালো, কিন্তু আসল সমস্যাটি আপনার মাথায়? চারপাশের জিনিসপত্র ছড়ানো থাকলে শুধু যে ফোকাস নষ্ট হয় তা নয়, বরং ছোট ছোট জিনিসে বিরক্তি এবং ক্লান্তি চলে আসে। মারি কোন্দোর বিখ্যাত বই &quot;দ্যা লাইফ চেঞ্জিং ম্যাজিক অফ টাইডিং আপ&quot; (The Life-Changing Magic of Tidying Up)-এর মূল বার্তা অনুযায়ী, আমাদের জীবন অগোছালো হওয়ার কারণ কাজের চাপ নয়, বরং আমরা অপ্রয়োজনীয় অনেক জিনিসকে জীবনে জায়গা দিয়ে রাখি।</p><p>আর এখানেই আসে হোম ডেকোর এবং পরিচ্ছন্নতার আসল গুরুত্ব। ঘর সাজানো বা সাজসজ্জার অর্থ শুধু দামি আসবাবপত্র দিয়ে ঘর ভরাট করা নয়; বরং ঘরের প্রতিটি কোণায় স্বস্তি এবং মানসিক প্রশান্তি ফিরিয়ে আনা।</p><h3>১. বাহ্যিক পরিচ্ছন্নতা এবং মানসিক স্বচ্ছতা</h3><p>আমরা প্রায়ই বুঝতে পারি না যে ঘরের অপ্রয়োজনীয় জিনিসপত্র, পুরনো কাপড় বা অকেজো কাগজপত্র আমাদের অবচেতন মনে একটা বোঝা তৈরি করে। যখন আপনি আপনার রুম বা ঘর পরিষ্কার করেন, তখন আপনি শুধু ধুলোবালি সরান না, বরং নিজের মনে এক ধরনের ক্লারিটি তৈরি করেন।</p><p>পরিপাটি ঘর আপনার মস্তিষ্ককে সিগন্যাল দেয় যে সবকিছু নিয়ন্ত্রণে আছে, যা ধীরে ধীরে আপনার পুরো জীবনে ইতিবাচক প্রভাব ফেলে।</p><h3>২. হোম ডেকোরে &quot;কমই হলো বেশি&quot; (Less is More) নীতি</h3><p>সঠিক হোম ডেকোর আমাদের শেখায় কিভাবে জায়গাকে সঠিকভাবে মূল্যায়ন করতে হয়। অহেতুক জিনিসপত্র জমিয়ে না রেখে এমন জিনিসগুলো রাখুন যা আপনাকে আনন্দ দেয় (spark joy)।</p><p>ঘরে অতিরিক্ত ক্লাটার বা জঞ্জাল থাকলে তা আপনার সিদ্ধান্ত নেওয়ার ক্ষমতাকে ধীর করে দেয়। একটি সুন্দর, সুবিন্যস্ত এবং মিনিমালিস্ট হোম ডেকোর আপনার চিন্তাকে স্বচ্ছ করে এবং ঘরের মধ্যে একটি প্রাণবন্ত ও শান্ত পরিবেশ তৈরি করে।</p><h3>৩. অতীতে আটকে না থেকে ভবিষ্যতের জন্য জায়গা তৈরি করা</h3><p>অনেকেই পুরনো জিনিস বা স্মৃতির টানে অপ্রয়োজনীয় বস্তু ঘরের এক কোণায় জমিয়ে রাখেন। কিন্তু বইটির শিক্ষা অনুযায়ী, জিনিস ছেড়ে দেওয়া মানে স্মৃতি মুছে ফেলা নয়, বরং নিজেকে সামনের দিকে এগিয়ে যাওয়ার অনুমতি দেওয়া। আপনার ঘর যদি পুরনো ও অব্যবহার্য জিনিসে ভরা থাকে, তবে নতুন সুযোগ বা সুন্দর মুহূর্তগুলোর জন্য জায়গা কোথায় পাবেন? ঘর গোছানোর মাধ্যমে আপনি আসলে আপনার ভবিষ্যতের জন্য একটি পরিচ্ছন্ন ক্যানভাস তৈরি করেন।</p><h3>আজই শুরু করুন একটি পরিবর্তনের সিদ্ধান্ত</h3><p>পরিষ্কার-পরিচ্ছন্নতা বা সুন্দর হোম ডেকোর কোনো একদিনের কাজ নয়, এটি একটি জীবনযাপনের ধরন। তাই আজই আপনার চারপাশ থেকে অপ্রয়োজনীয় জিনিসগুলো সরিয়ে ফেলুন এবং নিজের জীবনকে একটু হালকা ও সুন্দর করে তুলুন। মনে রাখবেন, বিলাসিতা দামি জিনিসপত্র জমানোর মধ্যে নেই; বরং কম জিনিসের মাঝে শান্তি খুঁজে পাওয়ার মাঝেই আসল সুখ নিহিত।</p><p>আপনার ঘর থেকে আজই কোন অপ্রয়োজনীয় জিনিসটি সরাতে চান? কমেন্টে আমাদের জানান!</p></div>
+        <div class="blog-cta">
+          <p>Planning a tidier room with custom shelves or a study table?</p>
+          <a class="btn primary" id="blogCta" href="#" target="_blank" rel="noopener">Ask us on WhatsApp</a>
+        </div>
+      </article>
+    </div>
+  </section>
+</div>
+
 </main>
 
 <footer>
@@ -1069,18 +1105,18 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   ];
 
   var PROCESS = [
-    { n:"01", t:"Choose", d:"Choose the product category you need — window, door, partition, shelf or something custom." },
-    { n:"02", t:"Customize", d:"Give us dimensions, material and preferred style, either here or over WhatsApp." },
-    { n:"03", t:"We Manufacture", d:"Neloy Enterprise manufactures the product in our Netrakona workshop to your requirements." },
-    { n:"04", t:"Delivery & Installation", d:"We deliver and install where available, and hand it over ready to use." }
+    { n:"01", t:"Choose a product", d:"Pick what you need, such as a window, door, partition, shelf or cabinet. Not sure? Describe the space and we will suggest the right option." },
+    { n:"02", t:"Share your measurements", d:"Send the width, height and depth of the opening or space, along with your material and colour choice, here on the site or on WhatsApp." },
+    { n:"03", t:"We confirm and build", d:"We confirm the drawing and price with you in writing, then make the product in our Netrakona workshop." },
+    { n:"04", t:"Delivery and fitting", d:"We deliver and fit the product where our team can reach. Elsewhere we send clear fitting instructions." }
   ];
 
   var WHY = [
-    { icon:"i-ruler", t:"Custom Made", d:"Products are made according to your requirements, not a fixed catalogue." },
-    { icon:"i-layers", t:"Multiple Materials", d:"Aluminium, glass, mirror and board materials, combined as your project needs." },
-    { icon:"i-pin", t:"Local Manufacturing", d:"Designed and manufactured in Bangladesh, for Bangladeshi homes and shops." },
-    { icon:"i-check", t:"Practical Design", d:"Beautiful products that are also useful, durable and easy to maintain." },
-    { icon:"i-hub", t:"One Workshop, Many Solutions", d:"Home, shop and office products from a single manufacturer." }
+    { icon:"i-ruler", t:"Made to your measurements", d:"Every order is measured for your wall opening or room. We do not sell fixed sizes only." },
+    { icon:"i-layers", t:"Several materials", d:"Aluminium, glass, mirror and melamine board, each used where it suits the space best." },
+    { icon:"i-pin", t:"Made in Netrakona", d:"Our workshop is in Netrakona, so you deal directly with the people who build your product." },
+    { icon:"i-check", t:"Price in writing first", d:"We agree the size, material and price with you before production starts, so there are no surprises." },
+    { icon:"i-hub", t:"One workshop for the whole space", d:"Windows, doors, shelves and furniture come from the same workshop, so you can order them together." }
   ];
 
   var GAL_CATS = ["All","Home","Shop","Office","Windows","Doors","Glass","Mirror","Shelves","Board Furniture"];
@@ -1573,7 +1609,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   });
 
   /* ---------------- View routing ---------------- */
-  var VALID_VIEWS = ["home","shop","configure","shelfconfig","tablecfg","configurelanding","gallery","about","contact"];
+  var VALID_VIEWS = ["home","shop","configure","shelfconfig","tablecfg","configurelanding","gallery","about","blog","blogpost","contact"];
   var CFG_PAGE = ["configurelanding","configure","shelfconfig","tablecfg"]; // these views are shown together as ONE Configure page
   function showView(name, skipHash){
     var group = CFG_PAGE.indexOf(name)>-1;
@@ -2012,6 +2048,10 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   });
   window.addEventListener("pointerup", function(){ if(tcDrag && !tcDrag.moved) tcHist.pop(); tcDrag = null; });
   tcReset();
+
+  (function(){ var b = document.getElementById("blogCta"); if(b) b.href = waLink("Hi Neloy Enterprise, I read your blog post and have a question."); })();
+
+  document.querySelectorAll(".blog-card[data-post]").forEach(function(c){ c.addEventListener("click", function(){ showView("blogpost"); }); });
 
   /* ---------------- Motion: scroll reveals, counters, header, hero parallax ---------------- */
   function initMotion(){
