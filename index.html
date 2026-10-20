@@ -492,6 +492,23 @@
   .combo .section-head h2{ text-shadow:0 2px 14px rgba(0,0,0,.45); }
   .combo .section-head .kicker{ font-weight:700; }
 
+  /* ================= One Configure flow ================= */
+  .cfg-ref{ display:flex; align-items:center; gap:14px; width:fit-content; max-width:100%; margin-top:18px; padding:8px 18px 8px 8px; border-radius:12px; background:rgba(255,255,255,.96); color:#1D3324; box-shadow:0 10px 24px rgba(0,0,0,.25); }
+  .cfg-ref img{ width:84px; height:64px; object-fit:cover; border-radius:8px; display:block; }
+  .cfg-ref span{ display:flex; flex-direction:column; gap:2px; }
+  .cfg-ref small{ font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:#8a6420; font-weight:700; }
+  .cfg-ref b{ font-size:1.02rem; line-height:1.3; }
+  .pw-ctas{ display:flex; flex:0 0 auto; }
+  .pw-ctas .pw-cta{ padding:0 16px; }
+  .pw-cta.pw-cta-wa{ background:#128C4A; }
+  .cut-note{ font-size:.74rem; color:#666; margin-bottom:8px; line-height:1.5; }
+  .cut-wrap{ margin:10px 0 14px; }
+  .cut-wrap > div:not(.cut-note){ display:flex; justify-content:space-between; gap:12px; padding:7px 0; border-bottom:1px solid #e3e6e2; font-size:.82rem; color:#1D3324; }
+  .cut-wrap[hidden]{ display:none; }
+  .cfg-summary > .btn{ margin-top:10px; width:100%; justify-content:center; }
+  .pw-stage .pw-extra.on{ padding-bottom:60px; }
+  .pd-back{ color:#fff !important; text-shadow:0 1px 8px rgba(0,0,0,.65); font-weight:600; }
+
   /* ================= Blog ================= */
   .blog-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:22px; margin-top:12px; }
   .blog-card{ text-align:left; display:flex; flex-direction:column; gap:12px; padding:26px; border-radius:16px; border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.96); color:#1D3324; cursor:pointer; font:inherit; transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease; }
@@ -657,7 +674,7 @@
     <nav class="links" id="navLinks">
       <button class="navlink" data-view="home">Home</button>
       <button class="navlink" data-view="shop">Shop</button>
-      <button class="navlink" data-view="configurelanding">Configure</button>
+      <button class="navlink" data-view="shop">Configure</button>
       <button class="navlink" data-view="gallery">Projects</button>
       <button class="navlink" data-view="about">About</button>
       <button class="navlink" data-view="blog">Blog</button>
@@ -666,14 +683,14 @@
     <div class="cta-group">
       <div class="lang-sw" role="group" aria-label="Language / ভাষা"><button type="button" data-lang="en" class="on" aria-pressed="true">EN</button><button type="button" data-lang="bn" aria-pressed="false">বাংলা</button></div>
       <a class="btn wa" href="#" id="navWaBtn" target="_blank" rel="noopener"><svg class="icn" style="width:16px;height:16px" viewBox="0 0 32 32"><use href="#i-wa"/></svg> WhatsApp</a>
-      <button class="btn primary" data-view="configurelanding">Configure</button>
+      <button class="btn primary" data-view="shop">Configure</button>
       <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><svg viewBox="0 0 24 24"><use href="#i-menu"/></svg></button>
     </div>
   </div>
   <div class="wrap mobile-panel" id="mobilePanel">
     <button class="navlink" data-view="home">Home</button>
     <button class="navlink" data-view="shop">Shop</button>
-    <button class="navlink" data-view="configurelanding">Configure</button>
+    <button class="navlink" data-view="shop">Configure</button>
     <button class="navlink" data-view="gallery">Projects</button>
     <button class="navlink" data-view="about">About</button>
     <button class="navlink" data-view="blog">Blog</button>
@@ -694,7 +711,7 @@
         <p class="bn-line">We build to your needs, for your home, shop and office.</p>
         <p class="desc">Neloy Enterprise manufactures custom aluminium, glass and board-based products for modern homes, shops and offices — built to your dimensions, not off a shelf.</p>
         <div class="actions">
-          <button class="btn primary" data-view="configurelanding">Start Designing</button>
+          <button class="btn primary" data-view="shop">Start Designing</button>
           <button class="btn" data-view="shop">View Products</button>
           <a class="btn wa" href="#" id="heroWaBtn" target="_blank" rel="noopener"><svg class="icn" style="width:16px;height:16px" viewBox="0 0 32 32"><use href="#i-wa"/></svg> WhatsApp Us</a>
         </div>
@@ -784,6 +801,7 @@
 <div class="view" data-view="configure" id="view-configure">
   <section>
     <div class="wrap">
+      <button class="pd-back" data-view="shop"><svg class="icn" style="width:16px;height:16px" viewBox="0 0 24 24"><use href="#i-back"/></svg> Back to Shop</button>
       <div class="section-head">
         <div class="kicker">Configure</div>
         <h2>Build your product</h2>
@@ -834,7 +852,10 @@
           <div class="price-tag" id="cfgPrice">৳0</div>
           <div class="note">Estimate only. Final price depends on exact dimensions, fittings, site conditions and installation.</div>
           <ul class="spec-list" id="cfgSpecList"></ul>
-          <a class="btn primary" href="#" id="cfgQuoteBtn" target="_blank" rel="noopener">Request a Quote on WhatsApp</a>
+          <button type="button" class="btn" id="cfgCutBtn">Cutting list</button>
+          <div class="cut-wrap" id="cfgCut" hidden></div>
+          <a class="btn primary" href="#" id="cfgQuoteBtn" target="_blank" rel="noopener">Order now</a>
+          <a class="btn wa" href="#" id="cfgAskBtn" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
     </div>
@@ -933,9 +954,10 @@
       <div class="pw">
         <div class="pw-panel"><div class="pw-title"><h3 id="vcTitle">Your shelf</h3><p>Design your shelf yourself in simple steps.</p></div>
           <div class="pw-steps" id="vcSteps"><div class="pw-step open" data-step="1"><button type="button" class="head"><span class="t">1. Define exterior dimensions</span><span class="sum" id="sum1"></span><span class="chev">▲</span></button><div class="body"><div class="vc-field-row"><div class="vc-field"><label>Width</label><div style="display:flex;gap:4px"><input type="number" id="vcW" min="0" step="1" value="5" placeholder="ft"><input type="number" id="vcWi" min="0" max="11" step="1" value="0" placeholder="in"></div></div><div class="vc-field"><label>Height</label><div style="display:flex;gap:4px"><input type="number" id="vcH" min="0" step="1" value="6" placeholder="ft"><input type="number" id="vcHi" min="0" max="11" step="1" value="0" placeholder="in"></div></div><div class="vc-field"><label>Depth</label><div style="display:flex;gap:4px"><input type="number" id="vcD" min="0" step="1" value="1" placeholder="ft"><input type="number" id="vcDi" min="0" max="11" step="1" value="0" placeholder="in"></div></div></div><div class="pw-hint">Enter feet + inches.</div></div></div><div class="pw-step" data-step="2"><button type="button" class="head"><span class="t">2. Choose material</span><span class="sum" id="sum2"></span><span class="chev">▲</span></button><div class="body"><div class="vc-field"><label>Material</label><select id="vcMaterial"><option>Melamine Board</option><option>Glass</option><option>Mirror</option><option>Plywood</option><option>PVC Board</option></select></div><div id="vcColorWrap" style="margin-top:10px"><label style="font-size:.74rem">Colour: <b id="vcColorName"></b></label><div class="vc-swatches" id="vcSwatches"></div></div></div></div><div class="pw-step" data-step="3"><button type="button" class="head"><span class="t">3. Columns &amp; compartments</span><span class="sum" id="sum3"></span><span class="chev">▲</span></button><div class="body"><div class="vc-field-row"><div class="vc-field"><label>Columns</label><div class="stepper"><button type="button" id="vcColMinus">−</button><span class="val" id="vcColVal">3</span><button type="button" id="vcColPlus">+</button></div></div><div class="vc-field"><label>Shelves in selected column (or all)</label><div class="stepper"><button type="button" id="vcRowMinus">−</button><span class="val" id="vcRowVal">3</span><button type="button" id="vcRowPlus">+</button></div></div></div><div class="pw-hint"><b>Drag &amp; drop:</b> drag any shelf up/down, or a vertical divider left/right, directly in the picture. Shelves snap to 1 inch.</div><div style="display:none"></div></div></div><div class="pw-step" data-step="4"><button type="button" class="head"><span class="t">4. Select doors &amp; drawers</span><span class="sum" id="sum4"></span><span class="chev">▲</span></button><div class="body"><div class="pw-hint">Click compartments in the picture (or use the buttons), then choose a type. Sliding applies to whole columns; neighbouring columns with the same sliding type join into one wide sliding door. Use <b>Open doors</b> above the picture to preview doors opening.</div><div class="pw-mini"><button type="button" id="vcAll">Select all</button><button type="button" id="vcNone">Clear selection</button></div><div class="pw-tiles"><button type="button" class="pw-tile" data-t="o"><svg id="ti_o" viewBox="0 0 34 34"></svg>Empty</button><button type="button" class="pw-tile" data-t="hbL"><svg id="ti_hbL" viewBox="0 0 34 34"></svg>Left door</button><button type="button" class="pw-tile" data-t="hbR"><svg id="ti_hbR" viewBox="0 0 34 34"></svg>Right door</button><button type="button" class="pw-tile" data-t="hbD"><svg id="ti_hbD" viewBox="0 0 34 34"></svg>Double door</button><button type="button" class="pw-tile" data-t="hgL"><svg id="ti_hgL" viewBox="0 0 34 34"></svg>Glass left</button><button type="button" class="pw-tile" data-t="hgR"><svg id="ti_hgR" viewBox="0 0 34 34"></svg>Glass right</button><button type="button" class="pw-tile" data-t="hgD"><svg id="ti_hgD" viewBox="0 0 34 34"></svg>Glass double</button><button type="button" class="pw-tile" data-t="dr"><svg id="ti_dr" viewBox="0 0 34 34"></svg>Drawer</button><button type="button" class="pw-tile" data-t="sg"><svg id="ti_sg" viewBox="0 0 34 34"></svg>Sliding glass</button><button type="button" class="pw-tile" data-t="sb"><svg id="ti_sb" viewBox="0 0 34 34"></svg>Sliding board</button></div><div class="vc-field" style="max-width:200px"><label>Sliding sections per column</label><input type="number" id="vcSlideN" min="1" max="4" value="3"></div></div></div><div class="pw-step" data-step="5"><button type="button" class="head"><span class="t">5. Extras</span><span class="sum" id="sum5"></span><span class="chev">▲</span></button><div class="body"><label style="display:flex;gap:8px;align-items:center;font-size:.85rem;margin-bottom:12px"><input type="checkbox" id="vcBack" checked> Back panel</label><div class="vc-field" hidden style="display:none"><label>Boards override (0 = automatic)</label><input type="number" id="vcBoards" min="0" value="0"></div></div></div><div class="pw-step" data-step="6"><button type="button" class="head"><span class="t">6. Your details</span><span class="sum" id="sum6"></span><span class="chev">▲</span></button><div class="body"><div class="vc-field" style="margin-bottom:8px"><label>Name</label><input type="text" id="vcName"></div><div class="vc-field" style="margin-bottom:8px"><label>Phone</label><input type="tel" id="vcPhone"></div><div class="vc-field" style="margin-bottom:8px"><label>WhatsApp</label><input type="tel" id="vcWa"></div><div class="vc-field"><label>Location</label><input type="text" id="vcLoc"></div></div></div></div>
-          <div class="pw-price"><div class="pr"><b id="vcPrice">৳0</b><small>Estimate only — final price confirmed on WhatsApp</small></div><a class="pw-cta" href="#" id="vcQuoteBtn" target="_blank" rel="noopener">Send on WhatsApp</a></div></div>
-        <div class="pw-stage"><div class="pw-tools"><button type="button" id="vcTFront" class="on">Front</button><button type="button" id="vcTSize">Sizing</button><button type="button" id="vcTOpen">Open doors</button><button type="button" id="vcTPrice">Price list</button></div>
+          <div class="pw-price"><div class="pr"><b id="vcPrice">৳0</b><small>Estimate only — final price confirmed on WhatsApp</small></div><div class="pw-ctas"><a class="pw-cta" href="#" id="vcQuoteBtn" target="_blank" rel="noopener">Order now</a><a class="pw-cta pw-cta-wa" href="#" id="vcAskBtn" target="_blank" rel="noopener">WhatsApp</a></div></div></div>
+        <div class="pw-stage"><div class="pw-tools"><button type="button" id="vcTFront" class="on">Front</button><button type="button" id="vcTSize">Sizing</button><button type="button" id="vcTOpen">Open doors</button><button type="button" id="vcTPrice">Price list</button><button type="button" id="vcTCut">Cutting list</button></div>
           <div class="vc-canvas" id="vcCanvas"></div><button type="button" class="pw-undo" id="vcUndo">↶ Undo</button>
+          <div class="pw-extra" id="vcExtraCut"><div class="vc-break" id="vcCut"></div></div>
           <div class="pw-extra" id="vcExtra"><div class="vc-break" id="vcBreak"></div><details class="vc-set"><summary>Pricing settings (editable)</summary><div id="vcSettings"></div></details></div></div>
       </div>
     </div>
@@ -989,9 +1011,10 @@
               <div class="vc-field"><label>Location</label><input type="text" id="tcLoc"></div>
             </div></div>
           </div>
-          <div class="pw-price"><div class="pr"><b id="tcPrice">৳0</b><small>Estimate only — final price confirmed on WhatsApp</small></div><a class="pw-cta" href="#" id="tcQuoteBtn" target="_blank" rel="noopener">Send on WhatsApp</a></div></div>
-        <div class="pw-stage"><div class="pw-tools"><button type="button" id="tcTFront" class="on">Front</button><button type="button" id="tcTSize">Sizing</button><button type="button" id="tcTOpen">Open drawers</button><button type="button" id="tcTPrice">Price list</button></div>
+          <div class="pw-price"><div class="pr"><b id="tcPrice">৳0</b><small>Estimate only — final price confirmed on WhatsApp</small></div><div class="pw-ctas"><a class="pw-cta" href="#" id="tcQuoteBtn" target="_blank" rel="noopener">Order now</a><a class="pw-cta pw-cta-wa" href="#" id="tcAskBtn" target="_blank" rel="noopener">WhatsApp</a></div></div></div>
+        <div class="pw-stage"><div class="pw-tools"><button type="button" id="tcTFront" class="on">Front</button><button type="button" id="tcTSize">Sizing</button><button type="button" id="tcTOpen">Open drawers</button><button type="button" id="tcTPrice">Price list</button><button type="button" id="tcTCut">Cutting list</button></div>
           <div class="vc-canvas" id="tcCanvas"></div><button type="button" class="pw-undo" id="tcUndo">↶ Undo</button>
+          <div class="pw-extra" id="tcExtraCut"><div class="vc-break" id="tcCut"></div></div>
           <div class="pw-extra" id="tcExtra"><div class="vc-break" id="tcBreak"></div><details class="vc-set"><summary>Pricing settings (editable)</summary><div id="tcSettings"></div></details></div></div>
       </div>
     </div>
@@ -1106,9 +1129,10 @@
               <div class="vc-field"><label>Location</label><input type="text" id="wsLoc"></div>
             </div></div>
           </div>
-          <div class="pw-price"><div class="pr"><b id="wsPrice">৳0</b><small>Estimate only — final price confirmed on WhatsApp</small></div><a class="pw-cta" href="#" id="wsQuoteBtn" target="_blank" rel="noopener">Send on WhatsApp</a></div></div>
-        <div class="pw-stage"><div class="pw-tools"><button type="button" id="wsTFront" class="on">Front</button><button type="button" id="wsTSize">Sizing</button><button type="button" id="wsTPrice">Price list</button></div>
+          <div class="pw-price"><div class="pr"><b id="wsPrice">৳0</b><small>Estimate only — final price confirmed on WhatsApp</small></div><div class="pw-ctas"><a class="pw-cta" href="#" id="wsQuoteBtn" target="_blank" rel="noopener">Order now</a><a class="pw-cta pw-cta-wa" href="#" id="wsAskBtn" target="_blank" rel="noopener">WhatsApp</a></div></div></div>
+        <div class="pw-stage"><div class="pw-tools"><button type="button" id="wsTFront" class="on">Front</button><button type="button" id="wsTSize">Sizing</button><button type="button" id="wsTPrice">Price list</button><button type="button" id="wsTCut">Cutting list</button></div>
           <div class="vc-canvas" id="wsCanvas"></div><button type="button" class="pw-undo" id="wsUndo">↶ Undo</button>
+          <div class="pw-extra" id="wsExtraCut"><div class="vc-break" id="wsCut"></div></div>
           <div class="pw-extra" id="wsExtra"><div class="vc-break" id="wsBreak"></div><details class="vc-set"><summary>Pricing settings (editable)</summary><div id="wsSettings"></div></details></div></div>
       </div>
     </div>
@@ -1124,7 +1148,7 @@
       <nav class="foot-nav">
         <button data-view="home">Home</button>
         <button data-view="shop">Shop</button>
-        <button data-view="configurelanding">Configure</button>
+        <button data-view="shop">Configure</button>
         <button data-view="gallery">Projects</button>
         <button data-view="about">About</button>
         <button data-view="contact">Contact</button>
@@ -1273,16 +1297,19 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     ]}
   ];
 
-  function openCfgLanding(c){
+  function openCfgLanding(c, ref){
+    var nm = ref && ref.name, im = ref && ref.img;
     if(c.view==="tablecfg"){
-      tcReset();
+      tcReset(); setCfgHead("view-tablecfg",nm,im);
     } else if(c.view==="configure"){
       document.getElementById("cfgProduct").value = c.product;
       setCfgMaterial(c.material);
       populateThickness();
       updateConfigurator();
+      document.getElementById("cfgProduct").closest(".cfg-row").style.display = "none";
+      setCfgHead("view-configure",nm,im);
     } else {
-      vcApplyPreset(c.preset);
+      vcApplyPreset(c.preset); setCfgHead("view-shelfconfig",nm,im);
     }
     showView(c.view);
   }
@@ -1294,7 +1321,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     });
     var n = items.length, idx = 0, dragMoved = false, sx = null;
     function openItem(item){
-      if(item.go.view==="contact"){ showView("contact"); } else { openCfgLanding(item.go); }
+      if(item.go.view==="contact"){ showView("contact"); } else { openCfgLanding(item.go, {name:item.name, img:item.img && CP_IMG[item.img]}); }
     }
     var stage = el("div","category-slider category-slider-stage");
     var track = el("div","category-slider-track");
@@ -1404,7 +1431,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
           + '<span class="cp-name">'+c.name+'</span>';
         card.addEventListener("click", function(){
           if(c.go.view==="contact"){ showView("contact"); }
-          else { openCfgLanding(c.go); }
+          else { openCfgLanding(c.go, {name:c.name, img:c.img && CP_IMG[c.img]}); }
         });
         row.appendChild(card);
         if(io){ io.observe(card); }
@@ -1488,8 +1515,9 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
       card.innerHTML = '<div class="thumb">'+thumb+'</div>'
         + '<div class="body"><h3>'+p.name+'</h3><p>'+p.desc+'</p>'
         + '<div class="price">From ৳'+p.from.toLocaleString('en-IN')+'</div>'
-        + '<button class="btn small primary">View &amp; Configure</button></div>';
-      card.querySelector("button").addEventListener("click", function(){ openProduct(p.id); });
+        + '<button class="btn small primary">Configure</button></div>';
+      card.style.cursor = "pointer";
+      card.addEventListener("click", function(){ openConfigFor(p.id); });
       grid.appendChild(card);
     });
   }
@@ -1616,7 +1644,9 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
       + "Glass: "+thickness+"\n"
       + "Colour: "+color+"\n"
       + "Total price shown on site: "+money(price);
-    document.getElementById("cfgQuoteBtn").href = waLink(msg);
+    document.getElementById("cfgQuoteBtn").href = waLink(msg.replace("I'd like a quote:","I'd like to place an order:"));
+    document.getElementById("cfgAskBtn").href = waLink(msg.replace("I'd like a quote:","I have a question about this design:"));
+    document.getElementById("cfgCut").innerHTML = cutHtml(cfgCutList(product,w,h),null,"in",true);
     cfgDraw();
   }
   document.getElementById("cfgMaterial").addEventListener("change", function(){ populateThickness(); updateConfigurator(); });
@@ -1712,8 +1742,9 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
 
   /* ---------------- View routing ---------------- */
   var VALID_VIEWS = ["home","shop","configure","shelfconfig","tablecfg","wscfg","configurelanding","gallery","about","blog","blogpost","blogpost2","contact"];
-  var CFG_PAGE = ["configurelanding","configure","shelfconfig"]; // these views are shown together as ONE Configure page
+  var CFG_PAGE = []; // these views are shown together as ONE Configure page
   function showView(name, skipHash){
+    if(name==="configurelanding") name = "shop";
     var group = CFG_PAGE.indexOf(name)>-1;
     document.querySelectorAll(".view").forEach(function(v){ v.classList.toggle("active", v.dataset.view===name || (group && CFG_PAGE.indexOf(v.dataset.view)>-1)); });
     document.querySelectorAll(".navlink").forEach(function(b){ b.classList.toggle("active", b.dataset.view===name || (group && b.dataset.view==="configurelanding")); });
@@ -1881,7 +1912,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
       +(k.ech>0?"\nE-channel: "+k.ech.toFixed(1)+" ft ("+k.N+" sections)":"")+(k.glass>0?"\nGlass: "+k.glass.toFixed(1)+" sq ft":"")
       +"\nEstimate: "+money(Math.round(total))+(missing?" (incomplete, some prices pending)":"")
       +"\nName: "+$("vcName").value+"\nPhone: "+$("vcPhone").value+"\nWhatsApp: "+$("vcWa").value+"\nLocation: "+$("vcLoc").value;
-    $("vcQuoteBtn").href=waLink(msg);
+    $("vcQuoteBtn").href=waLink(msg.replace("inquiry:","order request:")); $("vcAskBtn").href=waLink(msg.replace("inquiry:","question:")); $("vcCut").innerHTML=cutHtml(vcParts(k),k.boards,"in");
   }
 
 
@@ -2095,7 +2126,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
       + "\nBoards: " + k.boards + (k.glass>0 ? "\nGlass: "+k.glass.toFixed(1)+" sq ft" : "")
       + "\nEstimate: " + money(Math.round(total)) + (missing ? " (incomplete, some prices pending)" : "")
       + "\nName: "+$("tcName").value+"\nPhone: "+$("tcPhone").value+"\nWhatsApp: "+$("tcWa").value+"\nLocation: "+$("tcLoc").value;
-    $("tcQuoteBtn").href = waLink(msg);
+    $("tcQuoteBtn").href = waLink(msg.replace("inquiry:","order request:")); $("tcAskBtn").href = waLink(msg.replace("inquiry:","question:")); $("tcCut").innerHTML = cutHtml(tcParts(k),k.boards,tcUnit);
     document.querySelectorAll("#vcSettings input[data-p], #tcSettings input[data-p], #wsSettings input[data-p]").forEach(function(i){ if(document.activeElement !== i){ var v = pricing[i.dataset.p]; i.value = (v==null) ? "" : v; } });
   }
 
@@ -2256,7 +2287,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
       + "\nBoards: "+k.boards
       + "\nEstimate: "+money(Math.round(total))+(missing ? " (incomplete, some prices pending)" : "")
       + "\nName: "+$("wsName").value+"\nPhone: "+$("wsPhone").value+"\nWhatsApp: "+$("wsWa").value+"\nLocation: "+$("wsLoc").value;
-    $("wsQuoteBtn").href = waLink(msg);
+    $("wsQuoteBtn").href = waLink(msg.replace("inquiry:","order request:")); $("wsAskBtn").href = waLink(msg.replace("inquiry:","question:")); $("wsCut").innerHTML = cutHtml(wsParts(k),k.boards,wsUnit);
     document.querySelectorAll("#vcSettings input[data-p], #tcSettings input[data-p], #wsSettings input[data-p]").forEach(function(i){ if(document.activeElement !== i){ var v = pricing[i.dataset.p]; i.value = (v==null) ? "" : v; } });
   }
   function wsReset(){
@@ -2308,6 +2339,112 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   });
   window.addEventListener("pointerup", function(){ if(wsDrag && !wsDrag.moved) wsHist.pop(); wsDrag = null; });
   wsReset();
+
+  /* ---------------- Cutting lists (board / profile / glass cut sizes) ---------------- */
+  function cutNum(x,u){ var v = tcFromIn(x,u||"in"); return u==="mm" ? v : (Math.round(v*10)/10); }
+  function cutHtml(parts,boards,unit,approx){
+    var u = unit || "in", ul = TC_UL[u] || "in";
+    var rows = parts.filter(function(p){ return p.q > 0 && p.a > 0; }).map(function(p){
+      var size = (p.b == null) ? cutNum(p.a,u)+" "+ul+" long" : cutNum(p.a,u)+" × "+cutNum(p.b,u)+" "+ul;
+      return '<div><span>'+p.q+' × '+p.n+'</span><span>'+size+'</span></div>';
+    });
+    if(boards != null) rows.push('<div class="tot"><span>Boards needed (4 × 8 ft)</span><span>'+boards+'</span></div>');
+    var note = approx ? "Approximate sizes. The workshop confirms exact cut sizes after final measurement." : "Cut sizes before edge banding. Board thickness 0.75 in (18 mm). The workshop confirms final sizes.";
+    return '<div class="cut-note">'+note+'</div>'+rows.join("");
+  }
+  function tcParts(k){
+    var d = k.d, Lp = d.L-3.5, P = [];
+    P.push({q:1,n:"Table top",a:d.L,b:d.D});
+    P.push({q:2,n:"Side panel",a:d.D,b:d.Hl-1.5});
+    if(k.md) P.push({q:1,n:"Front panel (under drawer)",a:Lp,b:14});
+    if(k.ld){ P.push({q:1,n:"Drawer front",a:Lp,b:4.5}); P.push({q:2,n:"Drawer side",a:d.D-2,b:4.5}); P.push({q:1,n:"Drawer bottom",a:Lp,b:d.D-2}); }
+    if(k.hut){
+      var Lh = d.L-4, Dh = Math.min(12,d.D), innerH = Math.max(1,d.Hh-3.5), rowH = TC.hRow*innerH, innerW = Lh-1.5, wl = TC.hDiv*innerW, wr = innerW-wl;
+      P.push({q:2,n:"Hutch side",a:Dh,b:d.Hh});
+      P.push({q:3,n:"Hutch top, middle and bottom shelf",a:innerW,b:Dh});
+      P.push({q:1,n:"Hutch divider",a:Dh,b:rowH});
+      if(k.nd > 0){ var ch = rowH/k.nd; P.push({q:k.nd,n:"Small drawer front",a:wr,b:ch}); P.push({q:2*k.nd,n:"Small drawer side",a:Dh,b:ch}); P.push({q:k.nd,n:"Small drawer bottom",a:wr,b:Dh}); }
+      if(k.dt === "b") P.push({q:1,n:"Hutch board door",a:wl,b:rowH});
+      if(k.dt === "g") P.push({q:1,n:"Hutch glass door (glass)",a:wl,b:rowH});
+      if(k.hb) P.push({q:1,n:"Hutch back panel",a:Lh,b:d.Hh});
+    }
+    return P;
+  }
+  function wsParts(k){
+    var d = k.d, P = [];
+    [["Left",d.WL,d.HL,WS_DIV.l.length],["Right",d.WR,d.HR,WS_DIV.r.length]].forEach(function(u){
+      P.push({q:2,n:u[0]+" unit side",a:d.D,b:u[2]});
+      P.push({q:2,n:u[0]+" unit top and bottom",a:u[1]-1.5,b:d.D});
+      if(u[3] > 0) P.push({q:u[3],n:u[0]+" unit divider",a:u[1]-1.5,b:d.D});
+    });
+    if(WS_F.length) P.push({q:WS_F.length,n:"Floating shelf",a:d.G,b:d.D});
+    return P;
+  }
+  function vcParts(k){
+    var P = [], W = k.W*12, H = k.H*12, D = k.D*12, n = cols.length;
+    P.push({q:2,n:"Side panel",a:D,b:H});
+    P.push({q:2,n:"Top and bottom",a:W,b:D});
+    if(n > 1) P.push({q:n-1,n:"Vertical divider",a:D,b:H});
+    cols.forEach(function(col,c){
+      var cw = W*wf[c], b = bnd(col), nm = " (column "+(c+1)+")";
+      if(col.sh.length) P.push({q:col.sh.length,n:"Shelf"+nm,a:cw,b:D});
+      if(col.sl){ P.push({q:1,n:(col.sl==="sg" ? "Sliding glass door" : "Sliding board door")+nm,a:cw,b:H}); return; }
+      col.fr.forEach(function(t,i){
+        var ch = (b[i+1]-b[i])*H, hn = hingedN(t);
+        if(hn){ P.push({q:hn,n:(t.charAt(1)==="g" ? "Glass door" : "Board door")+nm,a:cw/hn,b:ch}); }
+        else if(t === "dr"){ P.push({q:1,n:"Drawer front"+nm,a:cw,b:ch}); P.push({q:2,n:"Drawer side"+nm,a:D,b:ch}); P.push({q:1,n:"Drawer bottom"+nm,a:cw,b:D}); }
+      });
+    });
+    if(k.back > 0) P.push({q:1,n:"Back panel",a:W,b:H});
+    return P;
+  }
+  function cfgCutList(product,w,h){
+    var W = w*12, H = h*12, P = [];
+    P.push({q:2,n:"Outer frame – top and bottom profile",a:W});
+    P.push({q:2,n:"Outer frame – side profile",a:H});
+    if(product === "Fixed Glass"){
+      P.push({q:1,n:"Glass pane",a:W-1,b:H-1});
+    } else if(product === "Partition"){
+      var pn = Math.max(1,Math.round(w/3));
+      if(pn > 1) P.push({q:pn-1,n:"Vertical divider profile",a:H});
+      P.push({q:pn,n:"Glass pane",a:W/pn-1.5,b:H-1.5});
+    } else {
+      var N = w > 6 ? 3 : 2, lw = W/N+1, lh = H-1.5;
+      P.push({q:2*N,n:"Sliding leaf – vertical profile",a:lh});
+      P.push({q:2*N,n:"Sliding leaf – horizontal profile",a:lw});
+      P.push({q:N,n:"Glass pane",a:lw-2,b:lh-2});
+    }
+    return P;
+  }
+  var cfgCutBtn = document.getElementById("cfgCutBtn");
+  if(cfgCutBtn) cfgCutBtn.addEventListener("click", function(){ var box = document.getElementById("cfgCut"); box.hidden = !box.hidden; cfgCutBtn.textContent = box.hidden ? "Cutting list" : "Hide cutting list"; });
+  ["vc","tc","ws"].forEach(function(X){
+    var b = document.getElementById(X+"TCut");
+    if(b) b.addEventListener("click", function(){ b.classList.toggle("on"); document.getElementById(X+"ExtraCut").classList.toggle("on"); });
+  });
+
+  /* ---------------- Shop: one Configure button, opens that product's own configurator directly ---------------- */
+  function setCfgHead(viewId,name,img){
+    var sh = document.querySelector("#"+viewId+" .section-head"); if(!sh) return;
+    var ref = sh.querySelector(".cfg-ref");
+    if(!ref){ ref = document.createElement("div"); ref.className = "cfg-ref"; ref.innerHTML = '<img alt=""><span><small>You are configuring</small><b></b></span>'; sh.appendChild(ref); }
+    ref.style.display = name ? "" : "none";
+    if(name){ ref.querySelector("b").textContent = name; var im = ref.querySelector("img"); if(img){ im.src = img; im.style.display = ""; } else { im.style.display = "none"; } }
+  }
+  var CFG_ROUTE = {
+    "alu-sliding-window":{k:"glass"}, "alu-glass-door":{k:"glass"}, "sliding-door":{k:"glass"}, "glass-partition":{k:"glass"}, "custom-mirror":{k:"glass"},
+    "bookshelf":{k:"vc",preset:"bookshelf"}, "corner-shelf":{k:"vc",preset:"cornerShelf"}, "melamine-furniture":{k:"vc",preset:"furniture"},
+    "study-table-hutch":{k:"tc"}, "wall-shelf":{k:"ws"}
+  };
+  function openConfigFor(id){
+    var p = PRODUCTS.find(function(x){ return x.id===id; }), r = CFG_ROUTE[id];
+    if(!p || !r) return;
+    var ref = { name:p.name, img:shopImg(p) };
+    if(r.k === "tc"){ openCfgLanding({view:"tablecfg"}, ref); }
+    else if(r.k === "ws"){ wsReset(); setCfgHead("view-wscfg",ref.name,ref.img); showView("wscfg"); }
+    else if(r.k === "vc"){ openCfgLanding({view:"shelfconfig",preset:r.preset}, ref); }
+    else { openCfgLanding({view:"configure",product:p.product,material:p.material}, ref); }
+  }
 
   /* ---------------- Motion: scroll reveals, counters, header, hero parallax ---------------- */
   function initMotion(){
