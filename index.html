@@ -563,6 +563,24 @@
     .cfg-photo{ max-height:380px; }
   }
 
+  /* ================= Glass & Ceiling pages use the same configurator layout ================= */
+  .pw-step .cfg-row{ margin-bottom:14px; }
+  .pw-step .cfg-row label{ display:block; font-size:.74rem; font-weight:600; margin-bottom:5px; color:#1D3324; }
+  .pw-step .cfg-row input, .pw-step .cfg-row select{ width:100%; min-width:0; box-sizing:border-box; padding:10px; border:1px solid #c9cec8; border-radius:6px; background:#fff; color:#1D3324; font:inherit; }
+  .pw-step .cfg-row .dims{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .cfg-caption{ padding:2px 16px 0; font-size:.8rem; color:#555; min-height:1em; }
+  .pw-extra .spec-list{ list-style:disc; padding:12px 18px 16px 36px; line-height:1.9; font-size:.88rem; color:#1D3324; margin:0; }
+  .pw-step .ceiling-material-table{ margin:6px 0 4px; font-size:.82rem; }
+  .pw-step .ceiling-material-table th, .pw-step .ceiling-material-table td{ padding:7px 8px; }
+  @media (max-width:900px){
+    #view-configure .pw, #view-ceiling .pw{ display:flex; flex-direction:column; }
+    #view-configure .pw-stage, #view-ceiling .pw-stage{ order:-1; min-height:0 !important; height:auto !important; }
+    #view-configure .vc-canvas, #view-ceiling .vc-canvas{ min-height:0 !important; flex:none; padding:6px 10px; }
+    #view-configure .vc-canvas svg, #view-ceiling .vc-canvas svg{ max-height:62vh; width:100%; height:auto; }
+    #view-configure > section, #view-ceiling > section{ padding-bottom:96px; }
+    #view-configure .pw-price, #view-ceiling .pw-price{ position:fixed; left:0; right:0; bottom:0; z-index:70; box-shadow:0 -8px 22px rgba(0,0,0,.35); }
+  }
+
   /* ================= Blog ================= */
   .blog-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:22px; margin-top:12px; }
   .blog-card{ text-align:left; display:flex; flex-direction:column; gap:12px; padding:26px; border-radius:16px; border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.96); color:#1D3324; cursor:pointer; font:inherit; transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease; }
@@ -862,55 +880,26 @@
         <p>Set your dimensions and materials to see an estimated price, then send the design straight to us on WhatsApp.</p>
       </div>
 
-      <div class="configurator">
-        <div class="cfg-form">
-          <div class="cfg-row">
-            <label for="cfgProduct">Product</label>
-            <select id="cfgProduct">
-              <option value="Sliding Window">Sliding Window</option>
-              <option value="Sliding Door">Sliding Door</option>
-              <option value="Fixed Glass">Fixed Glass</option>
-              <option value="Partition">Partition</option>
-            </select>
+      <div class="pw">
+        <div class="pw-panel"><div class="pw-title"><h3>Your glass &amp; aluminium product</h3></div>
+          <div class="pw-steps" id="cfgSteps">
+            <div class="pw-step open" data-step="1"><button type="button" class="head"><span class="t">1. Product &amp; size</span><span class="sum" id="cfgs1"></span><span class="chev">▲</span></button><div class="body">
+              <div class="cfg-row"><label for="cfgProduct">Product</label>
+                <select id="cfgProduct"><option value="Sliding Window">Sliding Window</option><option value="Sliding Door">Sliding Door</option><option value="Fixed Glass">Fixed Glass</option><option value="Partition">Partition</option></select></div>
+              <div class="cfg-row"><label>Dimensions (feet)</label><div class="dims"><input type="number" id="cfgWidth" min="1" step="0.5" value="4" placeholder="Width (ft)"><input type="number" id="cfgHeight" min="1" step="0.5" value="5" placeholder="Height (ft)"></div></div>
+            </div></div>
+            <div class="pw-step" data-step="2"><button type="button" class="head"><span class="t">2. Aluminium, glass &amp; colour</span><span class="sum" id="cfgs2"></span><span class="chev">▲</span></button><div class="body">
+              <div class="cfg-row"><label for="cfgMaterial">Aluminium</label><select id="cfgMaterial"><option selected>Neo Aluminium (standard thickness)</option><option>Kai Aluminium (standard thickness 1.2)</option></select></div>
+              <div class="cfg-row"><label for="cfgThickness">Glass</label><select id="cfgThickness"></select></div>
+              <div class="cfg-row"><label for="cfgColor">Colour</label><select id="cfgColor"><option>Silver</option><option>Black</option><option>Golden</option></select></div>
+            </div></div>
           </div>
-          <div class="cfg-row">
-            <label>Dimensions</label>
-            <div class="dims">
-              <input type="number" id="cfgWidth" min="1" step="0.5" value="4" placeholder="Width (ft)">
-              <input type="number" id="cfgHeight" min="1" step="0.5" value="5" placeholder="Height (ft)">
-            </div>
-          </div>
-          <div class="cfg-row">
-            <label for="cfgMaterial">Aluminium</label>
-            <select id="cfgMaterial">
-              <option selected>Neo Aluminium (standard thickness)</option>
-              <option>Kai Aluminium (standard thickness 1.2)</option>
-            </select>
-          </div>
-          <div class="cfg-row">
-            <label for="cfgThickness">Glass</label>
-            <select id="cfgThickness"></select>
-          </div>
-          <div class="cfg-row">
-            <label for="cfgColor">Colour</label>
-            <select id="cfgColor">
-              <option>Silver</option>
-              <option>Black</option>
-              <option>Golden</option>
-            </select>
-          </div>
-        </div>
-        <div class="cfg-stage"><div class="tl"><span id="cfgPrevLabel"></span><span class="tl-btns"><button type="button" id="cfgPhotoBtn">Photo</button><button type="button" id="cfgOpenBtn">Open</button></span></div><div id="cfgPreview"></div></div>
-        <div class="cfg-summary">
-          <div class="label">Total Price</div>
-          <div class="price-tag" id="cfgPrice">৳0</div>
-          <div class="note">Estimate only. Final price depends on exact dimensions, fittings, site conditions and installation.</div>
-          <ul class="spec-list" id="cfgSpecList"></ul>
-          <button type="button" class="btn" id="cfgCutBtn">Cutting list</button>
-          <div class="cut-wrap" id="cfgCut" hidden></div>
-          <a class="btn primary" href="#" id="cfgQuoteBtn" target="_blank" rel="noopener">Order now</a>
-          <a class="btn wa" href="#" id="cfgAskBtn" target="_blank" rel="noopener">WhatsApp</a>
-        </div>
+          <div class="pw-price"><div class="pr"><b id="cfgPrice">৳0</b><small>Estimate only — final price confirmed on WhatsApp</small></div><div class="pw-ctas"><a class="pw-cta" href="#" id="cfgQuoteBtn" target="_blank" rel="noopener">Order now</a><a class="pw-cta pw-cta-wa" href="#" id="cfgAskBtn" target="_blank" rel="noopener">WhatsApp</a></div></div></div>
+        <div class="pw-stage"><div class="pw-tools"><button type="button" id="cfgT3D" class="on">3D</button><button type="button" id="cfgTFront">Front</button><button type="button" id="cfgOpenBtn">Open</button><button type="button" id="cfgTSpec">Details</button><button type="button" id="cfgCutBtn">Cutting list</button></div>
+          <div class="cfg-caption" id="cfgPrevLabel"></div>
+          <div class="vc-canvas" id="cfgPreview"></div>
+          <div class="pw-extra" id="cfgExtraCut"><div class="vc-break" id="cfgCut"></div></div>
+          <div class="pw-extra" id="cfgExtra"><ul class="spec-list" id="cfgSpecList"></ul></div></div>
       </div>
     </div>
   </section>
@@ -1066,7 +1055,7 @@
             </div></div>
           </div>
           <div class="pw-price"><div class="pr"><b id="tcPrice">৳0</b><small>Estimate only — final price confirmed on WhatsApp</small></div><div class="pw-ctas"><a class="pw-cta" href="#" id="tcQuoteBtn" target="_blank" rel="noopener">Order now</a><a class="pw-cta pw-cta-wa" href="#" id="tcAskBtn" target="_blank" rel="noopener">WhatsApp</a></div></div></div>
-        <div class="pw-stage"><div class="pw-tools"><button type="button" id="tcTPhoto">Photo</button><button type="button" id="tcTFront" class="on">Front</button><button type="button" id="tcTSize">Sizing</button><button type="button" id="tcTOpen">Open drawers</button><button type="button" id="tcTPrice">Price list</button><button type="button" id="tcTCut">Cutting list</button></div>
+        <div class="pw-stage"><div class="pw-tools"><button type="button" id="tcT3D" class="on">3D</button><button type="button" id="tcTFront">Front</button><button type="button" id="tcTSize">Sizing</button><button type="button" id="tcTOpen">Open drawers</button><button type="button" id="tcTPrice">Price list</button><button type="button" id="tcTCut">Cutting list</button></div>
           <div class="vc-canvas" id="tcCanvas"></div><button type="button" class="pw-undo" id="tcUndo">↶ Undo</button>
           <div class="pw-extra" id="tcExtraCut"><div class="vc-break" id="tcCut"></div></div>
           <div class="pw-extra" id="tcExtra"><div class="vc-break" id="tcBreak"></div><details class="vc-set"><summary>Pricing settings (editable)</summary><div id="tcSettings"></div></details></div></div>
@@ -1184,7 +1173,7 @@
             </div></div>
           </div>
           <div class="pw-price"><div class="pr"><b id="wsPrice">৳0</b><small>Estimate only — final price confirmed on WhatsApp</small></div><div class="pw-ctas"><a class="pw-cta" href="#" id="wsQuoteBtn" target="_blank" rel="noopener">Order now</a><a class="pw-cta pw-cta-wa" href="#" id="wsAskBtn" target="_blank" rel="noopener">WhatsApp</a></div></div></div>
-        <div class="pw-stage"><div class="pw-tools"><button type="button" id="wsTPhoto">Photo</button><button type="button" id="wsTFront" class="on">Front</button><button type="button" id="wsTSize">Sizing</button><button type="button" id="wsTPrice">Price list</button><button type="button" id="wsTCut">Cutting list</button></div>
+        <div class="pw-stage"><div class="pw-tools"><button type="button" id="wsT3D" class="on">3D</button><button type="button" id="wsTFront">Front</button><button type="button" id="wsTSize">Sizing</button><button type="button" id="wsTPrice">Price list</button><button type="button" id="wsTCut">Cutting list</button></div>
           <div class="vc-canvas" id="wsCanvas"></div><button type="button" class="pw-undo" id="wsUndo">↶ Undo</button>
           <div class="pw-extra" id="wsExtraCut"><div class="vc-break" id="wsCut"></div></div>
           <div class="pw-extra" id="wsExtra"><div class="vc-break" id="wsBreak"></div><details class="vc-set"><summary>Pricing settings (editable)</summary><div id="wsSettings"></div></details></div></div>
@@ -1198,38 +1187,35 @@
   <section><div class="wrap">
     <button class="pd-back" data-view="shop"><svg class="icn" style="width:16px;height:16px" viewBox="0 0 24 24"><use href="#i-back"/></svg> Back to Shop</button>
     <div class="section-head"><div class="kicker">PVC Ceiling</div><h2>PVC Ceiling Estimator</h2><p>Enter your room size to see the materials you need, then check the price.</p></div>
-    <div class="ceiling-layout">
-      <div class="ceiling-form">
-        <div class="cfg-row"><label>Room dimensions (feet)</label><div class="dims"><input type="number" id="ceilWidth" min="1" step="0.5" value="10" placeholder="Room width (ft)"><input type="number" id="ceilLength" min="1" step="0.5" value="12" placeholder="Room length (ft)"></div></div>
-        <div class="cfg-row"><label for="ceilWaste">Extra material / wastage</label><select id="ceilWaste"><option value="0">0%</option><option value="5" selected>5%</option><option value="10">10%</option></select></div>
-        <div class="ceiling-tabs" role="tablist" aria-label="PVC ceiling estimator sections">
-          <button type="button" class="ceiling-tab active" data-ceil-tab="materials" role="tab" aria-selected="true">1. Materials</button>
-          <button type="button" class="ceiling-tab" data-ceil-tab="prices" role="tab" aria-selected="false">2. Price</button>
+    <div class="pw">
+      <div class="pw-panel"><div class="pw-title"><h3>Your PVC ceiling</h3></div>
+        <div class="pw-steps" id="ceilSteps">
+          <div class="pw-step open" data-step="1"><button type="button" class="head"><span class="t">1. Room size</span><span class="sum" id="ceils1"></span><span class="chev">▲</span></button><div class="body">
+            <div class="cfg-row"><label>Room dimensions (feet)</label><div class="dims"><input type="number" id="ceilWidth" min="1" step="0.5" value="10" placeholder="Room width (ft)"><input type="number" id="ceilLength" min="1" step="0.5" value="12" placeholder="Room length (ft)"></div></div>
+            <div class="cfg-row"><label for="ceilWaste">Extra material / wastage</label><select id="ceilWaste"><option value="0">0%</option><option value="5" selected>5%</option><option value="10">10%</option></select></div>
+          </div></div>
+          <div class="pw-step" data-step="2"><button type="button" class="head"><span class="t">2. Materials needed</span><span class="sum" id="ceils2"></span><span class="chev">▲</span></button><div class="body">
+            <p class="note" style="font-size:.8rem;color:#5b6b60;margin:0 0 8px">Quantities are planning estimates. Actual layout and pack sizes are confirmed before work starts.</p>
+            <div class="table-wrap"><table class="ceiling-material-table"><thead><tr><th>Material</th><th>Size / unit</th><th>Qty</th></tr></thead><tbody>
+              <tr><td>PVC Ceiling Board</td><td>2 × 2 ft</td><td id="ceilBoardQty">30 pcs</td></tr>
+              <tr><td>Main Tee</td><td>12 ft</td><td id="ceilMainQty">5 pcs</td></tr>
+              <tr><td>Cross Tee</td><td>2 ft</td><td id="ceilCrossQty">25 pcs</td></tr>
+              <tr><td>Wall Angle</td><td>10 ft</td><td id="ceilAngleQty">5 pcs</td></tr>
+            </tbody></table></div>
+          </div></div>
+          <div class="pw-step" data-step="3"><button type="button" class="head"><span class="t">3. Prices (৳)</span><span class="sum" id="ceils3"></span><span class="chev">▲</span></button><div class="body">
+            <div class="cfg-row"><label for="ceilBoardPrice">PVC ceiling board, per piece</label><input type="number" id="ceilBoardPrice" min="0" value="120" placeholder="৳ / piece"></div>
+            <div class="cfg-row"><label for="ceilMainPrice">Main Tee, per piece</label><input type="number" id="ceilMainPrice" min="0" value="25" placeholder="৳ / piece"></div>
+            <div class="cfg-row"><label for="ceilCrossPrice">Cross Tee, per piece</label><input type="number" id="ceilCrossPrice" min="0" value="90" placeholder="৳ / piece"></div>
+            <div class="cfg-row"><label for="ceilAnglePrice">Wall Angle, per piece</label><input type="number" id="ceilAnglePrice" min="0" value="55" placeholder="৳ / piece"></div>
+            <div class="cfg-row"><label for="ceilLabourPrice">Installation labour per sq ft (optional)</label><input type="number" id="ceilLabourPrice" min="0" value="" placeholder="৳ / sq ft"></div>
+          </div></div>
         </div>
-        <div id="ceilMaterialsPanel" class="ceiling-tab-panel">
-          <h3>Required PVC ceiling materials</h3>
-          <p class="note">Quantities are planning estimates. Actual layout and pack sizes are confirmed before work starts.</p>
-          <div class="table-wrap"><table class="ceiling-material-table"><thead><tr><th>Material</th><th>Size / unit</th><th>Estimated quantity</th></tr></thead><tbody>
-            <tr><td>PVC Ceiling Board</td><td>2 × 2 ft (4 sq ft)</td><td id="ceilBoardQty">30 pcs</td></tr>
-            <tr><td>Main Tee</td><td>12 ft / piece</td><td id="ceilMainQty">5 pcs</td></tr>
-            <tr><td>Cross Tee</td><td>2 ft / piece</td><td id="ceilCrossQty">25 pcs</td></tr>
-            <tr><td>Wall Angle</td><td>10 ft / piece</td><td id="ceilAngleQty">5 pcs</td></tr>
-          </tbody></table></div>
-          <button type="button" class="btn primary" id="ceilToPrices">Continue to Price →</button>
-        </div>
-        <div id="ceilPricesPanel" class="ceiling-tab-panel" hidden>
-          <h3>Material prices (৳)</h3><p class="note">Default prices are the rates supplied by Neloy Enterprise. You can change them any time.</p>
-          <div class="cfg-row"><label for="ceilBoardPrice">PVC ceiling board price per piece</label><input type="number" id="ceilBoardPrice" min="0" value="120" placeholder="৳ / piece"></div>
-          <div class="cfg-row"><label for="ceilMainPrice">Main Tee price per piece</label><input type="number" id="ceilMainPrice" min="0" value="25" placeholder="৳ / piece"></div>
-          <div class="cfg-row"><label for="ceilCrossPrice">Cross Tee price per piece</label><input type="number" id="ceilCrossPrice" min="0" value="90" placeholder="৳ / piece"></div>
-          <div class="cfg-row"><label for="ceilAnglePrice">Wall Angle price per piece</label><input type="number" id="ceilAnglePrice" min="0" value="55" placeholder="৳ / piece"></div>
-          <div class="cfg-row"><label for="ceilLabourPrice">Installation labour per sq ft (optional)</label><input type="number" id="ceilLabourPrice" min="0" value="" placeholder="৳ / sq ft"></div>
-          <button type="button" class="btn" id="ceilBackToMaterials">← Materials</button>
-        </div>
-      </div>
-      <div class="ceiling-summary"><img id="ceilPhoto" class="ceil-photo" alt="PVC ceiling" style="display:none"><div class="label">PVC Ceiling Estimate</div><div class="price-tag" id="ceilTotal">৳0</div><p id="ceilPriceNote" class="note"></p><ul class="spec-list" id="ceilResults"></ul>
-        <a class="btn primary" href="#" id="ceilQuote" target="_blank" rel="noopener">Order now</a>
-        <a class="btn wa" href="#" id="ceilAsk" target="_blank" rel="noopener">WhatsApp</a></div>
+        <div class="pw-price"><div class="pr"><b id="ceilTotal">৳0</b><small id="ceilPriceNote">Estimate only — final price confirmed on WhatsApp</small></div><div class="pw-ctas"><a class="pw-cta" href="#" id="ceilQuote" target="_blank" rel="noopener">Order now</a><a class="pw-cta pw-cta-wa" href="#" id="ceilAsk" target="_blank" rel="noopener">WhatsApp</a></div></div></div>
+      <div class="pw-stage"><div class="pw-tools"><button type="button" id="ceilT3D" class="on">3D</button><button type="button" id="ceilTPlan">Plan</button><button type="button" id="ceilTPrice">Price list</button></div>
+        <div class="vc-canvas" id="ceilCanvas"></div>
+        <div class="pw-extra" id="ceilExtra"><ul class="spec-list" id="ceilResults"></ul></div>
+        <img id="ceilPhoto" class="ceil-photo" alt="" style="display:none"></div>
     </div>
   </div></section>
 </div>
@@ -1401,9 +1387,9 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   function openCfgLanding(c, ref){
     var nm = ref && ref.name, im = ref && ref.img;
     if(c.view==="tablecfg"){
-      tcReset(); setCfgHead("view-tablecfg",nm,im);
+      tcReset(); setCfgHead("view-tablecfg",nm,im); tc3dReset();
     } else if(c.view==="wscfg"){
-      wsReset(); setCfgHead("view-wscfg",nm,im);
+      wsReset(); setCfgHead("view-wscfg",nm,im); ws3dReset();
     } else if(c.view==="ceiling"){
       updateCeilingEstimate(); setCfgHead("view-ceiling",nm||"PVC Ceiling",im||CP_IMG.ceiling); (function(){ var ph = document.getElementById("ceilPhoto"); ph.src = im||CP_IMG.ceiling; ph.style.display = ""; })();
     } else if(c.view==="configure"){
@@ -1414,7 +1400,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
       if(c.h){ document.getElementById("cfgHeight").value = c.h; }
       updateConfigurator();
       document.getElementById("cfgProduct").closest(".cfg-row").style.display = "none";
-      setCfgHead("view-configure",nm,im);
+      setCfgHead("view-configure",nm,im); cfg3dReset();
     } else {
       vcApplyPreset(c.preset); setCfgHead("view-shelfconfig",nm,im); vc3dReset();
     }
@@ -1742,8 +1728,10 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
 
     document.getElementById("cfgPrice").textContent = money(price);
     var list = document.getElementById("cfgSpecList");
-    list.innerHTML = "";
-    list.style.display = "none";
+    list.style.display = "";
+    list.innerHTML = '<li>Product: '+product+'</li><li>Size: '+w+' ft × '+h+' ft</li><li>Aluminium: '+material+'</li><li>Glass: '+thickness+'</li><li>Colour: '+color+'</li><li><b>Estimated total: '+money(price)+'</b></li>';
+    document.getElementById("cfgs1").textContent = product+" · "+w+" × "+h+" ft";
+    document.getElementById("cfgs2").textContent = thickness.replace(/\s*\(.*\)/,"")+" · "+color;
 
     var msg = "Hi Neloy Enterprise, I'd like a quote:\n"
       + "Product: "+product+"\n"
@@ -1768,7 +1756,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   var cfgOpenT=0, cfgOpenTarget=0;
   var CFG_FRAME={"Silver":"#c4c8cc","Black":"#2a2a2c","Golden":"#c9a24a"};
   var CFG_BOARD={"Natural Finish":"#d6c7a4","White":"#f2f2ee","Black":"#3a3a3c","Wood Tone":"#b98552","Custom (tell us on WhatsApp)":"#bdbdbd"};
-  function cfgDraw(){
+  function cfgDraw2D(){
     var $$=function(i){return document.getElementById(i);};
     var prod=$$("cfgProduct").value, w=Math.min(14,Math.max(1,parseFloat($$("cfgWidth").value)||4)), h=Math.min(10,Math.max(1,parseFloat($$("cfgHeight").value)||5)), mat=$$("cfgMaterial").value, col=$$("cfgColor").value;
     var sill=prod==="Sliding Window"?3:(prod==="Fixed Glass"?(mat==="Mirror"?2.5:2):0), isSl=prod==="Sliding Window"||prod==="Sliding Door";
@@ -1853,7 +1841,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   var CFG_PAGE = []; // these views are shown together as ONE Configure page
   function showView(name, skipHash){
     if(name==="configurelanding") name = "shop";
-    document.body.classList.toggle("cfg-open", ["shelfconfig","tablecfg","wscfg"].indexOf(name)>-1);
+    document.body.classList.toggle("cfg-open", ["shelfconfig","tablecfg","wscfg","configure","ceiling"].indexOf(name)>-1);
     var group = CFG_PAGE.indexOf(name)>-1;
     document.querySelectorAll(".view").forEach(function(v){ v.classList.toggle("active", v.dataset.view===name || (group && CFG_PAGE.indexOf(v.dataset.view)>-1)); });
     document.querySelectorAll(".navlink").forEach(function(b){ b.classList.toggle("active", b.dataset.view===name || (group && b.dataset.view==="configurelanding")); });
@@ -2161,7 +2149,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     if(lock) o += '<circle style="pointer-events:none" cx="'+(fx+fw/2)+'" cy="'+(fy+pull+fh*0.42)+'" r="3.2" fill="#8f8f8f" stroke="#666"/>';
     return o;
   }
-  function tcDraw(k,body,top){
+  function tcDraw2D(k,body,top){
     var d = k.d, L = d.L, s = Math.min(430/L, 410/k.Htot), sw = L*s, x0 = 60, floor = 470, tw = sw+120;
     var dk = vcShade(body,-45), inn = "#ebebe7", oh = 1*s, sidePx = Math.max(8,1.6*s), ttPx = Math.max(7,1.5*s);
     var yTop = floor - d.Hl*s, yy = yTop + ttPx, yHt = k.hut ? yTop - d.Hh*s : yTop;
@@ -2330,7 +2318,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     var sq = area/144;
     return { d:d, area:sq, boards:Math.max(1,Math.ceil(sq/32)), nf:WS_F.length, nl:WS_DIV.l.length+1, nr:WS_DIV.r.length+1 };
   }
-  function wsDraw(k,body,shelf){
+  function wsDraw2D(k,body,shelf){
     var d = k.d, totW = d.WL+d.G+d.WR, Hmax = Math.max(d.HL,d.HR), Hmin = Math.min(d.HL,d.HR);
     var s = Math.min(440/totW, 400/Hmax), x0 = 60, cy = 260, tw = totW*s+120, t = Math.max(5,0.75*s), tt = t*0.8;
     var dk = vcShade(body,-40), wall = "#e6e4dc", inner = "#d3d1c8", hits = "";
@@ -2542,8 +2530,16 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     }
     return P;
   }
-  var cfgCutBtn = document.getElementById("cfgCutBtn");
-  if(cfgCutBtn) cfgCutBtn.addEventListener("click", function(){ var box = document.getElementById("cfgCut"); box.hidden = !box.hidden; cfgCutBtn.textContent = box.hidden ? "Cutting list" : "Hide cutting list"; });
+  document.getElementById("cfgCutBtn").addEventListener("click", function(){ this.classList.toggle("on"); document.getElementById("cfgExtraCut").classList.toggle("on"); });
+  document.getElementById("cfgTSpec").addEventListener("click", function(){ this.classList.toggle("on"); document.getElementById("cfgExtra").classList.toggle("on"); });
+  function wireSteps(id){
+    document.querySelectorAll("#"+id+" .pw-step .head").forEach(function(hd){ hd.addEventListener("click", function(){
+      var st = hd.closest(".pw-step"), open = st.classList.contains("open");
+      document.querySelectorAll("#"+id+" .pw-step").forEach(function(x){ x.classList.remove("open"); });
+      if(!open) st.classList.add("open");
+    }); });
+  }
+  wireSteps("cfgSteps");
   ["vc","tc","ws"].forEach(function(X){
     var b = document.getElementById(X+"TCut");
     if(b) b.addEventListener("click", function(){ b.classList.toggle("on"); document.getElementById(X+"ExtraCut").classList.toggle("on"); });
@@ -2570,7 +2566,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     var ref = { name:p.name, img:shopImg(p) };
     if(r.k === "tc"){ openCfgLanding({view:"tablecfg"}, ref); }
     else if(r.k === "ceiling"){ openCfgLanding({view:"ceiling"}, ref); }
-    else if(r.k === "ws"){ wsReset(); setCfgHead("view-wscfg",ref.name,ref.img); showView("wscfg"); }
+    else if(r.k === "ws"){ wsReset(); setCfgHead("view-wscfg",ref.name,ref.img); ws3dReset(); showView("wscfg"); }
     else if(r.k === "vc"){ openCfgLanding({view:"shelfconfig",preset:r.preset}, ref); }
     else { openCfgLanding({view:"configure",product:p.product,material:p.material}, ref); }
   }
@@ -2597,17 +2593,11 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     var msg = 'Hello Neloy Enterprise, PVC ceiling {X}. Room: '+w+' ft × '+l+' ft; Ceiling area: '+area.toFixed(2)+' sq ft; PVC boards: '+boards+' pcs; Main Tee: '+main+' pcs; Cross Tee: '+cross+' pcs; Wall Angle: '+angle+' pcs; Estimate: '+money(total)+'. Please confirm final material quantities and price.';
     document.getElementById("ceilQuote").href = waLink(msg.replace("{X}","order request"));
     document.getElementById("ceilAsk").href = waLink(msg.replace("{X}","question"));
+    document.getElementById("ceils1").textContent = w+" × "+l+" ft";
+    document.getElementById("ceils2").textContent = boards+" boards";
+    document.getElementById("ceils3").textContent = money(total);
+    ceilDraw(w,l,area);
   }
-  document.querySelectorAll("[data-ceil-tab]").forEach(function(btn){
-    btn.addEventListener("click", function(){
-      var prices = btn.getAttribute("data-ceil-tab")==="prices";
-      document.getElementById("ceilMaterialsPanel").hidden = prices;
-      document.getElementById("ceilPricesPanel").hidden = !prices;
-      document.querySelectorAll("[data-ceil-tab]").forEach(function(b){ var a = b===btn; b.classList.toggle("active",a); b.setAttribute("aria-selected",a?"true":"false"); });
-    });
-  });
-  document.getElementById("ceilToPrices").addEventListener("click", function(){ document.querySelector('[data-ceil-tab="prices"]').click(); });
-  document.getElementById("ceilBackToMaterials").addEventListener("click", function(){ document.querySelector('[data-ceil-tab="materials"]').click(); });
   ["ceilWidth","ceilLength","ceilWaste","ceilBoardPrice","ceilMainPrice","ceilCrossPrice","ceilAnglePrice","ceilLabourPrice"].forEach(function(id){ var n = document.getElementById(id); if(n){ n.addEventListener("input",updateCeilingEstimate); n.addEventListener("change",updateCeilingEstimate); } });
   updateCeilingEstimate();
 
@@ -2719,22 +2709,21 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     }
     return out;
   }
-  function vc3dDraw(k,color){
-    var W = k.W, H = k.H, D = k.D, boxes = vc3dBoxes(k);
-    var cY = Math.cos(vcYaw), sY = Math.sin(vcYaw), cP = Math.cos(vcPitch), sP = Math.sin(vcPitch);
+  function r3dDraw(o){
+    var W = o.W, H = o.H, D = o.D, boxes = o.boxes, yaw = o.yaw, pitch = (o.pitch !== undefined ? o.pitch : vcPitch), open = o.open || 0;
+    var cY = Math.cos(yaw), sY = Math.sin(yaw), cP = Math.cos(pitch), sP = Math.sin(pitch);
     var s = 360/Math.max(H, Math.sqrt(W*W+D*D)), R = Math.max(H,W,D)*3.4, cx0 = 260, cy0 = 245, ho = H/2;
-    var wood = $("vcMaterial").value === "Melamine Board" && (vcColor === 4 || vcColor === 5);
     var C = [-R*cP*sY, R*sP+ho, R*cP*cY];
     function view(x,y,z){ y -= ho; var x1 = x*cY+z*sY, z1 = -x*sY+z*cY, y2 = y*cP-z1*sP, z2 = y*sP+z1*cP; return [x1,y2,z2]; }
     function nview(n){ var x1 = n[0]*cY+n[2]*sY, z1 = -n[0]*sY+n[2]*cY, y2 = n[1]*cP-z1*sP, z2 = n[1]*sP+z1*cP; return [x1,y2,z2]; }
     function proj(v){ var f = R/(R-v[2]); return [cx0+v[0]*s*f, cy0-v[1]*s*f]; }
     var items = boxes.map(function(b){
-      var V = [], mn = [1e9,1e9,1e9], mx = [-1e9,-1e9,-1e9], cz = 0;
+      var V = [], mn = [1e9,1e9,1e9], mx = [-1e9,-1e9,-1e9], cz = 0, pz = (b.pz !== undefined) ? b.pz : D/2;
       for(var i=0;i<8;i++){
         var x = (i&1) ? b.x1 : b.x0, y = (i&2) ? b.y1 : b.y0, z = (i&4) ? b.z1 : b.z0;
         if(b.hx !== undefined){
-          var th = openT*1.75, c = Math.cos(th), sn = Math.sin(th), dx = x-b.hx, dz = z-D/2;
-          if(b.dir === 1){ x = b.hx+dx*c-dz*sn; z = D/2+dx*sn+dz*c; } else { x = b.hx+dx*c+dz*sn; z = D/2-dx*sn+dz*c; }
+          var th = open*1.75, c = Math.cos(th), sn = Math.sin(th), dx = x-b.hx, dz = z-pz;
+          if(b.dir === 1){ x = b.hx+dx*c-dz*sn; z = pz+dx*sn+dz*c; } else { x = b.hx+dx*c+dz*sn; z = pz-dx*sn+dz*c; }
         }
         mn[0] = Math.min(mn[0],x); mn[1] = Math.min(mn[1],y); mn[2] = Math.min(mn[2],z);
         mx[0] = Math.max(mx[0],x); mx[1] = Math.max(mx[1],y); mx[2] = Math.max(mx[2],z);
@@ -2744,35 +2733,42 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     });
     var ordered = vc3dOrder(items,C), faces = [];
     ordered.forEach(function(it){
-      var b = it.b, th2 = (b.hx !== undefined) ? openT*1.75 : 0, c2 = Math.cos(th2), s2 = Math.sin(th2), mine = [];
+      var b = it.b, th2 = (b.hx !== undefined) ? open*1.75 : 0, c2 = Math.cos(th2), s2 = Math.sin(th2), mine = [];
       VC3_FACES.forEach(function(F){
         var n = F[1], nx = n[0], nz = n[2];
         if(b.hx !== undefined){ if(b.dir === 1){ nx = n[0]*c2-n[2]*s2; nz = n[0]*s2+n[2]*c2; } else { nx = n[0]*c2+n[2]*s2; nz = -n[0]*s2+n[2]*c2; } }
         var nv = nview([nx,n[1],nz]), pts = F[0].map(function(ix){ return it.V[ix]; });
         var fx = (pts[0][0]+pts[1][0]+pts[2][0]+pts[3][0])/4, fy = (pts[0][1]+pts[1][1]+pts[2][1]+pts[3][1])/4, fz = (pts[0][2]+pts[1][2]+pts[2][2]+pts[3][2])/4;
         if(nv[0]*(0-fx)+nv[1]*(0-fy)+nv[2]*(R-fz) <= 0) return;
-        mine.push({p:pts.map(proj), z:fz, n:nv, m:b.m});
+        mine.push({p:pts.map(proj), z:fz, n:nv, m:b.m, c:b.c, gf:b.gf});
       });
-      mine.sort(function(a,c){ return a.z-c.z; });
+      mine.sort(function(a2,c3){ return a2.z-c3.z; });
       mine.forEach(function(f){ faces.push(f); });
     });
-    var base = {b:color, d:color, f:color, k:color, h:"#4a4a4a", a:"#c3c7ca"};
-    var o = '<svg id="vcSvg" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg" style="touch-action:pan-y;cursor:grab;width:100%;max-height:560px"><defs><pattern id="vc3g" width="7" height="60" patternUnits="userSpaceOnUse"><path d="M1.5 0V60M4.5 0V60" stroke="rgba(0,0,0,.11)" stroke-width="1"/></pattern></defs>';
+    var base = {b:o.color, d:o.color, f:o.color, k:o.color, h:"#4a4a4a", a:"#c3c7ca"};
+    var out = '<svg id="'+o.svgId+'" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg" style="touch-action:pan-y;cursor:grab;width:100%;max-height:560px"><defs><pattern id="vc3g" width="7" height="60" patternUnits="userSpaceOnUse"><path d="M1.5 0V60M4.5 0V60" stroke="rgba(0,0,0,.11)" stroke-width="1"/></pattern></defs>';
     function ptsStr(arr){ return arr.map(function(p){ return p[0].toFixed(1)+","+p[1].toFixed(1); }).join(" "); }
-    var fl = Math.max(W,D)*1.15+0.8, fv = [[-fl,0,-fl],[fl,0,-fl],[fl,0,fl],[-fl,0,fl]].map(function(p){ return proj(view(p[0],p[1],p[2])); });
-    o += '<polygon points="'+ptsStr(fv)+'" fill="#d3d3d6"/>';
-    var sh = [[-W/2,0,-D/2],[W/2,0,-D/2],[W/2,0,D/2],[-W/2,0,D/2]].map(function(p){ return proj(view(p[0],p[1],p[2])); });
-    o += '<polygon points="'+ptsStr(sh)+'" fill="rgba(0,0,0,.22)"/>';
+    if(o.floor !== false){
+      var fl = Math.max(W,D)*1.15+0.8*(Math.max(W,D)/6), fv = [[-fl,0,-fl],[fl,0,-fl],[fl,0,fl],[-fl,0,fl]].map(function(p){ return proj(view(p[0],p[1],p[2])); });
+      out += '<polygon points="'+ptsStr(fv)+'" fill="#d3d3d6"/>';
+      var sh = [[-W/2,0,-D/2],[W/2,0,-D/2],[W/2,0,D/2],[-W/2,0,D/2]].map(function(p){ return proj(view(p[0],p[1],p[2])); });
+      out += '<polygon points="'+ptsStr(sh)+'" fill="rgba(0,0,0,.22)"/>';
+    }
     faces.forEach(function(f){
       var pts = ptsStr(f.p);
-      if(f.m === "g"){ o += '<polygon points="'+pts+'" fill="rgba(205,229,238,.30)" stroke="rgba(120,145,158,.85)" stroke-width="1"/>'; return; }
-      var lamb = Math.max(0, f.n[0]*-0.35+f.n[1]*0.75+f.n[2]*0.55), amt = Math.round((lamb-0.6)*70), fill = vcShade(base[f.m]||color, amt);
-      o += '<polygon points="'+pts+'" fill="'+fill+'" stroke="rgba(0,0,0,.28)" stroke-width=".7"/>';
-      if(wood && (f.m==="b"||f.m==="d"||f.m==="f")) o += '<polygon points="'+pts+'" fill="url(#vc3g)"/>';
+      if(f.m === "g"){ out += '<polygon points="'+pts+'" fill="'+(f.gf || "rgba(205,229,238,.30)")+'" stroke="rgba(120,145,158,.85)" stroke-width="1"/>'; return; }
+      var lamb = Math.max(0, f.n[0]*-0.35+f.n[1]*0.75+f.n[2]*0.55), amt = Math.round((lamb-0.6)*70)+(o.lift||0), fill = vcShade(f.c || base[f.m] || o.color, amt);
+      out += '<polygon points="'+pts+'" fill="'+fill+'" stroke="rgba(0,0,0,.28)" stroke-width=".7"/>';
+      if(o.wood && !f.c && (f.m==="b"||f.m==="d"||f.m==="f")) out += '<polygon points="'+pts+'" fill="url(#vc3g)"/>';
     });
-    o += '<text x="260" y="512" text-anchor="middle" font-size="12" fill="#666">Drag left / right to rotate 360°</text>';
-    if(showDim) o += '<text x="14" y="22" font-size="13" fill="#333">'+k.W.toFixed(2)+' ft wide × '+k.H.toFixed(2)+' ft high × '+k.D.toFixed(2)+' ft deep</text>';
-    $("vcCanvas").innerHTML = o + '</svg>';
+    out += '<text x="260" y="512" text-anchor="middle" font-size="12" fill="#666">Drag left / right to rotate 360°</text>';
+    if(o.dim) out += '<text x="14" y="22" font-size="13" fill="#333">'+o.dim+'</text>';
+    $(o.canvas).innerHTML = out + '</svg>';
+  }
+  function vc3dDraw(k,color){
+    r3dDraw({canvas:"vcCanvas", svgId:"vcSvg", boxes:vc3dBoxes(k), W:k.W, H:k.H, D:k.D, color:color, yaw:vcYaw, open:openT,
+      wood:($("vcMaterial").value === "Melamine Board" && (vcColor === 4 || vcColor === 5)),
+      dim:(showDim ? k.W.toFixed(2)+' ft wide × '+k.H.toFixed(2)+' ft high × '+k.D.toFixed(2)+' ft deep' : "")});
   }
   $("vcCanvas").addEventListener("pointerdown", function(e){ if(!vcMode3d || !$("vcSvg")) return; vcRot = {x:e.clientX, yaw:vcYaw}; });
   window.addEventListener("pointermove", function(e){ if(!vcRot) return; vcYaw = vcRot.yaw+(e.clientX-vcRot.x)*0.012; if(lastK) vc3dDraw(lastK,lastC); });
@@ -2781,6 +2777,166 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   $("vcTFront").addEventListener("click", function(){ vcMode3d = false; vcToolsUI(); vcUpdate(); });
   $("vcTSize").addEventListener("click", function(){ vcToolsUI(); });
   vcToolsUI();
+
+  /* ---------------- 3D rotating views: study table and wall shelf ---------------- */
+  var tcMode3d = true, tcYaw = -0.5, tcRot = null, wsMode3d = true, wsYaw = -0.45, wsRot = null;
+  function mkBoxer(B){ return function(x0,x1,y0,y1,z0,z1,m,ex){ var o = {x0:x0,x1:x1,y0:y0,y1:y1,z0:z0,z1:z1,m:m}; if(ex){ for(var q in ex) o[q] = ex[q]; } B.push(o); }; }
+  function tc3dBoxes(k,body,top){
+    var d = k.d, L = d.L, D = d.D, Hl = d.Hl, tk = 0.75, oh = 1, B = [], box = mkBoxer(B), zb = -D/2, zf = D/2;
+    box(-L/2,L/2,Hl-1.5,Hl,zb,zf,"b",{c:top});
+    box(-L/2+oh,-L/2+oh+tk,0,Hl-1.5,zb+oh,zf-oh,"b"); box(L/2-oh-tk,L/2-oh,0,Hl-1.5,zb+oh,zf-oh,"b");
+    var ix0 = -L/2+oh+tk, ix1 = L/2-oh-tk, ytop = Hl-1.5;
+    if(k.md) box(ix0,ix1,ytop-(k.ld ? 5 : 0)-14,ytop-(k.ld ? 5 : 0),zb+oh,zb+oh+tk,"k");
+    if(k.ld){
+      var pull = tcOpenT*Math.min(D*0.5,12);
+      box(ix0+0.6,ix1-0.6,ytop-4.2,ytop-0.4,zf-oh-tk-(D-5)+pull,zf-oh-tk+pull,"k");
+      box(ix0+0.1,ix1-0.1,ytop-4.5,ytop-0.1,zf-oh-tk+pull,zf-oh+pull,"f",{c:top});
+      box(-0.6,0.6,ytop-2.6,ytop-1.8,zf-oh+pull,zf-oh+pull+0.4,"h");
+    }
+    if(k.hut){
+      var Lh = L-4, Dh = Math.min(12,D), hx0 = -Lh/2, hx1 = Lh/2, yb = Hl, yt = Hl+d.Hh, hz0 = zb, hz1 = zb+Dh, rail = 2.5;
+      box(hx0,hx0+tk,yb,yt,hz0,hz1,"b"); box(hx1-tk,hx1,yb,yt,hz0,hz1,"b");
+      box(hx0+tk,hx1-tk,yt-tk,yt,hz0,hz1,"b"); box(hx0+tk,hx1-tk,yb,yb+rail,hz0,hz1,"b");
+      var xi0 = hx0+tk, xi1 = hx1-tk, yi1 = yt-tk, yi0 = yb+rail, yMid = yi1-TC.hRow*(yi1-yi0), xd = xi0+TC.hDiv*(xi1-xi0), bk = k.hb ? 0.4 : 0;
+      if(k.hb) box(xi0,xi1,yi0,yi1,hz0,hz0+bk,"k",{c:"#ebebe7"});
+      box(xi0,xi1,yMid-tk/2,yMid+tk/2,hz0+bk,hz1,"b");
+      box(xd-tk/2,xd+tk/2,yMid+tk/2,yi1,hz0+bk,hz1,"b");
+      if(k.nd > 0){
+        var rh = (yi1-(yMid+tk/2))/k.nd, rx0 = xd+tk/2, pl = tcOpenT*Math.min(Dh*0.6,8);
+        for(var i=0;i<k.nd;i++){
+          var y0 = yMid+tk/2+i*rh;
+          box(rx0+0.5,xi1-0.5,y0+0.4,y0+rh-0.4,hz1-tk-Dh*0.7+pl,hz1-tk+pl,"k");
+          box(rx0+0.1,xi1-0.1,y0+0.1,y0+rh-0.1,hz1-tk+pl,hz1+pl,"f",{c:top});
+        }
+      }
+      if(k.dt !== "o") box(xi0+0.05,xd-tk/2-0.05,yMid+tk/2+0.05,yi1-0.05,hz1-tk*0.8,hz1,k.dt === "g" ? "g" : "d",{hx:xi0,dir:1,pz:hz1});
+    }
+    return B;
+  }
+  function tc3dDraw(k,body,top){
+    r3dDraw({canvas:"tcCanvas", svgId:"tcSvg3", boxes:tc3dBoxes(k,body,top), W:k.d.L, H:k.Htot, D:k.d.D, color:body, yaw:tcYaw, open:tcOpenT,
+      wood:($("tcMaterial").value === "Melamine Board" && (tcBodyC === 4 || tcBodyC === 5)),
+      dim:(tcShowDim ? tcFmt(k.d.L)+' long × '+tcFmt(k.d.D)+' deep × '+tcFmt(k.Htot)+' high' : "")});
+  }
+  function ws3dBoxes(k,body,shelf){
+    var d = k.d, tot = d.WL+d.G+d.WR, Hm = Math.max(d.HL,d.HR), Hn = Math.min(d.HL,d.HR), cy = Hm/2, tk = 0.75, B = [], box = mkBoxer(B), zb = -d.D/2, zf = d.D/2;
+    box(-tot/2-5,tot/2+5,cy-Hm/2-4,cy+Hm/2+4,zb-0.7,zb-0.1,"k",{c:"#e6e4dc"});
+    function unit(x0,W,H,divs){
+      var y0 = cy-H/2, y1 = cy+H/2;
+      box(x0,x0+tk,y0,y1,zb,zf,"b"); box(x0+W-tk,x0+W,y0,y1,zb,zf,"b");
+      box(x0+tk,x0+W-tk,y1-tk,y1,zb,zf,"b"); box(x0+tk,x0+W-tk,y0,y0+tk,zb,zf,"b");
+      var inner = H-2*tk;
+      divs.forEach(function(f){ var y = y1-tk-f*inner; box(x0+tk,x0+W-tk,y-tk/2,y+tk/2,zb,zf,"b"); });
+    }
+    var lx = -tot/2, rx = tot/2-d.WR;
+    unit(lx,d.WL,d.HL,WS_DIV.l); unit(rx,d.WR,d.HR,WS_DIV.r);
+    WS_F.forEach(function(f){ var y = (cy+Hn/2)-f*Hn; box(lx+d.WL,rx,y-tk/2,y+tk/2,zb,zf,"b",{c:shelf}); });
+    return B;
+  }
+  function ws3dDraw(k,body,shelf){
+    var d = k.d;
+    r3dDraw({canvas:"wsCanvas", svgId:"wsSvg3", boxes:ws3dBoxes(k,body,shelf), W:d.WL+d.G+d.WR+10, H:Math.max(d.HL,d.HR)+8, D:d.D, color:body, yaw:wsYaw, open:0, floor:false,
+      wood:($("wsMaterial").value === "Melamine Board" && (wsBodyC === 4 || wsBodyC === 5)),
+      dim:(wsShowDim ? wsFmt(d.WL+d.G+d.WR)+' wide × '+wsFmt(Math.max(d.HL,d.HR))+' high × '+wsFmt(d.D)+' deep' : "")});
+  }
+  function tcDraw(k,body,top){ if(tcMode3d){ tc3dDraw(k,body,top); } else { tcDraw2D(k,body,top); } }
+  function wsDraw(k,body,shelf){ if(wsMode3d){ ws3dDraw(k,body,shelf); } else { wsDraw2D(k,body,shelf); } }
+  function tcToolsUI(){ var a = $("tcT3D"), f = $("tcTFront"); if(a) a.classList.toggle("on",tcMode3d); if(f) f.classList.toggle("on",!tcMode3d); }
+  function wsToolsUI(){ var a = $("wsT3D"), f = $("wsTFront"); if(a) a.classList.toggle("on",wsMode3d); if(f) f.classList.toggle("on",!wsMode3d); }
+  function tc3dReset(){ tcMode3d = true; tcYaw = -0.5; tcToolsUI(); if(tcLast) tcDraw(tcLast[0],tcLast[1],tcLast[2]); }
+  function ws3dReset(){ wsMode3d = true; wsYaw = -0.45; wsToolsUI(); wsUpdate(); }
+  $("tcCanvas").addEventListener("pointerdown", function(e){ if(tcMode3d && $("tcSvg3")) tcRot = {x:e.clientX, yaw:tcYaw}; });
+  $("wsCanvas").addEventListener("pointerdown", function(e){ if(wsMode3d && $("wsSvg3")) wsRot = {x:e.clientX, yaw:wsYaw}; });
+  window.addEventListener("pointermove", function(e){
+    if(tcRot){ tcYaw = tcRot.yaw+(e.clientX-tcRot.x)*0.012; if(tcLast) tc3dDraw(tcLast[0],tcLast[1],tcLast[2]); }
+    if(wsRot){ wsYaw = wsRot.yaw+(e.clientX-wsRot.x)*0.012; wsUpdate(); }
+  });
+  window.addEventListener("pointerup", function(){ tcRot = null; wsRot = null; });
+  $("tcT3D").addEventListener("click", function(){ tcMode3d = true; tcToolsUI(); tcUpdate(); });
+  $("tcTFront").addEventListener("click", function(){ tcMode3d = false; tcToolsUI(); tcUpdate(); });
+  $("tcTSize").addEventListener("click", tcToolsUI);
+  $("wsT3D").addEventListener("click", function(){ wsMode3d = true; wsToolsUI(); wsUpdate(); });
+  $("wsTFront").addEventListener("click", function(){ wsMode3d = false; wsToolsUI(); wsUpdate(); });
+  $("wsTSize").addEventListener("click", wsToolsUI);
+  tcToolsUI(); wsToolsUI();
+
+  /* ---------------- 3D view: windows, doors, fixed glass, partitions ---------------- */
+  var cfgMode3d = true, cfgYaw = -0.5, cfgRot = null;
+  function cfgGlassTint(){
+    var g = document.getElementById("cfgThickness").value || "";
+    if(/blue|mercury/i.test(g)) return "rgba(110,165,215,.42)";
+    if(/bronze|brown/i.test(g)) return "rgba(170,130,95,.40)";
+    if(/frost|sand|obscure/i.test(g)) return "rgba(235,240,243,.75)";
+    if(/colou?r|green|grey|gray/i.test(g)) return "rgba(130,175,160,.38)";
+    return "rgba(205,229,238,.30)";
+  }
+  function cfg3dBoxes(){
+    var $$ = function(i){ return document.getElementById(i); };
+    var prod = $$("cfgProduct").value, w = Math.min(14,Math.max(1,parseFloat($$("cfgWidth").value)||4)), h = Math.min(10,Math.max(1,parseFloat($$("cfgHeight").value)||5)), col = $$("cfgColor").value;
+    var fc = CFG_FRAME[col] || "#c4c8cc", gf = cfgGlassTint(), B = [], box = mkBoxer(B), d = 0.3, fb = Math.max(0.09,Math.min(w,h)*0.026), x0 = -w/2, x1 = w/2;
+    box(x0,x1,0,fb,-d/2,d/2,"a",{c:fc}); box(x0,x1,h-fb,h,-d/2,d/2,"a",{c:fc}); box(x0,x0+fb,fb,h-fb,-d/2,d/2,"a",{c:fc}); box(x1-fb,x1,fb,h-fb,-d/2,d/2,"a",{c:fc});
+    var iw = w-2*fb, ih = h-2*fb;
+    if(prod === "Sliding Window" || prod === "Sliding Door"){
+      var N = w > 6 ? 3 : 2, lw = iw/N*1.1, lf = fb*0.7, t3 = cfgOpenT;
+      for(var l=0;l<N;l++){
+        var pc = N>1 ? l*(iw-lw)/(N-1) : 0, po = N>1 ? (iw-lw)-(N-1-l)*lw*0.08 : 0, lx = x0+fb+pc+(po-pc)*t3, zl = (l%2 ? 0.06 : -0.06);
+        box(lx,lx+lw,fb,fb+lf,zl-0.04,zl+0.04,"a",{c:fc}); box(lx,lx+lw,h-fb-lf,h-fb,zl-0.04,zl+0.04,"a",{c:fc});
+        box(lx,lx+lf,fb+lf,h-fb-lf,zl-0.04,zl+0.04,"a",{c:fc}); box(lx+lw-lf,lx+lw,fb+lf,h-fb-lf,zl-0.04,zl+0.04,"a",{c:fc});
+        box(lx+lf,lx+lw-lf,fb+lf,h-fb-lf,zl-0.015,zl+0.015,"g",{gf:gf});
+        box(lx+(l%2 ? lf : lw-lf*2.6),lx+(l%2 ? lf*2.6 : lw-lf),h/2-0.35,h/2+0.35,zl+0.04,zl+0.09,"h");
+      }
+    } else if(prod === "Partition"){
+      var pn = Math.max(1,Math.round(w/3)), pw = iw/pn;
+      for(var p=0;p<pn;p++){ box(x0+fb+p*pw+0.01,x0+fb+(p+1)*pw-0.01,fb,h-fb,-0.015,0.015,"g",{gf:gf}); if(p>0) box(x0+fb+p*pw-fb/2,x0+fb+p*pw+fb/2,fb,h-fb,-d/2,d/2,"a",{c:fc}); }
+    } else {
+      box(x0+fb,x1-fb,fb,h-fb,-0.015,0.015,"g",{gf:gf});
+    }
+    return B;
+  }
+  function cfgDraw(){
+    if(!cfgMode3d){ cfgDraw2D(); return; }
+    var $$ = function(i){ return document.getElementById(i); };
+    var prod = $$("cfgProduct").value, w = Math.min(14,Math.max(1,parseFloat($$("cfgWidth").value)||4)), h = Math.min(10,Math.max(1,parseFloat($$("cfgHeight").value)||5));
+    r3dDraw({canvas:"cfgPreview", svgId:"cfgSvg3", boxes:cfg3dBoxes(), W:w, H:h, D:0.6, color:"#c4c8cc", yaw:cfgYaw, open:0, floor:true, wood:false, dim:(w+" ft wide × "+h+" ft high")});
+    $$("cfgPrevLabel").textContent = prod+" · "+$$("cfgMaterial").value+" · "+$$("cfgColor").value;
+    $$("cfgOpenBtn").style.display = (prod==="Sliding Window"||prod==="Sliding Door") ? "" : "none";
+  }
+  function cfgToolsUI(){ document.getElementById("cfgT3D").classList.toggle("on",cfgMode3d); document.getElementById("cfgTFront").classList.toggle("on",!cfgMode3d); }
+  function cfg3dReset(){ cfgMode3d = true; cfgYaw = -0.5; cfgToolsUI(); cfgDraw(); }
+  document.getElementById("cfgPreview").addEventListener("pointerdown", function(e){ if(cfgMode3d && document.getElementById("cfgSvg3")) cfgRot = {x:e.clientX, yaw:cfgYaw}; });
+  window.addEventListener("pointermove", function(e){ if(cfgRot){ cfgYaw = cfgRot.yaw+(e.clientX-cfgRot.x)*0.012; cfgDraw(); } });
+  window.addEventListener("pointerup", function(){ cfgRot = null; });
+  document.getElementById("cfgT3D").addEventListener("click", function(){ cfgMode3d = true; cfgToolsUI(); cfgDraw(); });
+  document.getElementById("cfgTFront").addEventListener("click", function(){ cfgMode3d = false; cfgToolsUI(); cfgDraw(); });
+  cfgToolsUI();
+
+  /* ---------------- 3D ceiling (tiles, tee grid, wall angle) ---------------- */
+  var ceilMode3d = true, ceilYaw = -0.5, ceilRot = null;
+  function ceilDraw(w,l,area){
+    if(!document.getElementById("ceilCanvas") || !VC3_FACES) return;
+    var dw = Math.min(Math.max(w,2),24), dl = Math.min(Math.max(l,2),24), B = [], box = mkBoxer(B), yc = 1, g = 0.04, tt = 0.08;
+    var nx = Math.ceil(dw/2), nz = Math.ceil(dl/2), x0 = -dw/2, z0 = -dl/2;
+    for(var i=0;i<nx;i++){ for(var j=0;j<nz;j++){
+      var ax = x0+i*2+g, bx = Math.min(x0+(i+1)*2,dw/2)-g, az = z0+j*2+g, bz = Math.min(z0+(j+1)*2,dl/2)-g;
+      box(ax,bx,yc-tt,yc,az,bz,"b",{c:"#f4f4f1"});
+    } }
+    for(var i2=0;i2<=nx;i2++){ var tx = Math.min(x0+i2*2,dw/2); box(tx-0.04,tx+0.04,yc-0.12,yc-tt,z0,dl/2,"a"); }
+    for(var j2=0;j2<=nz;j2++){ var tz = Math.min(z0+j2*2,dl/2); box(x0,dw/2,yc-0.1,yc-tt,tz-0.03,tz+0.03,"a"); }
+    box(x0-0.08,dw/2+0.08,yc-0.2,yc,z0-0.08,z0,"a"); box(x0-0.08,dw/2+0.08,yc-0.2,yc,dl/2,dl/2+0.08,"a");
+    box(x0-0.08,x0,yc-0.2,yc,z0,dl/2,"a"); box(dw/2,dw/2+0.08,yc-0.2,yc,z0,dl/2,"a");
+    r3dDraw({canvas:"ceilCanvas", svgId:"ceilSvg3", boxes:B, W:dw*0.72, H:2, D:dl*0.72, lift:48, color:"#f4f4f1", yaw:(ceilMode3d ? ceilYaw : 0), pitch:(ceilMode3d ? -0.5 : -1.5), open:0, floor:false, wood:false, dim:(w+" ft × "+l+" ft · "+area.toFixed(0)+" sq ft")});
+  }
+  function ceilToolsUI(){ document.getElementById("ceilT3D").classList.toggle("on",ceilMode3d); document.getElementById("ceilTPlan").classList.toggle("on",!ceilMode3d); }
+  function ceilRedraw(){ updateCeilingEstimate(); }
+  document.getElementById("ceilCanvas").addEventListener("pointerdown", function(e){ if(ceilMode3d && document.getElementById("ceilSvg3")) ceilRot = {x:e.clientX, yaw:ceilYaw}; });
+  window.addEventListener("pointermove", function(e){ if(ceilRot){ ceilYaw = ceilRot.yaw+(e.clientX-ceilRot.x)*0.012; ceilRedraw(); } });
+  window.addEventListener("pointerup", function(){ ceilRot = null; });
+  document.getElementById("ceilT3D").addEventListener("click", function(){ ceilMode3d = true; ceilToolsUI(); ceilRedraw(); });
+  document.getElementById("ceilTPlan").addEventListener("click", function(){ ceilMode3d = false; ceilToolsUI(); ceilRedraw(); });
+  document.getElementById("ceilTPrice").addEventListener("click", function(){ this.classList.toggle("on"); document.getElementById("ceilExtra").classList.toggle("on"); });
+  wireSteps("ceilSteps");
+  ceilToolsUI();
+  updateCeilingEstimate();
 
   /* ---------------- Motion: scroll reveals, counters, header, hero parallax ---------------- */
   function initMotion(){
