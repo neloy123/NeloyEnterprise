@@ -163,23 +163,47 @@
   .view{ display:none; }
   .view.active{ display:block; animation: fadein .35s ease; }
   @keyframes fadein{ from{ opacity:0; transform: translateY(6px);} to{opacity:1; transform:none;} }
-  .kicker{ font-size:.82rem; color: var(--steel); font-weight:600; margin-bottom:10px; }
+  .kicker{ font-size:.82rem; color: var(--steel); font-weight:600; }
+
+  /* ---------- FlipText Effect ---------- */
+  .flip-container {
+    display: inline-flex;
+    flex-direction: column;
+    height: 1.2em;
+    overflow: hidden;
+    vertical-align: bottom;
+    text-align: center;
+  }
+  .flip-item {
+    display: block;
+    height: 1.2em;
+    line-height: 1.2em;
+    animation: text-flip 9s infinite cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+  @keyframes text-flip {
+    0%, 45% { transform: translateY(0); }
+    50%, 95% { transform: translateY(-1.2em); }
+    100% { transform: translateY(0); }
+  }
+  .hero-title-single {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
   .section-head{ max-width: 620px; margin-bottom: 48px; }
   .section-head h2{ font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight:600; }
   .section-head p{ color: var(--ink-soft); margin-top:12px; font-size:1.03rem; }
   hr.rule{ border:none; border-top:1px solid var(--line); margin: 0; }
 
   /* ---------- Hero ---------- */
-  .hero{ padding: 56px 0 80px; }
-  .hero-grid{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items:center; }
-  @media (max-width: 940px){ .hero-grid{ grid-template-columns: 1fr; gap:40px; } }
+  .hero{ padding: 40px 0 60px; }
+  .hero-grid{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items:center; }
+  @media (max-width: 940px){ .hero-grid{ grid-template-columns: 1fr; gap:30px; } }
   .hero h1{ font-size: clamp(2.4rem, 5.2vw, 4.1rem); font-weight:700; line-height:1.03; }
   .hero .bn-line{ font-size: clamp(1.05rem, 1.9vw, 1.3rem); color: var(--green); margin-top:18px; font-weight:500; }
   .hero .desc{ margin-top:20px; color: var(--ink-soft); font-size: 1.08rem; max-width: 46ch; }
   .hero .actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
-  .hero-trust{ display:flex; flex-wrap:wrap; gap:10px 12px; margin-top:20px; }
-  .trust-pill{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--line-strong); background: var(--bg-raised); color: var(--ink-soft); font-size:.78rem; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
-  .trust-pill .dot{ width:7px; height:7px; border-radius:50%; background: var(--green); display:inline-block; }
   .mini-stats{ display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:14px; margin-top:24px; }
   .mini-stat{ border:1px solid var(--line); background: var(--bg-raised); border-radius:8px; padding:18px 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.10); }
   .mini-stat strong{ font-size:1.4rem; font-family: var(--font-display); color: var(--green-deep); display:block; }
@@ -773,7 +797,6 @@
     <nav class="links" id="navLinks">
       <button class="navlink" data-view="home">Home</button>
       <button class="navlink" data-view="shop">Shop</button>
-      <button class="navlink" data-view="shop">Configure</button>
       <button class="navlink" data-view="gallery">Projects</button>
       <button class="navlink" data-view="about">About</button>
       <button class="navlink" data-view="blog">Blog</button>
@@ -782,14 +805,12 @@
     <div class="cta-group">
       <div class="lang-sw" role="group" aria-label="Language / ভাষা"><button type="button" data-lang="en" class="on" aria-pressed="true">EN</button><button type="button" data-lang="bn" aria-pressed="false">বাংলা</button></div>
       <a class="btn wa" href="#" id="navWaBtn" target="_blank" rel="noopener"><svg class="icn" style="width:16px;height:16px" viewBox="0 0 32 32"><use href="#i-wa"/></svg> WhatsApp</a>
-      <button class="btn primary" data-view="shop">Configure</button>
       <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><svg viewBox="0 0 24 24"><use href="#i-menu"/></svg></button>
     </div>
   </div>
   <div class="wrap mobile-panel" id="mobilePanel">
     <button class="navlink" data-view="home">Home</button>
     <button class="navlink" data-view="shop">Shop</button>
-    <button class="navlink" data-view="shop">Configure</button>
     <button class="navlink" data-view="gallery">Projects</button>
     <button class="navlink" data-view="about">About</button>
     <button class="navlink" data-view="blog">Blog</button>
@@ -805,20 +826,15 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <div class="kicker">Custom manufacturing · Netrakona, Bangladesh</div>
-        <h1><span class="ln"><span>Made for</span></span><span class="ln"><span>Your Space.</span></span></h1>
-        <p class="bn-line">We build to your needs, for your home, shop and office.</p>
-        <p class="desc">Neloy Enterprise manufactures custom aluminium, glass and board-based products for modern homes, shops and offices — built to your dimensions, not off a shelf.</p>
+        <h1 class="hero-title-single" style="text-align: left; justify-content: flex-start;">ঘর সাজানোর সব</h1>
+
+
+        <p class="bn-line">"প্রতিটি স্থান আপনাকে আপনার সেরা জীবন যাপন করতে অনুপ্রাণিত করবে।"</p>
+        <p class="desc">আপনার স্বপ্নকে বাস্তবে রূপ দিন এবং আপনার ঘরের পরিবেশকে অনুপ্রেরণার এক শক্তিশালী কেন্দ্রে রূপান্তরিত করুন। আমরা এমন সাহসী, সুন্দর এবং একান্ত ব্যক্তিগত স্থান তৈরি করতে আগ্রহী, যা প্রবেশ করার মুহূর্তেই আপনার মনে আনন্দের সঞ্চার করে। নজরকাড়া সজ্জা থেকে শুরু করে সম্পূর্ণ অভ্যন্তরীণ রূপান্তর পর্যন্ত।</p>
         <div class="actions">
           <button class="btn primary" data-view="shop">Start Designing</button>
           <button class="btn" data-view="shop">View Products</button>
           <a class="btn wa" href="#" id="heroWaBtn" target="_blank" rel="noopener"><svg class="icn" style="width:16px;height:16px" viewBox="0 0 32 32"><use href="#i-wa"/></svg> WhatsApp Us</a>
-        </div>
-
-        <div class="hero-trust" aria-label="Trust indicators">
-          <div class="trust-pill"><span class="dot"></span> Custom-made for homes & shops</div>
-          <div class="trust-pill"><span class="dot"></span> Built in Netrakona workshop</div>
-          <div class="trust-pill"><span class="dot"></span> Direct WhatsApp quoting</div>
         </div>
 
       </div>
@@ -831,9 +847,8 @@
   <section class="tight">
     <div class="wrap">
       <div class="section-head">
-        <div class="kicker">What we manufacture</div>
-        <h2>Built for homes, shops and offices</h2>
-        <p>Every product is custom-made for your exact opening, wall space, material preference and finish requirement.</p>
+        <div class="kicker">The Art of Living</div>
+        <h2 style="white-space: nowrap; font-size: clamp(1.5rem, 3vw, 2.3rem);">Transforming Spaces into Sanctuaries</h2>
       </div>
       <div class="cp-wrap" id="categoryGrid"></div>
     </div>
@@ -1576,6 +1591,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
       });
     }, { threshold:.12 }) : null;
     var idx = 0;
+
     CP_GROUPS.forEach(function(g, gi){
       var box = el("div","cp-group");
       var h = el("h3","cp-group-title");
@@ -1655,11 +1671,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   }
   function renderShop(){
     var filters = document.getElementById("shopFilters");
-    ["All"].concat(SHOP_GROUPS).forEach(function(c){
-      var chip = el("button","chip"+(c===currentShopFilter?" active":""), c);
-      chip.addEventListener("click", function(){ setShopFilter(c); });
-      filters.appendChild(chip);
-    });
+    filters.innerHTML = "";
     renderShopGrid();
   }
   function setShopFilter(c){
@@ -1670,7 +1682,13 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   function renderShopGrid(){
     var grid = document.getElementById("shopGrid");
     grid.innerHTML = "";
-    var items = PRODUCTS.filter(function(p){ return currentShopFilter==="All" || SHOP_GROUP_OF[p.id]===currentShopFilter; });
+    var items = PRODUCTS.filter(function(p){
+      return (currentShopFilter==="All" || SHOP_GROUP_OF[p.id]===currentShopFilter) &&
+             p.id !== "alu-sliding-window" &&
+             p.id !== "alu-glass-door" &&
+             p.id !== "sliding-door" &&
+             p.id !== "glass-partition";
+    });
     items.forEach(function(p){
       var card = el("div","p-card");
       var img = shopImg(p);
@@ -1985,8 +2003,13 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     var ga=$("vcMaterial").value!=="Melamine Board", shelfLen=0;
     cols.forEach(function(col,c){ shelfLen+=col.sh.length*W*wf[c]; });
     var alu=4*H+4*W+4*D+(cols.length-1)*H+shelfLen;
-    var auto=Math.max(1,Math.ceil(area/32)), ov=parseInt($("vcBoards").value)||0;
-    return {W:W,H:H,D:D,N:N,area:area,auto:auto,boards:ga?0:(ov>0?ov:auto),ga:ga,glassTotal:ga?(area+glass):0,alu:ga?alu:0,glass:ga?0:glass,ech:slideW*N,hinged:hinged,shelves:shelves,drawers:drawers,fronts:fronts,back:$("vcBack").checked?W*H:0};
+
+    // SMART UPDATE: Adding 10% cutting waste and complexity factor
+    var wasteFactor = 1.10;
+    var complexity = 1 + (shelves * 0.02); // 2% increase per shelf
+    var auto=Math.max(1,Math.ceil((area * wasteFactor)/32)), ov=parseInt($("vcBoards").value)||0;
+
+    return {W:W,H:H,D:D,N:N,area:area,auto:auto,boards:ga?0:(ov>0?ov:auto),ga:ga,glassTotal:ga?(area+glass):0,alu:ga?alu:0,glass:ga?0:glass,ech:slideW*N,hinged:hinged,shelves:shelves,drawers:drawers,fronts:fronts,back:$("vcBack").checked?W*H:0,complexity:complexity};
   }
   var openT=0, openTarget=0, lastK=null, lastC=null;
   function poly(p,f){ return '<polygon style="pointer-events:none" points="'+p.join(" ")+'" fill="'+f+'"/>'; }
@@ -2013,7 +2036,7 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
         var top=y0+t+b[i]*ih+(i>0?t/2:0), bot=y0+t+b[i+1]*ih-(i<col.sh.length?t/2:0), h=bot-top;
         var fx=cx,fy=top,fw=cwp,fh=h, kx=cxm-(fx+fw/2), ky=cym-(fy+fh/2);
         var bw=fw*(1-depthK*2), bh=fh*(1-depthK*2), bx=fx+fw/2-bw/2+kx*depthK, by=fy+fh/2-bh/2+ky*depthK;
-        o+='<rect class="cell" data-c="'+c+'" data-i="'+i+'" x="'+fx+'" y="'+fy+'" width="'+fw+'" height="'+fh+'" fill="'+(back?vcShade(color,-6):"#ececE8")+'"/>';
+        o+='<rect class="cell" data-c="'+c+'" data-i="'+i+'" x="'+fx+'" y="'+fy+'" width="'+fw+'" height="'+fh+'" fill="'+(back?vcShade(color,-6):"#ececE8")+'" style="cursor:pointer" onclick="vcCellClick('+c+','+i+')"/>';
         o+=poly([fx,fy,fx+fw,fy,bx+bw,by,bx,by],vcShade(color,-34))+poly([fx,fy+fh,fx+fw,fy+fh,bx+bw,by+bh,bx,by+bh],vcShade(color,22))+poly([fx,fy,bx,by,bx,by+bh,fx,fy+fh],vcShade(color,-14))+poly([fx+fw,fy,bx+bw,by,bx+bw,by+bh,fx+fw,fy+fh],vcShade(color,-22));
         o+='<rect style="pointer-events:none" x="'+bx+'" y="'+by+'" width="'+bw+'" height="'+bh+'" fill="'+(back?vcShade(color,-8):"#d9d9d4")+'"/>';
         if(!col.sl){
@@ -2051,8 +2074,30 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   function animOpen(){ var d=openTarget-openT; if(Math.abs(d)<0.01){ openT=openTarget; } else { openT+=d*0.2; requestAnimationFrame(animOpen); } if(lastK) vcDraw(lastK,lastC); }
   
 
+  function vcCellClick(c, i) {
+    var type = cols[c].fr[i];
+    var typeLabel = FR[type] || "Unknown";
+    var newType = prompt("Configuration for Column " + (c+1) + ", Slot " + (i+1) + ":\n\nCurrent: " + typeLabel + "\n\nChoose new type:\no - Empty\ndr - Drawer\nhbL - Left board door\nhbR - Right board door\nhbD - Double board door\nhgL - Left glass door\nhgR - Right glass door\nhgD - Double glass door", type);
+
+    if (newType !== null && FR[newType]) {
+      cols[c].fr[i] = newType;
+      vcUpdate();
+    } else if (newType !== null) {
+      alert("Invalid type selected. Please use the codes provided (e.g., 'dr' for Drawer).");
+    }
+  }
+
   function vcUpdate(){
+    // AUTO-SAVE: Save current design to localStorage
+    var designState = {
+      W: $("vcW").value, Wi: $("vcWi").value, H: $("vcH").value, Hi: $("vcHi").value, D: $("vcD").value, Di: $("vcDi").value,
+      mat: $("vcMaterial").value, gl: $("vcGlass").value, col: vcColor, back: $("vcBack").checked, slide: $("vcSlideN").value,
+      cols: cols, wf: wf
+    };
+    localStorage.setItem('vc_saved_design', JSON.stringify(designState));
+
     var material=$("vcMaterial").value, isMel=material==="Melamine Board", k=vcCalc(), gl=VC_GLASS[parseInt($("vcGlass").value)||0], matLabel=isMel?"Melamine Board 16mm":"Glass & Aluminium ("+gl.n+")";
+
     var color=isMel?VC_COLORS[vcColor][1]:"#c3c7ca";
     $("vcColorWrap").style.display=isMel?"":"none"; $("vcGlassWrap").style.display=isMel?"none":""; $("vcColorName").textContent=VC_COLORS[vcColor][0];
     document.querySelectorAll("#vcSwatches .sw").forEach(function(b,i){ b.classList.toggle("on",i===vcColor); });
@@ -2085,10 +2130,11 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     var cnt={}; cols.forEach(function(col){ if(col.sl) cnt[col.sl]=(cnt[col.sl]||0)+1; else col.fr.forEach(function(t){ if(t!=="o") cnt[t]=(cnt[t]||0)+1; }); });
     var fr=Object.keys(cnt).map(function(x){ return "  "+FR[x]+": "+cnt[x]+(isSl(x)?" column(s)":""); }).join("\n")||"  All open";
     var lay=cols.map(function(c,i){ return "  Col "+(i+1)+" ("+(wf[i]*k.W).toFixed(2)+"ft): "+(c.sh.length+1)+" compartments"; }).join("\n");
-    var msg="Hi Neloy Enterprise, cabinet inquiry:\nSize: "+k.W.toFixed(2)+"ft (W) x "+k.H.toFixed(2)+"ft (H) x "+k.D.toFixed(2)+"ft (D)\nMaterial: "+matLabel+(isMel?", "+VC_COLORS[vcColor][0]:"")+"\nLayout:\n"+lay+(k.ga?"\nAluminium frame: "+k.alu.toFixed(1)+" ft\nGlass: "+k.glassTotal.toFixed(1)+" sq ft":"\nBoards: "+k.boards)+"\nFronts:\n"+fr
+    var totalComponents = Object.values(cnt).reduce((a, b) => a + b, 0);
+    var msg="PRODUCTION ORDER - NELOY ENTERPRISE\n==========================\nSUMMARY:\nTotal Components: "+totalComponents+"\nOverall Size: "+k.W.toFixed(2)+"ft (W) x "+k.H.toFixed(2)+"ft (H) x "+k.D.toFixed(2)+"ft (D)\nMaterial: "+matLabel+(isMel?", "+VC_COLORS[vcColor][0]:"")+"\n\nDETAILED LAYOUT:\n"+lay+(k.ga?"\nAluminium frame: "+k.alu.toFixed(1)+" ft\nGlass: "+k.glassTotal.toFixed(1)+" sq ft":"\nBoards: "+k.boards)+"\n\nFITTINGS:\n"+fr
       +(k.ech>0?"\nE-channel: "+k.ech.toFixed(1)+" ft ("+k.N+" sections)":"")+(k.glass>0?"\nGlass: "+k.glass.toFixed(1)+" sq ft":"")
-      +"\nEstimate: "+money(Math.round(total))+(missing?" (incomplete, some prices pending)":"")
-      +"\nName: "+$("vcName").value+"\nPhone: "+$("vcPhone").value+"\nWhatsApp: "+$("vcWa").value+"\nLocation: "+$("vcLoc").value;
+      +"\n\nESTIMATE: "+money(Math.round(total))+(missing?" (incomplete, some prices pending)":"")
+      +"\n\nCLIENT INFO:\nName: "+$("vcName").value+"\nPhone: "+$("vcPhone").value+"\nWhatsApp: "+$("vcWa").value+"\nLocation: "+$("vcLoc").value;
     $("vcQuoteBtn").href=waLink(msg.replace("inquiry:","order request:")); $("vcAskBtn").href=waLink(msg.replace("inquiry:","question:")); $("vcCut").innerHTML=cutHtml(vcParts(k),k.ga?null:k.boards,"in");
   }
 
@@ -2111,6 +2157,20 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     furniture:{t:"Custom Melamine Board Furniture",title:"Your board cabinet",w:[4,0],h:[3,0],d:[1,6],mat:"Melamine Board",color:5,back:true,n:2,cols:rep(3,mk([.5],["hbL","dr"]))}
   };
   function vcApplyPreset(key){
+    // Check for saved design first
+    var saved = localStorage.getItem('vc_saved_design');
+    if(saved && key === 'bookshelf'){ // Only auto-load if they are on the default/bookshelf view
+      try {
+        var s = JSON.parse(saved);
+        $("vcW").value=s.W; $("vcWi").value=s.Wi; $("vcH").value=s.H; $("vcHi").value=s.Hi; $("vcD").value=s.D; $("vcDi").value=s.Di;
+        $("vcMaterial").value=s.mat; $("vcGlass").value=s.gl; vcColor=s.col; $("vcBack").checked=s.back; $("vcSlideN").value=s.slide;
+        cols=s.cols; wf=s.wf;
+        sel={}; hist=[]; openT=0; openTarget=0; $("vcTOpen").classList.remove("on"); $("vcTOpen").textContent="Open doors";
+        $("vcTitle").textContent=P.title; $("vcH2").textContent=P.t; vcOpenStep(1); vcUpdate();
+        return;
+      } catch(e) { console.log("Save load failed", e); }
+    }
+
     var P=VC_PRESETS[key]||VC_PRESETS.bookshelf;
     $("vcW").value=P.w[0]; $("vcWi").value=P.w[1]; $("vcH").value=P.h[0]; $("vcHi").value=P.h[1]; $("vcD").value=P.d[0]; $("vcDi").value=P.d[1];
     $("vcMaterial").value=(P.mat==="Glass"||P.mat==="Mirror")?"Glass & Aluminium":"Melamine Board"; $("vcGlass").value="1"; vcColor=P.color; $("vcBack").checked=P.back; $("vcSlideN").value=P.n; $("vcBoards").value=0;
@@ -3351,5 +3411,157 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   (function(){ var s="en"; try{ s=localStorage.getItem("neloyLang")||"en"; }catch(e){} if(s==="bn") applyLang("bn"); })();
 })();
 </script>
-</body>
+<script>
+  /* ================= Interior Design Studio Engine ================= */
+  const Studio = {
+    placedItems: [],
+    selectedId: null,
+    totalPrice: 0,
+
+    init() {
+      this.canvas = document.getElementById('studioCanvas');
+      this.sidebar = document.getElementById('studioComponents');
+      this.props = document.getElementById('studioProps');
+      this.totalDisplay = document.getElementById('studioTotal');
+      this.propFields = document.getElementById('propFields');
+
+      this.loadComponents();
+      this.setupGlobalListeners();
+    },
+
+    loadComponents() {
+      // Using the existing product data patterns found in your file
+      const products = [
+        { id: 'showcase', name: 'Glass Showcase', img: 'showcase', price: 12000 },
+        { id: 'bookshelf', name: 'Bookshelf', img: 'cabinet', price: 8000 },
+        { id: 'counter', name: 'Shop Counter', img: 'counter', price: 15000 },
+        { id: 'cabinet', name: 'Cabinet', img: 'cabinet', price: 10000 },
+        { id: 'aquarium', name: 'Aquarium', img: 'aquarium', price: 7000 }
+      ];
+
+      this.sidebar.innerHTML = products.map(p => `
+        <div class="comp-item" draggable="true" data-type="${p.id}" data-price="${p.price}">
+          <img src="img/${p.img}.jpg" onerror="this.src='https://via.placeholder.com/50?text=${p.name}'">
+          <span>${p.name}</span>
+        </div>
+      `).join('');
+
+      this.sidebar.querySelectorAll('.comp-item').forEach(item => {
+        item.addEventListener('dragstart', e => {
+          e.dataTransfer.setData('text/plain', JSON.stringify({
+            type: item.dataset.type,
+            price: item.dataset.price,
+            name: item.querySelector('span').innerText
+          }));
+        });
+      });
+    },
+
+    setupGlobalListeners() {
+      this.canvas.addEventListener('dragover', e => e.preventDefault());
+      this.canvas.addEventListener('drop', e => {
+        e.preventDefault();
+        const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+        const rect = this.canvas.getBoundingClientRect();
+        this.addItem(data, e.clientX - rect.left, e.clientY - rect.top);
+      });
+
+      document.getElementById('removePlacedItem').addEventListener('click', () => this.removeSelected());
+    },
+
+    addItem(data, x, y) {
+      const id = 'item_' + Date.now();
+      const el = document.createElement('div');
+      el.className = 'placed-comp';
+      el.id = id;
+      el.style.left = (x - 50) + 'px';
+      el.style.top = (y - 50) + 'px';
+      el.innerHTML = `<img src="img/${data.type}.jpg" onerror="this.src='https://via.placeholder.com/100?text=${data.name}'">`;
+
+      el.addEventListener('mousedown', e => this.startDragging(e, el));
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.selectItem(id, data);
+      });
+
+      this.canvas.appendChild(el);
+      this.placedItems.push({ id, ...data, x, y });
+      this.updateTotal();
+    },
+
+    startDragging(e, el) {
+      let startX = e.clientX - el.offsetLeft;
+      let startY = e.clientY - el.offsetTop;
+
+      const move = (me) => {
+        el.style.left = (me.clientX - startX) + 'px';
+        el.style.top = (me.clientY - startY) + 'px';
+      };
+
+      const stop = () => {
+        window.removeEventListener('mousemove', move);
+        window.removeEventListener('mouseup', stop);
+      };
+
+      window.addEventListener('mousemove', move);
+      window.addEventListener('mouseup', stop);
+    },
+
+    selectItem(id, data) {
+      this.selectedId = id;
+      document.querySelectorAll('.placed-comp').forEach(c => c.classList.remove('selected'));
+      document.getElementById(id).classList.add('selected');
+
+      this.props.classList.add('active');
+      this.renderProps(data);
+    },
+
+    renderProps(data) {
+      this.propFields.innerHTML = `
+        <div class="prop-group">
+          <label>Product Name</label>
+          <input type="text" value="${data.name}" disabled>
+        </div>
+        <div class="prop-group">
+          <label>Configuration (Doors/Shelves)</label>
+          <select onchange="alert('Configuring internal layout...')">
+            <option>Standard Layout</option>
+            <option>More Shelves</option>
+            <option>Add Glass Doors</option>
+            <option>Add Drawers</option>
+          </select>
+        </div>
+        <div class="prop-group">
+          <label>Custom Width (ft)</label>
+          <input type="number" value="5" step="0.1">
+        </div>
+      `;
+    },
+
+    removeSelected() {
+      if (!this.selectedId) return;
+      const el = document.getElementById(this.selectedId);
+      el.remove();
+      this.placedItems = this.placedItems.filter(i => i.id !== this.selectedId);
+      this.selectedId = null;
+      this.props.classList.remove('active');
+      this.updateTotal();
+    },
+
+    updateTotal() {
+      this.totalPrice = this.placedItems.reduce((sum, item) => sum + parseFloat(item.price), 0);
+      this.totalDisplay.innerText = '৳' + this.totalPrice.toLocaleString();
+    }
+  };
+
+  // Integration with existing showView
+  const originalShowView = window.showView;
+  window.showView = function(name, skipHash) {
+    if (name === 'design-studio') {
+      Studio.init();
+    }
+    originalShowView(name, skipHash);
+  };
+</script>
+
 </html>
