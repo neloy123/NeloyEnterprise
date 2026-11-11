@@ -44,6 +44,22 @@
     --font-body: 'IBM Plex Sans', sans-serif;
     --font-bn: 'Noto Sans Bengali', 'IBM Plex Sans', sans-serif;
   }
+  .search-container{width:100%;max-width:620px;margin:26px 0 8px}
+  .search-box{position:relative;width:100%;z-index:20}
+  .search-box input{width:100%;min-height:58px;padding:16px 98px 16px 50px;font:500 16px var(--font-bn);border:1px solid rgba(255,255,255,.55);border-radius:6px;outline:none;background:rgba(255,255,255,.97);color:#202820;box-shadow:0 12px 34px rgba(0,0,0,.16);transition:border-color .2s,box-shadow .2s}
+  .search-box input::placeholder{color:#68736b;opacity:1}
+  .search-box input:focus{border-color:#9eb6a2;box-shadow:0 0 0 4px rgba(255,255,255,.16),0 14px 38px rgba(0,0,0,.2)}
+  .search-icon{position:absolute;left:17px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:#526456;pointer-events:none}
+  .search-submit{position:absolute;right:8px;top:8px;height:42px;padding:0 15px;border:0;border-radius:3px;background:#2c4a34;color:#fff;font:600 14px var(--font-bn);cursor:pointer}
+  .search-hints{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 0;color:rgba(255,255,255,.9);font:500 13px var(--font-bn)}
+  .search-hints button{padding:5px 10px;border:1px solid rgba(255,255,255,.45);border-radius:20px;background:rgba(0,0,0,.16);color:#fff;cursor:pointer;font:inherit}
+  .search-results{position:absolute;top:calc(100% + 8px);left:0;right:0;display:none;max-height:300px;overflow:auto;background:#fff;border:1px solid #dce2dc;border-radius:6px;box-shadow:0 16px 36px rgba(0,0,0,.2);padding:6px;z-index:50}
+  .search-results.open{display:block}
+  .search-result{display:flex;width:100%;align-items:center;gap:12px;padding:12px;border:0;border-radius:3px;background:#fff;color:#253329;text-align:left;cursor:pointer;font:500 14px var(--font-bn)}
+  .search-result:hover,.search-result:focus{background:#eef3ed;outline:none}
+  .search-result small{display:block;color:#718075;font-size:12px;margin-top:3px}
+  .search-empty{padding:14px;color:#58645b;font:14px var(--font-bn)}
+  @media(max-width:600px){.search-container{margin:20px 0 4px}.search-box input{min-height:54px;font-size:14px;padding-right:92px}.search-submit{height:38px;top:8px;right:8px;padding:0 12px}.search-hints{font-size:12px}}
   :root:not([data-theme="light"]){
     @media (prefers-color-scheme: dark){
       --bg: #14171A;
@@ -778,6 +794,56 @@
     body.is-home section.tight{ padding:64px 0; }
   }
 
+  /* ================= SHOP: online-store look ================= */
+  #view-shop{ background:#F5F5F2; color:#1c211e; }
+  #view-shop .shop-sec{ padding:44px 0 90px; }
+  .shop-top{ display:flex; justify-content:space-between; align-items:flex-end; gap:22px; flex-wrap:wrap; margin-bottom:24px; }
+  .shop-crumb{ font-size:.8rem; color:#6b756e; margin-bottom:8px; }
+  .shop-title{ font-size:clamp(2rem,4vw,2.9rem); font-weight:800; margin:0 0 8px; color:#161a18 !important; text-shadow:none !important; letter-spacing:-.02em; }
+  .shop-top p{ color:#4a534d; margin:0; max-width:520px; line-height:1.7; }
+  .shop-tools{ display:flex; gap:10px; flex-wrap:wrap; }
+  .shop-tools input, .shop-tools select{ padding:12px 14px; border:1px solid #d3d8d1; border-radius:8px; background:#fff; color:#1c211e; font:inherit; min-width:0; }
+  .shop-tools input{ width:250px; }
+  .shop-focus{ background:#fff; border:1px solid #e1e5df; border-radius:14px; padding:18px 18px 16px; margin-bottom:26px; box-shadow:0 6px 18px rgba(0,0,0,.04); }
+  .shop-focus-title{ font-weight:700; margin-bottom:12px; color:#161a18; }
+  .shop-focus-row{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+  .shop-focus-card{ display:flex; align-items:center; gap:12px; text-align:left; background:#F5F5F2; border:1px solid #e1e5df; border-radius:12px; padding:8px; cursor:pointer; font:inherit; color:#161a18; transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s, border-color .2s; }
+  .shop-focus-card:hover{ transform:translateY(-3px); box-shadow:0 12px 24px rgba(0,0,0,.1); border-color:#7E8C82; }
+  .shop-focus-card img{ width:76px; height:60px; object-fit:cover; border-radius:8px; flex-shrink:0; }
+  .shop-focus-card b{ display:block; font-size:1rem; }
+  .shop-focus-card small{ color:#6b796f; font-weight:600; }
+  #view-shop .filter-row{ margin-bottom:10px; display:flex; gap:8px; flex-wrap:wrap; }
+  #view-shop .filter-row .chip{ color:#2c3530; border-color:#cfd5cd; background:#fff; }
+  #view-shop .filter-row .chip.active, #view-shop .filter-row .chip:hover{ background:#7E8C82; border-color:#7E8C82; color:#fff; }
+  .shop-count{ font-size:.85rem; color:#6b756e; margin:8px 0 14px; }
+  #shopGrid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px; }
+  #shopGrid .p-card{ background:#fff; border:1px solid #e3e7e1; border-radius:14px; box-shadow:0 6px 18px rgba(0,0,0,.05); overflow:hidden; color:#1c211e; }
+  #shopGrid .p-card:hover{ box-shadow:0 16px 34px rgba(0,0,0,.12); border-color:#cfd5cd; }
+  #shopGrid .p-card .thumb{ aspect-ratio:4/3; position:relative; overflow:hidden; background:#ecece8; }
+  #shopGrid .p-card .thumb img{ width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.2,.7,.2,1); }
+  #shopGrid .p-card:hover .thumb img{ transform:scale(1.06); }
+  .p-badge{ position:absolute; left:10px; top:10px; background:rgba(255,255,255,.94); color:#2c3530; font-size:.68rem; font-weight:700; padding:5px 9px; border-radius:999px; letter-spacing:.02em; }
+  #shopGrid .p-card .body{ padding:16px; gap:8px; }
+  #shopGrid .p-card h3{ font-size:1.02rem; font-weight:700; color:#161a18; }
+  #shopGrid .p-card p{ font-size:.85rem; color:#5b655f; line-height:1.55; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; flex:0 0 auto; }
+  .p-price{ font-weight:800; font-size:1.05rem; color:#2C4A38; margin-top:4px; }
+  .p-actions{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px; }
+  .p-actions .btn{ justify-content:center; text-align:center; border-radius:8px; padding:11px 10px; }
+  .p-actions .p-cust{ background:#2C4A38; color:#fff; border:0; }
+  .p-actions .p-order{ background:#fff; color:#2C4A38; border:1px solid #2C4A38; text-decoration:none; }
+  .p-actions .p-order:hover{ background:#2C4A38; color:#fff; }
+  .shop-empty{ grid-column:1/-1; padding:40px 0; color:#6b756e; text-align:center; }
+  @media (max-width:1100px){ #shopGrid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+  @media (max-width:860px){
+    #shopGrid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    .shop-focus-row{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .shop-tools{ width:100%; } .shop-tools input{ flex:1; width:auto; }
+    #view-shop .shop-sec{ padding:28px 0 60px; }
+    #shopGrid .p-card .body{ padding:12px; }
+    .p-actions{ grid-template-columns:1fr; }
+    .shop-focus-card img{ width:56px; height:46px; }
+  }
+
   /* ================= Blog ================= */
   .blog-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:22px; margin-top:12px; }
   .blog-card{ text-align:left; display:flex; flex-direction:column; gap:12px; padding:26px; border-radius:16px; border:1px solid rgba(255,255,255,.22); background:rgba(255,255,255,.96); color:#1D3324; cursor:pointer; font:inherit; transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease; }
@@ -997,11 +1063,24 @@
     <div class="wrap hero-grid">
       <div>
         <div class="ins-kicker"><i></i><span>Neloy Enterprise · Netrakona, Bangladesh</span></div>
-          <h1 class="hero-title-single" style="text-align: left; justify-content: flex-start;">ঘর সাজানোর সব</h1>
+          <h1 class="hero-title-single" style="text-align: left; justify-content: flex-start;">Everything for Your Home</h1>
+          <div class="search-container" id="searchHeader">
+            <div class="search-box">
+              <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 4 4"></path></svg>
+              <input type="search" id="siteSearch" autocomplete="off" aria-label="Search products" aria-controls="searchResults" aria-expanded="false" placeholder="What are you looking for? Try windows, showcases, bookshelves...">
+              <button class="search-submit" type="button" id="searchSubmit">Search</button>
+              <div class="search-results" id="searchResults" role="listbox" aria-label="Search suggestions"></div>
+            </div>
+            <div class="search-hints" aria-label="Popular searches">Popular:
+              <button type="button" data-search-term="Windows">Windows</button>
+              <button type="button" data-search-term="Showcase">Showcase</button>
+              <button type="button" data-search-term="Bookshelf">Bookshelf</button>
+              <button type="button" data-search-term="Glass">Glass</button>
+            </div>
+          </div>
 
-
-        <p class="bn-line">"প্রতিটি স্থান আপনাকে আপনার সেরা জীবন যাপন করতে অনুপ্রাণিত করবে।"</p>
-        <p class="desc">আপনার স্বপ্নকে বাস্তবে রূপ দিন এবং আপনার ঘরের পরিবেশকে অনুপ্রেরণার এক শক্তিশালী কেন্দ্রে রূপান্তরিত করুন। আমরা এমন সাহসী, সুন্দর এবং একান্ত ব্যক্তিগত স্থান তৈরি করতে আগ্রহী, যা প্রবেশ করার মুহূর্তেই আপনার মনে আনন্দের সঞ্চার করে। নজরকাড়া সজ্জা থেকে শুরু করে সম্পূর্ণ অভ্যন্তরীণ রূপান্তর পর্যন্ত।</p>
+        <p class="bn-line">"Let every space inspire you to live your best life."</p>
+        <p class="desc">Bring your ideas to life with bold, beautiful spaces that feel uniquely yours. From standout decor to complete interior transformations, we create places that make you feel at home the moment you walk in.</p>
         <div class="actions">
           <button class="btn primary" data-view="shop">Start Designing</button>
           <button class="btn" data-view="shop">View Products</button>
@@ -1059,14 +1138,25 @@
 
 <!-- ============ SHOP ============ -->
 <div class="view" data-view="shop" id="view-shop">
-  <section>
+  <section class="shop-sec">
     <div class="wrap">
-      <div class="section-head">
-        <div class="kicker">Shop</div>
-        <h2>Our current product catalogue</h2>
-        <p>A starting-point catalogue of what we manufacture most often. Every product ships as a custom job — pick one to configure it for your space.</p>
+      <div class="shop-top">
+        <div>
+          <div class="shop-crumb">Home / Shop</div>
+          <h2 class="shop-title">Shop</h2>
+          <p>Ready-to-order products, made to your size in our Netrakona workshop.</p>
+        </div>
+        <div class="shop-tools">
+          <input id="shopSearch" type="search" placeholder="Search products" aria-label="Search products">
+          <select id="shopSort" aria-label="Sort products"><option value="featured">Sort: Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="az">Name: A to Z</option></select>
+        </div>
+      </div>
+      <div class="shop-focus">
+        <div class="shop-focus-title">Made to measure — configure these first</div>
+        <div class="shop-focus-row" id="shopFocus"></div>
       </div>
       <div class="filter-row" id="shopFilters"></div>
+      <div class="shop-count" id="shopCount"></div>
       <div class="product-grid" id="shopGrid"></div>
     </div>
   </section>
@@ -1840,9 +1930,27 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     var c = CATEGORIES.find(function(x){ return x.name === p.cat; });
     return c ? c.img : "";
   }
+  var shopQuery = "", shopSort = "featured";
+  var SHOP_HIDE = ["alu-sliding-window","alu-glass-door","sliding-door","glass-partition","pvc-ceiling"];
+  var SHOP_FOCUS = [ {id:"alu-sliding-window",name:"Windows",img:"windows"}, {id:"alu-glass-door",name:"Doors",img:"doors"}, {id:"glass-partition",name:"Partitions",img:"partitions"}, {id:"pvc-ceiling",name:"Ceiling",img:"ceiling"} ];
   function renderShop(){
-    var filters = document.getElementById("shopFilters");
-    filters.innerHTML = "";
+    var f = document.getElementById("shopFocus"); f.innerHTML = "";
+    SHOP_FOCUS.forEach(function(x){
+      var b = el("button","shop-focus-card"); b.type = "button";
+      b.innerHTML = '<img src="'+CP_IMG[x.img]+'" alt="'+x.name+'"><span><b>'+x.name+'</b><small>Configure now →</small></span>';
+      b.addEventListener("click", function(){ openConfigFor(x.id); });
+      f.appendChild(b);
+    });
+    var chips = document.getElementById("shopFilters"); chips.innerHTML = "";
+    var groups = [];
+    PRODUCTS.forEach(function(p){ if(SHOP_HIDE.indexOf(p.id) < 0){ var g = SHOP_GROUP_OF[p.id]; if(g && groups.indexOf(g) < 0) groups.push(g); } });
+    ["All"].concat(groups).forEach(function(c){
+      var chip = el("button","chip"+(c===currentShopFilter ? " active" : ""), c);
+      chip.addEventListener("click", function(){ setShopFilter(c); });
+      chips.appendChild(chip);
+    });
+    document.getElementById("shopSearch").oninput = function(){ shopQuery = this.value.trim().toLowerCase(); renderShopGrid(); };
+    document.getElementById("shopSort").onchange = function(){ shopSort = this.value; renderShopGrid(); };
     renderShopGrid();
   }
   function setShopFilter(c){
@@ -1854,22 +1962,27 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
     var grid = document.getElementById("shopGrid");
     grid.innerHTML = "";
     var items = PRODUCTS.filter(function(p){
-      return (currentShopFilter==="All" || SHOP_GROUP_OF[p.id]===currentShopFilter) &&
-             p.id !== "alu-sliding-window" &&
-             p.id !== "alu-glass-door" &&
-             p.id !== "sliding-door" &&
-             p.id !== "glass-partition";
+      if(SHOP_HIDE.indexOf(p.id) > -1) return false;
+      if(currentShopFilter !== "All" && SHOP_GROUP_OF[p.id] !== currentShopFilter) return false;
+      return !shopQuery || (p.name+" "+p.desc).toLowerCase().indexOf(shopQuery) > -1;
     });
+    if(shopSort === "az") items.sort(function(a,b){ return a.name.localeCompare(b.name); });
+    else if(shopSort === "low" || shopSort === "high"){
+      items.sort(function(a,b){ var x = a.from == null ? 1e12 : a.from, y = b.from == null ? 1e12 : b.from; return shopSort === "low" ? x-y : (b.from == null ? -1 : 0) || y-x; });
+    }
+    document.getElementById("shopCount").textContent = items.length+" product"+(items.length === 1 ? "" : "s");
+    if(!items.length){ grid.innerHTML = '<p class="shop-empty">No products match your search.</p>'; return; }
     items.forEach(function(p){
       var card = el("div","p-card");
       var img = shopImg(p);
       var thumb = img ? '<img src="'+img+'" alt="'+p.name+'" loading="lazy">' : texturePanel(materialKind(p.materials[0]));
-      card.innerHTML = '<div class="thumb">'+thumb+'</div>'
+      var order = waLink("Hi Neloy Enterprise, I want to order: "+p.name+". Please confirm the size, colour and price.");
+      card.innerHTML = '<div class="thumb">'+thumb+'<span class="p-badge">'+(SHOP_GROUP_OF[p.id] || p.cat)+'</span></div>'
         + '<div class="body"><h3>'+p.name+'</h3><p>'+p.desc+'</p>'
-        + '<div class="price">'+(p.from==null ? 'Price by room size' : 'From ৳'+p.from.toLocaleString('en-IN'))+'</div>'
-        + '<button class="btn small primary">Configure</button></div>';
+        + '<div class="p-price">'+(p.from == null ? 'Price by size' : 'From ৳'+p.from.toLocaleString('en-IN'))+'</div>'
+        + '<div class="p-actions"><button type="button" class="btn small primary p-cust">Customise</button><a class="btn small p-order" target="_blank" rel="noopener" href="'+order+'">Order</a></div></div>';
       card.style.cursor = "pointer";
-      card.addEventListener("click", function(){ openConfigFor(p.id); });
+      card.addEventListener("click", function(e){ if(e.target.closest(".p-order")) return; openConfigFor(p.id); });
       grid.appendChild(card);
     });
   }
@@ -3752,4 +3865,108 @@ var MKT_IMG_HOME = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEB
   };
 </script>
 
+<script>
+(function(){
+  var input = document.getElementById("siteSearch");
+  var panel = document.getElementById("searchResults");
+  var submit = document.getElementById("searchSubmit");
+  if(!input || !panel || !submit) return;
+
+  var terms = [
+    {name:"Windows", bn:"জানালা", terms:["window","windows","aluminium window","aluminum window","জানালা","অ্যালুমিনিয়াম জানালা","অ্যালুমিনিয়াম জানালা"], focus:"Windows"},
+    {name:"Doors", bn:"দরজা", terms:["door","doors","দরজা"], focus:"Doors"},
+    {name:"Partitions", bn:"পার্টিশন", terms:["partition","partitions","পার্টিশন"], focus:"Partitions"},
+    {name:"Ceiling", bn:"সিলিং", terms:["ceiling","pvc ceiling","সিলিং"], focus:"Ceiling"},
+    {name:"Showcase", bn:"শোকেস", terms:["showcase","শোকেস"], search:"showcase"},
+    {name:"Bookshelf", bn:"বুকশেলফ", terms:["bookshelf","book shelf","বুকশেলফ","বইয়ের তাক"], search:"bookshelf"},
+    {name:"Cabinet", bn:"ক্যাবিনেট", terms:["cabinet","cupboard","ক্যাবিনেট","আলমারি"], search:"cabinet"},
+    {name:"Shop Counter", bn:"দোকানের কাউন্টার", terms:["shop counter","counter","কাউন্টার"], search:"counter"},
+    {name:"Mirror", bn:"আয়না", terms:["mirror","custom mirror","আয়না","আয়না"], search:"mirror"},
+    {name:"Glass", bn:"গ্লাস", terms:["glass","গ্লাস"], search:"glass"},
+    {name:"Corner Shelf", bn:"কর্নার শেলফ", terms:["corner shelf","কর্নার শেলফ"], search:"corner shelf"}
+  ];
+  var norm = function(value){ return String(value || "").toLocaleLowerCase().normalize("NFKC").trim().replace(/\s+/g," "); };
+
+  function close(){
+    panel.classList.remove("open");
+    panel.innerHTML = "";
+    input.setAttribute("aria-expanded","false");
+  }
+  function render(){
+    var query = norm(input.value);
+    if(query.length < 2){ close(); return; }
+    var results = [];
+    terms.forEach(function(term){
+      if(term.terms.some(function(alias){ return norm(alias).indexOf(query) > -1; })) results.push(term);
+    });
+    document.querySelectorAll("#shopGrid .p-card").forEach(function(card){
+      var title = card.querySelector("h3");
+      if(title && norm(card.textContent).indexOf(query) > -1 && !results.some(function(item){ return item.name === title.textContent.trim(); })){
+        results.push({name:title.textContent.trim(), bn:"পণ্য", search:title.textContent.trim()});
+      }
+    });
+    panel.innerHTML = "";
+    if(!results.length){
+      var empty = document.createElement("div");
+      empty.className = "search-empty";
+      empty.textContent = "মিল পাওয়া যায়নি। অন্য নামে খুঁজে দেখুন।";
+      panel.appendChild(empty);
+    } else {
+      results.slice(0,7).forEach(function(item){
+        var button = document.createElement("button");
+        button.type = "button";
+        button.className = "search-result";
+        button.setAttribute("role","option");
+        var title = document.createElement("span");
+        title.textContent = item.bn ? item.bn + " · " + item.name : item.name;
+        var detail = document.createElement("small");
+        detail.textContent = item.focus ? "কনফিগার করুন" : "পণ্যের তালিকা";
+        title.appendChild(detail);
+        button.appendChild(title);
+        button.addEventListener("click",function(){
+          input.value = item.bn ? item.bn : item.name;
+          runSearch(item);
+        });
+        panel.appendChild(button);
+      });
+    }
+    panel.classList.add("open");
+    input.setAttribute("aria-expanded","true");
+  }
+  function runSearch(selected){
+    var raw = norm(input.value);
+    if(!raw) return;
+    var term = selected || terms.find(function(item){
+      return item.terms.some(function(alias){ return norm(alias) === raw || (raw.length > 2 && norm(alias).indexOf(raw) === 0); });
+    });
+    var shopButton = document.querySelector('#siteHeader [data-view="shop"]');
+    if(shopButton) shopButton.click();
+    if(term && term.focus){
+      var focusCard = Array.from(document.querySelectorAll("#shopFocus .shop-focus-card")).find(function(card){ return norm(card.textContent).indexOf(norm(term.focus)) > -1; });
+      close();
+      if(focusCard) focusCard.click();
+      return;
+    }
+    var allFilter = document.querySelector("#shopFilters .chip");
+    if(allFilter && allFilter.textContent.trim() === "All") allFilter.click();
+    var shopSearch = document.getElementById("shopSearch");
+    if(shopSearch){
+      shopSearch.value = term && term.search ? term.search : term && !term.focus ? term.name : raw;
+      shopSearch.dispatchEvent(new Event("input",{bubbles:true}));
+    }
+    close();
+  }
+
+  input.addEventListener("input",render);
+  input.addEventListener("keydown",function(event){
+    if(event.key === "Enter"){ event.preventDefault(); runSearch(); }
+    if(event.key === "Escape") close();
+  });
+  submit.addEventListener("click",function(){ runSearch(); });
+  document.querySelectorAll("[data-search-term]").forEach(function(button){
+    button.addEventListener("click",function(){ input.value = button.dataset.searchTerm; runSearch(); });
+  });
+  document.addEventListener("click",function(event){ if(!event.target.closest("#searchHeader")) close(); });
+})();
+</script>
 </html>
